@@ -15,11 +15,6 @@ package
         private var _map:FlxTilemap;
         private var _floor:FlxTilemap;
 
-        private var _sightLimit:Number = 0.5;
-        private var _sightTimer:Number = 0.5;
-
-        private var _shot:Boolean = false;
-
         private var _guards:Array;
         private var _lights:Array;
 
@@ -45,6 +40,7 @@ package
             lyrSprites.add(_player);
             _player.light = new Light(_player);
             _lights.push(_player.light);
+            //_player.light.exists = false;
 
             addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
             
@@ -86,44 +82,15 @@ package
             _map.collide(_player);
             _map.collideArray(_guards);
             
-            var p:Point;
-
             for(var i:int = 0; i < _guards.length; i++) {
-                if (spotted(i) && !_map.ray(_guards[i].x, _guards[i].y, _player.x, _player.y, p, 0.2) && _player.light.exists) {
-                    _sightTimer -= FlxG.elapsed;
-                    if(_sightTimer <= 0) {
-                        _player.mobile = false;
-                        if(!_shot) {
-                            var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player, lyrWalls);
-                            lyrSprites.add(arrow);
-                            _lights.push(new Light(arrow));
-                            _shot = true;
-                        }
-                    }
-                } else {
-                    _sightTimer = _sightLimit;
+                if(_guards[i].spot(_map)) {
+                    var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player, lyrWalls);
+                    lyrSprites.add(arrow);
+                    _lights.push(new Light(arrow));
                 }
             }
         }
 
-        private function distance(X:Number,Y:Number,X0:Number,Y0:Number):Number {
-            var dX:Number = X-X0;
-            var dY:Number = Y-Y0;
-            return Math.sqrt(dX*dX+dY*dY);
-        }
-
-        private function spotted(i:int):Boolean {
-            switch (_guards[i].direction) {
-                case 0:
-                    return _player.x < _guards[i].x;
-                case 1:
-                    return _player.x > _guards[i].x;
-                case 2:
-                    return _player.y < _guards[i].y;
-                case 3:
-                    return _player.y > _guards[i].y;
-            }
-            return false;
-        }
 	}
 }
+

@@ -13,6 +13,11 @@ package
         private var _next:int = 1;
         private var _ang:Number;
         
+        //Shootin' arrows
+        private var _sightLimit:Number = 0.5;
+        private var _sightTimer:Number = 0.5;
+        private var _shot:Boolean = false;
+
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
         public var patrol:Array;
 
@@ -84,6 +89,44 @@ package
         {
             var ret:Number = Math.atan((Y2-Y)/(X2-X));
             return ret + Math.PI/2;
+        }
+
+        public function spot(map:FlxTilemap):Boolean {
+            var p:Point;
+
+            if(spotted() && !map.ray(x, y, _player.x, _player.y, p, 0.2) && _player.light.exists) {
+                _sightTimer -= FlxG.elapsed;
+                if(_sightTimer <= 0) {
+                    _player.mobile = false;
+                    if(!_shot) {
+                        _shot = true;
+                        return true;
+                    }
+                }
+            } else {
+                _sightTimer = _sightLimit;
+            }
+            return false;    
+        }
+        
+        private function distance(X:Number,Y:Number,X0:Number,Y0:Number):Number {
+            var dX:Number = X-X0;
+            var dY:Number = Y-Y0;
+            return Math.sqrt(dX*dX+dY*dY);
+        }
+
+        private function spotted():Boolean {
+            switch (direction) {
+                case 0:
+                    return _player.x < x;
+                case 1:
+                    return _player.x > x;
+                case 2:
+                    return _player.y < y;
+                case 3:
+                    return _player.y > y;
+            }
+            return false;
         }
 
 	}
