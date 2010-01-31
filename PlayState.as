@@ -10,7 +10,12 @@ package
         [Embed(source = '../data/lvld/layer_1.txt', mimeType = "application/octet-stream")] private var WallMap:Class;
 
         private var _player:Player;
+        
+        //Without storing the guards in here before adding them to the array,
+        //The game will mysteriously freeze, and not show any darkness
         private var _guard:Guard;
+        private var _trap:Trap;
+
         private var _mask:LightMask;
         private var _map:FlxTilemap;
         private var _floor:FlxTilemap;
@@ -42,7 +47,9 @@ package
             _lights.push(_player.light);
             _player.light.exists = false;
 
-            addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
+//            addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
+//            addGuard(new Array(new Point(6,6), new Point(6,14), new Point(6, 4), new Point(3,9)),1);
+            addTrap(5,5);
             
             _mask = new LightMask(_lights);
             lyrLight.add(_mask);
@@ -74,6 +81,13 @@ package
             lyrSprites.add(_guard);
             _lights.push(new Light(_guard));
             _guards.push(_guard);
+        }
+        
+        private function addTrap(X:Number, Y:Number):void {
+            var glow:Glow = new Glow(X*16 - 8, Y*16 - 8);
+            _trap = new Trap(X, Y, _map, _player, glow);
+            lyrStage.add(_trap);
+            lyrWalls.add(glow);
         }
 
         override public function update():void

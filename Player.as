@@ -12,7 +12,7 @@ package
         private var _heading:Array = new Array(270,90,0,180);
         
         public var light:Light;
-        public var mobile = true;
+        public var mobile:Boolean = true;
 
 		public function Player(X:Number,Y:Number,Heading:int):void
 		{
