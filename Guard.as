@@ -38,9 +38,11 @@ package
         override public function update():void
         {
             angle = _heading[direction];
-            
+            var X:int = int(x/16);
+            var Y:int = int(y/16);
             //the fake snes-y angle
-            if(int(x/16) != patrol[_next].x || int(y/16) != patrol[_next].y) {
+            if(X > patrol[_next].x + 2 || X < patrol[_next].x - 2 ||
+                Y > patrol[_next].y + 2 || Y < patrol[_next].y - 2) {
                 _ang = getAngle(x,y,patrol[_next].x*16,patrol[_next].y*16);
                 
                 velocity.x = Math.sin(_ang) * (patrol[_next].x*16>x?_move_speed:-_move_speed);
@@ -60,7 +62,7 @@ package
                     }
                 }
             } else if (patrol.length > 1) {
-                if (_next < patrol.length) {
+                if (_next < patrol.length - 1) {
                     _next++;
                 } else {
                     _next = 0;

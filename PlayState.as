@@ -41,12 +41,12 @@ package
             _guards = new Array;
             _lights = new Array;
             
-            _player = new Player(4, 14, 3);
+            _player = new Player(1, 1, 3);
             lyrSprites.add(_player);
             _player.light = new Light(_player);
             _lights.push(_player.light);
 
-            addGuard(new Array(new Point(7,14), new Point(10,14)),1);
+            addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
             
             _mask = new LightMask(_lights);
             lyrLight.add(_mask);
