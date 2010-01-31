@@ -34,8 +34,9 @@ package
             offset.x = 4;
             offset.y = 2;
 
-            addAnimation("normal", [1, 0, 3, 0], 8);
-            addAnimation("stopped", [0]);
+            addAnimation("normal", [0, 2, 3, 4], 8);
+            addAnimation("stopped", [0, 1], 8);
+            addAnimation("shooting", [5, 6], 8);
 
             direction = Heading;
 		}
@@ -79,6 +80,8 @@ package
 
             if (velocity.x == 0 && velocity.y == 0)
                 play("stopped");
+            else if (_shot)
+                play("shooting");
             else
                 play("normal");
 
