@@ -25,7 +25,8 @@ package
             fill(_mask);
             for(var i:int = 0; i < _entities.length; i++) {
                 _entities[i].update();
-                draw(_entities[i], _entities[i].x, _entities[i].y);
+                if(_entities[i].exists)
+                    draw(_entities[i], _entities[i].x, _entities[i].y);
             }
             
             super.update();

@@ -1,18 +1,27 @@
 package
 {
 	import org.flixel.*;
+    import flash.geom.Point;
 
 	public class PlayState extends FlxState
 	{
-        [Embed(source = '../data/Tileset.png')] private var ImgTiles:Class;
+        [Embed(source = '../data/Tileset_dungeon.png')] private var ImgTiles:Class;
         [Embed(source = '../data/lvl01/layer_0.txt', mimeType = "application/octet-stream")] private var GroundMap:Class;
         [Embed(source = '../data/lvl01/layer_1.txt', mimeType = "application/octet-stream")] private var WallMap:Class;
 
         private var _player:Player;
-        private var _guard:GuardA;
+        private var _guard:Guard;
         private var _mask:LightMask;
         private var _map:FlxTilemap;
         private var _floor:FlxTilemap;
+
+        private var _sightLimit:Number = 0.5;
+        private var _sightTimer:Number = 0.5;
+
+        private var _shot:Boolean = false;
+
+        private var _guards:Array;
+        private var _lights:Array;
 
 		public static var lyrStage:FlxLayer;
         public static var lyrSprites:FlxLayer;
@@ -28,14 +37,18 @@ package
             lyrLight = new FlxLayer;
             lyrWalls = new FlxLayer;
             //lyrHUD = new FlxLayer;
+
+            _guards = new Array;
+            _lights = new Array;
             
-            _player = new Player(16, 16);
+            _player = new Player(4, 14, 3);
             lyrSprites.add(_player);
+            _player.light = new Light(_player);
+            _lights.push(_player.light);
 
-            _guard = new GuardA(240,74,_player);
-            lyrSprites.add(_guard);
-
-            _mask = new LightMask(new Array(new Light(_player), new Light(_guard)));//new Array(new Light(_player)));
+            addGuard(14,7,1);
+            
+            _mask = new LightMask(_lights);//new Array(new Light(_player)));
             lyrLight.add(_mask);
 
             FlxG.follow(_player,2.5);
@@ -60,11 +73,37 @@ package
             this.add(lyrWalls);
 		}
 
+        private function addGuard(X:Number, Y:Number, Heading:int, Patrol:Array = null):void {
+            _guard = new Guard(X,Y,_player, Heading);
+            lyrSprites.add(_guard);
+            _lights.push(new Light(_guard));
+            _guards.push(_guard);
+        }
+
         override public function update():void
         {
             super.update();
             _map.collide(_player);
-            _map.collide(_guard);
+            _map.collideArray(_guards);
+            
+            var p:Point;
+            
+            for(var i:int = 0; i < _guards.length; i++) {
+                if (!_map.ray(_guards[i].x, _guards[i].y, _player.x, _player.y, p, 0.2) && _player.light.exists) {
+                    _sightTimer -= FlxG.elapsed;
+                    if(_sightTimer <= 0) {
+                        _player.mobile = false;
+                        if(!_shot) {
+                            var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player);
+                            lyrSprites.add(arrow);
+                            _lights.push(new Light(arrow));
+                            _shot = true;
+                        }
+                    }
+                } else {
+                    _sightTimer = _sightLimit;
+                }
+            }
         }
 	}
 }

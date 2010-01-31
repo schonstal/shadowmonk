@@ -2,18 +2,18 @@ package
 {
 	import org.flixel.*;
 
-	public class GuardA extends FlxSprite
+	public class Guard extends FlxSprite
 	{
-        [Embed(source='../data/Guard_A.png')] private var ImgGuard:Class;
+        [Embed(source='../data/Guard_B.png')] private var ImgGuard:Class;
 
-        private var _move_speed:int = 50;
+        private var _move_speed:int = 25;
         private var _direction:int = 0; //LEFT, RIGHT, UP, DOWN
         private var _heading:Array = new Array(270,90,0,180);
         private var _player:Player;
 
-		public function GuardA(X:Number,Y:Number,ThePlayer:Player):void
+		public function Guard(X:Number,Y:Number,ThePlayer:Player,Heading:int):void
 		{
-    		super(X,Y);
+    		super(X*16+4,Y*16+4);
             loadGraphic(ImgGuard, true, true, 16, 16); 
 
             health = 1;
@@ -27,7 +27,7 @@ package
             addAnimation("normal", [1, 0, 3, 0], 8);
             addAnimation("stopped", [0]);
 
-            _direction = LEFT;
+            _direction = Heading;
 		}
 
         override public function update():void
@@ -41,25 +41,6 @@ package
                 return;
             }
             
-            if (_player.y > y) {
-                velocity.y = _move_speed;
-                _direction = DOWN;
-            } else if (_player.y < y) {
-                velocity.y = -_move_speed;
-                _direction = UP;
-            } else {
-                velocity.y = 0;
-            }
-
-            if (_player.x > x) {
-                velocity.x = _move_speed;
-                _direction = RIGHT;
-            } else if (_player.x < x) {
-                velocity.x = -_move_speed;
-                _direction = LEFT;
-            } else {
-                velocity.x = 0;
-            }
             
             angle = _heading[_direction];
 

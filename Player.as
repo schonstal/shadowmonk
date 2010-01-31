@@ -10,10 +10,13 @@ package
         private var _max_health:int = 1;
         private var _direction:int = 0; //LEFT, RIGHT, UP, DOWN
         private var _heading:Array = new Array(270,90,0,180);
+        
+        public var light:Light;
+        public var mobile = true;
 
 		public function Player(X:Number,Y:Number,Heading:int):void
 		{
-    		super(X*16,Y*16);
+    		super(X*16+4,Y*16+4);
             loadGraphic(ImgPlayer, true, true, 16, 16); 
 
             //Set the player health
@@ -41,25 +44,34 @@ package
                     super.update();
                 return;
             }
-            
-            if (FlxG.keys.LEFT) {
-                _direction = LEFT;
-                velocity.x = -_move_speed;
-            } else if (FlxG.keys.RIGHT) {
-                _direction = RIGHT;
-                velocity.x = _move_speed;                
+           
+            if (mobile) {
+                if (FlxG.keys.LEFT) {
+                    _direction = LEFT;
+                    velocity.x = -_move_speed;
+                } else if (FlxG.keys.RIGHT) {
+                    _direction = RIGHT;
+                    velocity.x = _move_speed;                
+                } else {
+                    velocity.x = 0;
+                } 
+                
+                if (FlxG.keys.UP) {
+                    _direction = UP;
+                    velocity.y = -_move_speed;
+                } else if (FlxG.keys.DOWN) {
+                    _direction = DOWN;
+                    velocity.y = _move_speed;
+                } else {
+                    velocity.y = 0;
+                }
             } else {
                 velocity.x = 0;
-            } 
-            
-            if (FlxG.keys.UP) {
-                _direction = UP;
-                velocity.y = -_move_speed;
-            } else if (FlxG.keys.DOWN) {
-                _direction = DOWN;
-                velocity.y = _move_speed;
-            } else {
                 velocity.y = 0;
+            }
+
+            if (FlxG.keys.justPressed("X")) {
+                light.exists = !light.exists;
             }
 
             angle = _heading[_direction];
