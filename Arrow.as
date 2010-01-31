@@ -10,7 +10,7 @@ package
         private var _embers:FlxEmitter;
         private var _player:Player;
 
-        public function Arrow(X:Number, Y:Number, ThePlayer:Player):void
+        public function Arrow(X:Number, Y:Number, ThePlayer:Player, Layer:FlxLayer):void
         {
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);
@@ -27,7 +27,7 @@ package
 
             addAnimation("normal", [0,1,2], 20);      
             _embers = FlxG.state.add(new FlxEmitter(X, Y, 0.1)) as FlxEmitter;
-            _embers.createSprites(ImgEmber, 100, true, PlayState.lyrSprites);
+            _embers.createSprites(ImgEmber, 100, true, Layer);
             _embers.setXVelocity(1,-velocity.x*0.01);
             _embers.setYVelocity(-10,10);
             _embers.gravity = -5;

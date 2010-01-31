@@ -19,11 +19,6 @@ package
     		super(_guy.x - 32, _guy.y - 32);
             loadGraphic(ImgLight, true, false, 64, 64); 
             blend = "screen";
-
-            width = 30;
-            height = 30;
-            offset.x = 1;
-            offset.y = 1;
 		}
 
         override public function update():void

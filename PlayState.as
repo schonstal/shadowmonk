@@ -6,8 +6,8 @@ package
 	public class PlayState extends FlxState
 	{
         [Embed(source = '../data/Tileset_dungeon.png')] private var ImgTiles:Class;
-        [Embed(source = '../data/lvl01/layer_0.txt', mimeType = "application/octet-stream")] private var GroundMap:Class;
-        [Embed(source = '../data/lvl01/layer_1.txt', mimeType = "application/octet-stream")] private var WallMap:Class;
+        [Embed(source = '../data/lvld/layer_0.txt', mimeType = "application/octet-stream")] private var GroundMap:Class;
+        [Embed(source = '../data/lvld/layer_1.txt', mimeType = "application/octet-stream")] private var WallMap:Class;
 
         private var _player:Player;
         private var _guard:Guard;
@@ -46,9 +46,9 @@ package
             _player.light = new Light(_player);
             _lights.push(_player.light);
 
-            addGuard(14,7,1);
+            addGuard(new Array(new Point(7,14), new Point(10,14)),1);
             
-            _mask = new LightMask(_lights);//new Array(new Light(_player)));
+            _mask = new LightMask(_lights);
             lyrLight.add(_mask);
 
             FlxG.follow(_player,2.5);
@@ -73,8 +73,8 @@ package
             this.add(lyrWalls);
 		}
 
-        private function addGuard(X:Number, Y:Number, Heading:int, Patrol:Array = null):void {
-            _guard = new Guard(X,Y,_player, Heading);
+        private function addGuard(Patrol:Array, Heading:int):void {
+            _guard = new Guard(Patrol, _player, Heading);
             lyrSprites.add(_guard);
             _lights.push(new Light(_guard));
             _guards.push(_guard);
@@ -87,14 +87,14 @@ package
             _map.collideArray(_guards);
             
             var p:Point;
-            
+
             for(var i:int = 0; i < _guards.length; i++) {
-                if (!_map.ray(_guards[i].x, _guards[i].y, _player.x, _player.y, p, 0.2) && _player.light.exists) {
+                if (spotted(i) && !_map.ray(_guards[i].x, _guards[i].y, _player.x, _player.y, p, 0.2) && _player.light.exists) {
                     _sightTimer -= FlxG.elapsed;
                     if(_sightTimer <= 0) {
                         _player.mobile = false;
                         if(!_shot) {
-                            var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player);
+                            var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player, lyrWalls);
                             lyrSprites.add(arrow);
                             _lights.push(new Light(arrow));
                             _shot = true;
@@ -104,6 +104,26 @@ package
                     _sightTimer = _sightLimit;
                 }
             }
+        }
+
+        private function distance(X:Number,Y:Number,X0:Number,Y0:Number):Number {
+            var dX:Number = X-X0;
+            var dY:Number = Y-Y0;
+            return Math.sqrt(dX*dX+dY*dY);
+        }
+
+        private function spotted(i:int):Boolean {
+            switch (_guards[i].direction) {
+                case 0:
+                    return _player.x < _guards[i].x;
+                case 1:
+                    return _player.x > _guards[i].x;
+                case 2:
+                    return _player.y < _guards[i].y;
+                case 3:
+                    return _player.y > _guards[i].y;
+            }
+            return false;
         }
 	}
 }

@@ -19,9 +19,6 @@ package
     		super(X*16+4,Y*16+4);
             loadGraphic(ImgPlayer, true, true, 16, 16); 
 
-            //Set the player health
-            health = 1;
-            
             //bounding box tweaks
             width = 8;
             height = 14;
@@ -36,14 +33,6 @@ package
 
         override public function update():void
         {
-            if (dead)
-            {
-                if(finished) 
-                    exists = false;
-                else
-                    super.update();
-                return;
-            }
            
             if (mobile) {
                 if (FlxG.keys.LEFT) {
