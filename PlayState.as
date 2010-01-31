@@ -40,7 +40,7 @@ package
             lyrSprites.add(_player);
             _player.light = new Light(_player);
             _lights.push(_player.light);
-            //_player.light.exists = false;
+            _player.light.exists = false;
 
             addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
             
