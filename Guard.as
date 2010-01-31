@@ -94,7 +94,7 @@ package
         public function spot(map:FlxTilemap):Boolean {
             var p:Point;
 
-            if(spotted() && !map.ray(x, y, _player.x, _player.y, p, 0.2) && _player.light.exists) {
+            if(spotted() && ((!map.ray(x, y, _player.x, _player.y, p, 0.2) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;
