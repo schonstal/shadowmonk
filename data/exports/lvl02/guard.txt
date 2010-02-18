@@ -1,0 +1,2 @@
+_player = new Player(2,6,2);
+addGuard(new Array(new Point(7,13), new Point(13,13), new Point(13, 18), new Points(13, 15)), 1);
