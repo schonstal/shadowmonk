@@ -30,11 +30,11 @@ package
 		{
             super();
             
-            lyrStage = new FlxLayer;
-            lyrSprites = new FlxLayer;
-            lyrLight = new FlxLayer;
-            lyrWalls = new FlxLayer;
-            //lyrHUD = new FlxLayer;
+            lyrStage = new FlxGroup;
+            lyrSprites = new FlxGroup;
+            lyrLight = new FlxGroup;
+            lyrWalls = new FlxGroup;
+            //lyrHUD = new FlxGroup;
 
             _guards = new Array;
             _lights = new Array;
@@ -45,11 +45,11 @@ package
             _lights.push(_player.light);
             _player.light.exists = false;
 
-            addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
-            addGuard(new Array(new Point(6,6), new Point(6,14), new Point(6, 4), new Point(3,9)),1);
-            addTrap(5,5);
-            addStairs(10,10);
-            
+}
+
+	public function postInit()
+ 	{
+
             _mask = new LightMask(_lights);
             lyrLight.add(_mask);
 
@@ -73,7 +73,7 @@ package
             this.add(lyrSprites);
             this.add(lyrLight);
             this.add(lyrWalls);
-		}
+	}
 
         private function addGuard(Patrol:Array, Heading:int):void {
             _guard = new Guard(Patrol, _player, Heading);
