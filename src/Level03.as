@@ -14,9 +14,11 @@ package
             super();
 
 	    _player = new Player(2,8,1);
-	    addGuard(new Array(new FlxPoint(16,4)), 0);
-	    addGuard(new Array(new FlxPoint(16,9)), 0);
-	    addGuard(new Array(new FlxPoint(16,13)), 0);
+	    addGuard(new Array(new FlxPoint(16,4), new FlxPoint(16,4)), 0);
+	    addGuard(new Array(new FlxPoint(16,9), new FlxPoint(16,9)), 0);
+	    addGuard(new Array(new FlxPoint(16,13), new FlxPoint(16,13)), 0);
+
+	    addStairs(13,14);
 
 	    postInit();
 	}
