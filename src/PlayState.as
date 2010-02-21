@@ -6,7 +6,10 @@ package
 	public class PlayState extends FlxState
 	{
         [Embed(source = '../data/Tileset_dungeon.png')] private var ImgTiles:Class;
-
+	
+	//Children load these
+	private var GroundMap:Class;
+	private var WallMap:Class;
         private var _player:Player;
         
         //Without storing the guards in here before adding them to the array,
