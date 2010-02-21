@@ -26,10 +26,10 @@ package
             velocity.y = Math.cos(ang) * (_player.x>X?-400:400);
 
             addAnimation("normal", [0,1,2], 20);      
-            _embers = FlxG.state.add(new FlxEmitter(X, Y, 0.1)) as FlxEmitter;
-            _embers.createSprites(ImgEmber, 100, true, Layer);
-            _embers.setXVelocity(1,-velocity.x*0.01);
-            _embers.setYVelocity(-10,10);
+            _embers = FlxG.state.add(new FlxEmitter(X, Y)) as FlxEmitter;
+            _embers.createSprites(ImgEmber, 100, 0, true, 0);
+            _embers.setXSpeed(1,-velocity.x*0.01);
+            _embers.setYSpeed(-10,10);
             _embers.gravity = -5;
 
             angle = ang * (180/Math.PI);
@@ -43,15 +43,11 @@ package
         
         public override function update():void {
             play("normal");
-            _embers.emit();
-            _embers.emit();
-            _embers.emit();
-            _embers.emit();
-            _embers.emit();
+            _embers.update();
             _embers.x = x + 8;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(FlxG.collideArray(new Array(_player), this))
+            if(FlxU.collide(_player, this))
                 FlxG.state = new Dead();
             super.update();
         }
