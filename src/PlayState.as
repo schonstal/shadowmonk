@@ -6,8 +6,6 @@ package
 	public class PlayState extends FlxState
 	{
         [Embed(source = '../data/Tileset_dungeon.png')] private var ImgTiles:Class;
-        [Embed(source = '../data/lvld/layer_0.txt', mimeType = "application/octet-stream")] private var GroundMap:Class;
-        [Embed(source = '../data/lvld/layer_1.txt', mimeType = "application/octet-stream")] private var WallMap:Class;
 
         private var _player:Player;
         
@@ -23,10 +21,10 @@ package
         private var _guards:Array;
         private var _lights:Array;
 
-		public static var lyrStage:FlxLayer;
-        public static var lyrSprites:FlxLayer;
-        public static var lyrLight:FlxLayer;
-        public static var lyrWalls:FlxLayer;
+		public static var lyrStage:FlxGroup;
+        public static var lyrSprites:FlxGroup;
+        public static var lyrLight:FlxGroup;
+        public static var lyrWalls:FlxGroup;
         
         public function PlayState()
 		{
