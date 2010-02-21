@@ -21,7 +21,7 @@ package
 		{
 			super.update();
 			//if(FlxG.keys.justPressed("1"))
-		        FlxG.state = new Level1();
+		        FlxG.state = new Level02();
 
 			/*if(FlxG.keys.justPressed("2"))
 				FlxG.switchState(Level2);
