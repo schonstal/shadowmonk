@@ -8,14 +8,14 @@ package
         [Embed(source = '../data/Tileset_dungeon.png')] private var ImgTiles:Class;
 	
 	//Children load these
-	private var GroundMap:Class;
-	private var WallMap:Class;
-        private var _player:Player;
+	protected var GroundMap:Class;
+	protected var WallMap:Class;
+        protected var _player:Player;
         
         //Without storing the guards in here before adding them to the array,
         //The game will mysteriously freeze, and not show any darkness
-        private var _guard:Guard;
-        private var _trap:Trap;
+        protected var _guard:Guard;
+        protected var _trap:Trap;
 
         private var _mask:LightMask;
         private var _map:FlxTilemap;
@@ -50,7 +50,7 @@ package
 
 }
 
-	public function postInit()
+	public function postInit():void
  	{
 
             _mask = new LightMask(_lights);
@@ -78,21 +78,21 @@ package
             this.add(lyrWalls);
 	}
 
-        private function addGuard(Patrol:Array, Heading:int):void {
+        protected function addGuard(Patrol:Array, Heading:int):void {
             _guard = new Guard(Patrol, _player, Heading);
             lyrSprites.add(_guard);
             _lights.push(new Light(_guard));
             _guards.push(_guard);
         }
         
-        private function addTrap(X:Number, Y:Number):void {
+        protected function addTrap(X:Number, Y:Number):void {
             var glow:Glow = new Glow(X*16 - 8, Y*16 - 8);
             _trap = new Trap(X, Y, _map, _player, glow);
             lyrStage.add(_trap);
             lyrWalls.add(glow);
         }
 
-        private function addStairs(X:Number, Y:Number):void {
+        protected function addStairs(X:Number, Y:Number):void {
             var stairs:Stairs = new Stairs(X, Y, _player);
             lyrSprites.add(stairs);
         }
