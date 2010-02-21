@@ -1,7 +1,6 @@
 package
 {
 	import org.flixel.*;
-    import flash.geom.Point;
 
 	public class Trap extends FlxSprite
 	{
@@ -48,8 +47,6 @@ package
         }
         
         public function alert():void {
-            var p:Point;
-
             if( _player.light.exists && (distance(x,y,_player.x,_player.y) < 30)) {
                 _glow.exists = true;
             } else {

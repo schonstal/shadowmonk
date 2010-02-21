@@ -1,7 +1,6 @@
 package
 {
 	import org.flixel.*;
-    import flash.geom.Point;
 
 	public class Glow extends FlxSprite
 	{
