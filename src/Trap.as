@@ -40,7 +40,7 @@ package
             if(_trapped) {
                 play("open");
                 if(finished)
-                    FlxG.switchState(Dead);
+                    FlxG.state = new Dead();
             } 
             
             alert();

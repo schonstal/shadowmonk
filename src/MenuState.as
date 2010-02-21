@@ -21,11 +21,11 @@ package
 		{
 			super.update();
             if(f) {
-                FlxG.flash(0xffffffff);
+                //FlxG.flash(0xffffffff);
                 f = false;
             }
 			if(FlxG.keys.justPressed("X"))
-				FlxG.switchState(Level12);
+				FlxG.state = new Level1();
 		}
 	}
 }

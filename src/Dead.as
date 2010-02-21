@@ -21,7 +21,7 @@ package
 		{
 			super.update();
 			if(FlxG.keys.justPressed("X"))
-				FlxG.switchState(PlayState);
+				FlxG.state = new PlayState();
 		}
 	}
 }

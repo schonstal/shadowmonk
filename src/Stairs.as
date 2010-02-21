@@ -25,7 +25,7 @@ package
         override public function update():void
         {
             if(collide(_player)) {
-                FlxG.switchState(Win);
+                FlxG.state = new Win();
             }
 
             super.update();

@@ -52,7 +52,7 @@ package
             _embers.y = y + 8;
             //Is there a normal collide?
             if(FlxG.collideArray(new Array(_player), this))
-                FlxG.switchState(Dead);
+                FlxG.state = new Dead();
             super.update();
         }
         
