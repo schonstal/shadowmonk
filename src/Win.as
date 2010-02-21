@@ -14,7 +14,7 @@ package
 			t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Select a Level (press a #)");
 			t.alignment = "center";
 			add(t);
-            FlxG.flash(0xff0000dd);
+            FlxG.flash.start(0xff0000dd);
 		}
 
 		override public function update():void

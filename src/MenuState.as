@@ -21,7 +21,7 @@ package
 		{
 			super.update();
             if(f) {
-                //FlxG.flash(0xffffffff);
+                FlxG.flash.start(0xffffffff);
                 f = false;
             }
 			if(FlxG.keys.justPressed("X"))

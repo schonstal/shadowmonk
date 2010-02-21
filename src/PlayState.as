@@ -101,7 +101,7 @@ package
         {
             super.update();
             _map.collide(_player);
-            _map.collideArray(_guards);
+            //FlxU.collide(_guards, _map);
             
             for(var i:int = 0; i < _guards.length; i++) {
                 if(_guards[i].spot(_map)) {

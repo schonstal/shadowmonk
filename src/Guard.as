@@ -100,7 +100,7 @@ package
         }
 
         public function spot(map:FlxTilemap):Boolean {
-            var p:Point;
+            var p:FlxPoint;
 
             if(spotted() && ((!map.ray(x, y, _player.x, _player.y, p, 0.2) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
                 

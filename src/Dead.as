@@ -14,7 +14,7 @@ package
 			t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Press X to Play Again");
 			t.alignment = "center";
 			add(t);
-            FlxG.flash(0xffdd0000);
+            FlxG.flash.start.(0xffdd0000);
 		}
 
 		override public function update():void
