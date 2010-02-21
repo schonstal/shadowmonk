@@ -47,9 +47,10 @@ package
             _lights.push(_player.light);
             _player.light.exists = false;
 
-//            addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
-//            addGuard(new Array(new Point(6,6), new Point(6,14), new Point(6, 4), new Point(3,9)),1);
+            addGuard(new Array(new Point(2,2), new Point(2,8), new Point(8, 8), new Point(8,2)),1);
+            addGuard(new Array(new Point(6,6), new Point(6,14), new Point(6, 4), new Point(3,9)),1);
             addTrap(5,5);
+            addStairs(10,10);
             
             _mask = new LightMask(_lights);
             lyrLight.add(_mask);
@@ -67,7 +68,7 @@ package
             _map = new FlxTilemap;
             _map.loadMap(new WallMap, ImgTiles, 16)
             _map.drawIndex = 1;
-            _map.collideIndex = 6;
+            _map.collideIndex = 1;
             lyrWalls.add(_map);
 
             this.add(lyrStage);
@@ -88,6 +89,11 @@ package
             _trap = new Trap(X, Y, _map, _player, glow);
             lyrStage.add(_trap);
             lyrWalls.add(glow);
+        }
+
+        private function addStairs(X:Number, Y:Number):void {
+            var stairs:Stairs = new Stairs(X, Y, _player);
+            lyrSprites.add(stairs);
         }
 
         override public function update():void

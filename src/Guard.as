@@ -18,6 +18,8 @@ package
         private var _sightTimer:Number = 0.5;
         private var _shot:Boolean = false;
 
+        private var _t:FlxText;
+
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
         public var patrol:Array;
 
@@ -37,6 +39,9 @@ package
             addAnimation("normal", [0, 2, 3, 4], 8);
             addAnimation("stopped", [0, 1], 8);
             addAnimation("shooting", [5, 6], 8);
+			
+            _t = new FlxText(FlxG.width/2-50,FlxG.height-20,100,"Press X to Play");
+			_t.alignment = "center";
 
             direction = Heading;
 		}
@@ -98,6 +103,8 @@ package
             var p:Point;
 
             if(spotted() && ((!map.ray(x, y, _player.x, _player.y, p, 0.2) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
+                
+                _t.text = "p: " + p;
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;

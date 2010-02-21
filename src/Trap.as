@@ -21,10 +21,10 @@ package
             _glow = glow;
             _map = Tiles;
             
-            width = 4;
-            height = 4;
-            offset.x = 8;
-            offset.y = 8;
+            width = 16;
+            height = 16;
+            offset.x = 0;
+            offset.y = 0;
 
             addAnimation("normal", [0]);
             addAnimation("open", [1, 2, 3, 4, 5, 6], 12);
