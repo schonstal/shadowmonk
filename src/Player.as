@@ -6,11 +6,11 @@ package
 	{
         [Embed(source='../data/Player.png')] private var ImgPlayer:Class;
 
-        private var _move_speed:int = 25;
+        private var _move_speed:int = 50;
         private var _max_health:int = 1;
         private var _direction:int = 0; //LEFT, RIGHT, UP, DOWN
         private var _heading:Array = new Array(270,90,0,180);
-        
+
         public var light:Light;
         public var mobile:Boolean = true;
 
@@ -21,9 +21,9 @@ package
 
             //bounding box tweaks
             width = 8;
-            height = 14;
+            height = 8;
             offset.x = 4;
-            offset.y = 2;
+            offset.y = 4;
 
             addAnimation("normal", [1, 0, 2, 0], 8);
             addAnimation("stopped", [0]);
@@ -33,7 +33,6 @@ package
 
         override public function update():void
         {
-           
             if (mobile) {
                 if (FlxG.keys.LEFT) {
                     _direction = LEFT;
@@ -59,7 +58,7 @@ package
                 velocity.y = 0;
             }
 
-            if (FlxG.keys.justPressed("X")) {
+            if (FlxG.keys.justPressed("X") && light) {
                 light.exists = !light.exists;
             }
 
