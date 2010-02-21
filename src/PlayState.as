@@ -7,9 +7,9 @@ package
 	{
         [Embed(source = '../data/Tileset_dungeon.png')] private var ImgTiles:Class;
 	
-	//Children load these
-	protected var GroundMap:Class;
-	protected var WallMap:Class;
+		//Children load these
+		protected var GroundMap:Class;
+		protected var WallMap:Class;
         protected var _player:Player;
         
         //Without storing the guards in here before adding them to the array,
@@ -42,41 +42,40 @@ package
             _guards = new Array;
             _lights = new Array;
             
-            _player = new Player(1, 1, 3);
-            lyrSprites.add(_player);
-            _player.light = new Light(_player);
-            _lights.push(_player.light);
-            _player.light.exists = false;
+		}
 
-}
+		public function postInit():void
+		{
 
-	public function postInit():void
- 	{
+			lyrSprites.add(_player);
+			_player.light = new Light(_player);
+			_lights.push(_player.light);
+			_player.light.exists = false;
+		   
+			_mask = new LightMask(_lights);
+			lyrLight.add(_mask);
 
-            _mask = new LightMask(_lights);
-            lyrLight.add(_mask);
+			FlxG.follow(_player,2.5);
+			FlxG.followAdjust(0.5, 0.5);
+			FlxG.followBounds(1,1,640-1,480-1);
 
-            FlxG.follow(_player,2.5);
-            FlxG.followAdjust(0.5, 0.5);
-            FlxG.followBounds(1,1,640-1,480-1);
+			_floor = new FlxTilemap;
+			_floor.loadMap(new GroundMap, ImgTiles, 16)
+			_floor.drawIndex = 1;
+			_floor.collideIndex = 6;
+			lyrStage.add(_floor);
+			
+			_map = new FlxTilemap;
+			_map.loadMap(new WallMap, ImgTiles, 16)
+			_map.drawIndex = 1;
+			_map.collideIndex = 1;
+			lyrWalls.add(_map);
 
-            _floor = new FlxTilemap;
-            _floor.loadMap(new GroundMap, ImgTiles, 16)
-            _floor.drawIndex = 1;
-            _floor.collideIndex = 6;
-            lyrStage.add(_floor);
-            
-            _map = new FlxTilemap;
-            _map.loadMap(new WallMap, ImgTiles, 16)
-            _map.drawIndex = 1;
-            _map.collideIndex = 1;
-            lyrWalls.add(_map);
-
-            this.add(lyrStage);
-            this.add(lyrSprites);
-            this.add(lyrLight);
-            this.add(lyrWalls);
-	}
+			this.add(lyrStage);
+			this.add(lyrSprites);
+			this.add(lyrLight);
+			this.add(lyrWalls);
+		}
 
         protected function addGuard(Patrol:Array, Heading:int):void {
             _guard = new Guard(Patrol, _player, Heading);
@@ -102,16 +101,16 @@ package
             super.update();
             _map.collide(_player);
             //FlxU.collide(_guards, _map);
-            
+           
+		    _player.update();
+
             for(var i:int = 0; i < _guards.length; i++) {
-                if(_guards[i].spot(_map)) {
+				if(_guards[i].spot(_map)) {
                     var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player, lyrWalls);
                     lyrSprites.add(arrow);
                     _lights.push(new Light(arrow));
                 }
             }
         }
-
 	}
 }
-

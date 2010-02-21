@@ -6,7 +6,7 @@ package
 	{
         [Embed(source='../data/Player.png')] private var ImgPlayer:Class;
 
-        private var _move_speed:int = 50;
+        private var _move_speed:int = 25;
         private var _max_health:int = 1;
         private var _direction:int = 0; //LEFT, RIGHT, UP, DOWN
         private var _heading:Array = new Array(270,90,0,180);

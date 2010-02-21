@@ -10,15 +10,11 @@ package
 
         public function Level1()
 		{
-		GroundMap = Ground;
-		WallMap = Wall;
+            GroundMap = Ground;
+            WallMap = Wall;
             super();
             
             _player = new Player(3,11,2);
-            lyrSprites.add(_player);
-            _player.light = new Light(_player);
-            _lights.push(_player.light);
-            _player.light.exists = false;
 
             addGuard(new Array(new Point(3,9), new Point (23,9)), 1);
             addTrap(9,4);
@@ -28,7 +24,7 @@ package
 
             addStairs(26,9);
 
-	    postInit();
+	        postInit();
 		}
 	}
 }
