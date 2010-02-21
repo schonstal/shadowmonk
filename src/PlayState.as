@@ -101,8 +101,6 @@ package
             _map.collide(_player);
             //FlxU.collide(_guards, _map);
            
-            _player.update();
-
             for(var i:int = 0; i < _guards.length; i++) {
                 if(_guards[i].spot(_map)) {
                     var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player, lyrWalls);
