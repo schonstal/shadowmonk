@@ -10,6 +10,8 @@ package
 
         public function Level1()
 		{
+		GroundMap = Ground;
+		WallMap = Wall;
             super();
             
             _player = new Player(3,11,2);
