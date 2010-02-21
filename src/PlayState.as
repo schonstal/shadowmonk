@@ -17,12 +17,12 @@ package
         protected var _guard:Guard;
         protected var _trap:Trap;
 
-        private var _mask:LightMask;
-        private var _map:FlxTilemap;
-        private var _floor:FlxTilemap;
+        protected var _mask:LightMask;
+        protected var _map:FlxTilemap;
+        protected var _floor:FlxTilemap;
 
-        private var _guards:Array;
-        private var _lights:Array;
+        protected var _guards:Array;
+        protected var _lights:Array;
 
 		public static var lyrStage:FlxGroup;
         public static var lyrSprites:FlxGroup;

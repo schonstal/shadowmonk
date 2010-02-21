@@ -5,8 +5,8 @@ package
 
 	public class Level1 extends PlayState
 	{
-        [Embed(source = '../data/exports/lvl01/layer_0.txt', mimeType = "application/octet-stream")] private var GroundMap:Class;
-        [Embed(source = '../data/exports/lvl01/layer_1.txt', mimeType = "application/octet-stream")] private var WallMap:Class;
+        [Embed(source = '../data/exports/lvl01/layer_0.txt', mimeType = "application/octet-stream")] private var Ground:Class;
+        [Embed(source = '../data/exports/lvl01/layer_1.txt', mimeType = "application/octet-stream")] private var Wall:Class;
 
         public function Level1()
 		{
