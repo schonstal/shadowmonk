@@ -38,6 +38,8 @@ package
 				FlxG.state = new Level08();
 			if(FlxG.keys.justPressed("NINE"))
 				FlxG.state = new Level09(); 
+			if(FlxG.keys.justPressed("ZERO"))
+				FlxG.state = new LevelD(); 
 		}
 	}
 }
