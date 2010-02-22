@@ -56,11 +56,6 @@ package
           velocity.y = 0;
         }
 
-
-        //_ang = getAngle(x,y,patrol[_next].x*16,patrol[_next].y*16);
-        //velocity.x = Math.sin(_ang) * (patrol[_next].x*16>x?_move_speed:-_move_speed);
-        //velocity.y = Math.cos(_ang) * (patrol[_next].x*16>x?-_move_speed:_move_speed);
-
         if(Math.abs(velocity.x) > Math.abs(velocity.y)) {
           if (velocity.x < 0) {
             direction = LEFT;
@@ -95,12 +90,6 @@ package
       super.update();
     }
         
-    private function getAngle(X:Number,Y:Number,X2:Number,Y2:Number):Number
-      {
-        var ret:Number = Math.atan((Y2-Y)/(X2-X));
-        return ret + Math.PI/2;
-      }
-
     public function spot(map:FlxTilemap):Boolean {
       var p:FlxPoint;
 
