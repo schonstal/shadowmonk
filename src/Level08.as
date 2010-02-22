@@ -12,10 +12,10 @@ package
       GroundMap = Ground;
       WallMap = Wall;
       super();
+    }
 
+    public override function initialize():void {
       _player = new Player(1,1,2);
-
-      postInit();
     }
   }
 }
