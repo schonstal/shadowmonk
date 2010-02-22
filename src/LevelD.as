@@ -12,15 +12,15 @@ package
       GroundMap = Ground;
       WallMap = Wall;
       super();
+    }
 
+    public override function initialize():void {
       _player = new Player(1,1,3);
 
       addGuard(new Array(new FlxPoint(2,2), new FlxPoint(2,8), new FlxPoint(8, 8), new FlxPoint(8,2)),1);
       addGuard(new Array(new FlxPoint(6,6), new FlxPoint(6,14), new FlxPoint(6, 4), new FlxPoint(3,9)),1);
       addTrap(5,5);
       addStairs(10,10);
-
-      postInit();
     }
   }
 }
