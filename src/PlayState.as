@@ -28,10 +28,11 @@ package
         public static var lyrLight:FlxGroup;
         public static var lyrWalls:FlxGroup;
         
-        public function PlayState()
-		{
+        public function PlayState() {
             super();
-            
+		}
+
+		public override function create():void {
             lyrStage = new FlxGroup;
             lyrSprites = new FlxGroup;
             lyrLight = new FlxGroup;
@@ -40,11 +41,8 @@ package
 
             _guards = new Array;
             _lights = new Array;
-            
-		}
 
-		public function postInit():void
-		{
+			initialize();
 
 			lyrSprites.add(_player);
 			_player.light = new Light(_player);
@@ -54,7 +52,7 @@ package
 			_mask = new LightMask(_lights);
 			lyrLight.add(_mask);
 
-			FlxG.follow(_player,2.5);
+			FlxG.follow(_player, 2.5);
 			FlxG.followAdjust(0.5, 0.5);
 			FlxG.followBounds(1,1,640-1,480-1);
 
@@ -76,6 +74,10 @@ package
 			this.add(lyrWalls);
 		}
 
+		public function initialize():void {
+			//return "D-F-G#" //Diminishing Returns
+		}
+
         protected function addGuard(Patrol:Array, Heading:int):void {
             _guard = new Guard(Patrol, _player, Heading);
             lyrSprites.add(_guard);
@@ -95,8 +97,7 @@ package
             lyrSprites.add(stairs);
         }
 
-        override public function update():void
-        {
+        override public function update():void {
             super.update();
             _map.collide(_player);
             //FlxU.collide(_guards, _map);
