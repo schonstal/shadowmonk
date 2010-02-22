@@ -46,8 +46,7 @@ package
       var X:int = int(x/16);
       var Y:int = int(y/16);
       //the fake snes-y angle
-      if(X > patrol[_next].x + 2 || X < patrol[_next].x - 2 ||
-         Y > patrol[_next].y + 2 || Y < patrol[_next].y - 2) {
+      if(X != patrol[_next].x || Y != patrol[_next].y) {
 
         if (patrol[_next].x == X) {
           velocity.y = patrol[_next].y>Y?_move_speed:-_move_speed;
