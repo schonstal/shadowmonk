@@ -15,6 +15,11 @@ package
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);
 
+            width = 20;
+            height = 20;
+            offset.x = -2;
+            offset.y = -2;
+
             _player = ThePlayer;
             
             var dX:Number = X - ThePlayer.x;
