@@ -4,7 +4,7 @@ package
 
     public class Guard extends FlxSprite
     {
-        [Embed(source='../data/Guard_B.png')] private var ImgGuard:Class;
+        [Embed(source='../data/Guard.png')] private var ImgGuard:Class;
 
         private var _move_speed:int = 25;
         private var _heading:Array = new Array(270,90,0,180);

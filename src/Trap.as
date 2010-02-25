@@ -39,7 +39,7 @@ package
             if(_trapped) {
                 play("open");
                 if(finished)
-                    FlxG.state = new Dead();
+                    FlxG.state = new Dead(Level07, "FELL INTO A TRAP");
             } 
             
             alert();

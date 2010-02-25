@@ -14,12 +14,7 @@ package
         {
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);
-
-            width = 20;
-            height = 20;
-            offset.x = -2;
-            offset.y = -2;
-
+            
             _player = ThePlayer;
             
             var dX:Number = X - ThePlayer.x;
@@ -46,14 +41,20 @@ package
             return ret + Math.PI/2;
         }
         
+        private function distance(X:Number,Y:Number,X0:Number,Y0:Number):Number {
+            var dX:Number = X-X0;
+            var dY:Number = Y-Y0;
+            return Math.sqrt(dX*dX+dY*dY);
+        }
+        
         public override function update():void {
             play("normal");
             _embers.update();
             _embers.x = x + 8;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(FlxU.collide(_player, this))
-                FlxG.state = new Dead();
+            if(distance(_player.x, _player.y, x, y) < 16)
+                FlxG.state = new Dead(Level07, "SHOT BY AN ARROW");
             super.update();
         }
         
