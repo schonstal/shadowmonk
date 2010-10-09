@@ -1,6 +1,3 @@
 _player = new Player(3,13,2);
 addGuard(new Array(new Point(3,9), new Point (23,9)), 1);
-addTrap(9,4);
-addTrap(9,9);
-addTrap(9,5);
-addTrap(10,11);
+addStairs(26,9);

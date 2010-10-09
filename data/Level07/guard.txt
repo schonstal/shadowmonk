@@ -16,3 +16,4 @@ addTrap(27,8);
 addTrap(27,9);
 addTrap(27,10);
 addTrap(27,11);
+addStairs(30,8);

@@ -9,3 +9,4 @@ addTrap(11,6);
 addTrap(11,7);
 addTrap(11,8);
 addTrap(11,9);
+addStairs(18,8);
