@@ -16,7 +16,12 @@ package
 
     public override function initialize():void {
       _player = new Player(2,6,2);
-      addGuard(new Array(new FlxPoint(10,10), new FlxPoint(13,10), new FlxPoint(13, 5), new FlxPoint(7, 5), new FlxPoint(7,10)), 1);
+      addGuard(new Array(new FlxPoint(10,10), new FlxPoint(14,10), new FlxPoint(14, 4), new FlxPoint(6, 4), new FlxPoint(6,10)), 1);
+      addTrap(9,4);
+      addTrap(9,5);
+      addTrap(9,9);
+      addTrap(10,11);
+      addStairs(16,4);
     }
   }
 }

@@ -3,3 +3,4 @@ addGuard(new Array(new Point(8,16), new Point(8,22)), 3);
 addGuard(new Array(new Point(16,18)), 0)
 addTrap(12,14);
 addTrap(12,15);
+addStaris(17,14);
