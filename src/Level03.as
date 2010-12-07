@@ -15,11 +15,14 @@ package
 
         public override function initialize():void {
             _player = new Player(2,8,1);
-            addGuard(new Array(new FlxPoint(16,4), new FlxPoint(16,4)), 0);
-            addGuard(new Array(new FlxPoint(16,9), new FlxPoint(16,9)), 0);
-            addGuard(new Array(new FlxPoint(16,13), new FlxPoint(16,13)), 0);
+            addGuard(new Array(new FlxPoint(16,4), new FlxPoint(10,4), new FlxPoint (10,9), new FlxPoint(16,9)), 0);
+            addGuard(new Array(new FlxPoint(4,9), new FlxPoint(16,9)), 0);
+            addGuard(new Array(new FlxPoint(16, 13), new FlxPoint(7, 13)), 0);
+			addTrap(7,12);
+			addTrap(7,13);
+			addTrap(10,9);
 
-            addStairs(13,14);
+            addStairs(11,13);
         }
     }
 }

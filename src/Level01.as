@@ -15,7 +15,8 @@ package
 
         public override function initialize():void {
             _player = new Player(3,13,2);
-            addGuard(new Array(new FlxPoint(3,9), new FlxPoint (23,9)), 1);
+            addGuard(new Array(new FlxPoint(3, 9), new FlxPoint (23, 9)), 1);
+			addTrap(9,12);
             addStairs(26,9);
 		}
 	}
