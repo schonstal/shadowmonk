@@ -21,16 +21,31 @@ package
             var dY:Number = Y - ThePlayer.y;
             var dist:Number = Math.sqrt(dX*dX+dY*dY);
             var ang:Number = getAngle(X,Y,ThePlayer.x,ThePlayer.y);
+           
+            //This angle is in RADIANS! 
+            var emberSpread:Number = 0.17;
+            //% of arrow velocity
+            var emberSpeed:Number = 0.05;
+            var emberMin:FlxPoint = new FlxPoint();
+            var emberMax:FlxPoint = new FlxPoint();
             
             velocity.x = Math.sin(ang) * (_player.x>X?400:-400);
             velocity.y = Math.cos(ang) * (_player.x>X?-400:400);
+            
+            emberMax.x = Math.sin(ang+emberSpread) * (_player.x>X?400:-400) * emberSpeed;
+            emberMax.y = Math.cos(ang+emberSpread) * (_player.x>X?-400:400) * emberSpeed;
+            
+            emberMin.x = Math.sin(ang-emberSpread) * (_player.x>X?400:-400) * emberSpeed;
+            emberMin.y = Math.cos(ang-emberSpread) * (_player.x>X?-400:400) * emberSpeed;
 
             addAnimation("normal", [0,1,2], 20);      
             _embers = FlxG.state.add(new FlxEmitter(X, Y)) as FlxEmitter;
             _embers.createSprites(ImgEmber, 100, 0, true, 0);
-            _embers.setXSpeed(1,-velocity.x*0.01);
-            _embers.setYSpeed(-10,10);
-            _embers.gravity = -5;
+            _embers.setXSpeed(emberMin.x,emberMax.x);
+            _embers.setYSpeed(emberMin.y,emberMax.y);
+            _embers.gravity = 0;
+            _embers.delay = 0.1;
+            _embers.start(false);
 
             angle = ang * (180/Math.PI);
         }
@@ -49,6 +64,8 @@ package
         
         public override function update():void {
             play("normal");
+            //Randomize frequency :)
+            _embers.delay = 0.15 * Math.random() + 0.02;
             _embers.update();
             _embers.x = x + 8;
             _embers.y = y + 8;
