@@ -18,6 +18,8 @@ package
         private var _sightLimit:Number = 0.5;
         private var _sightTimer:Number = 0.25;
         private var _currentState:PlayState;
+        private var _arrowOffset:FlxPoint;
+        private var _playerOffset:FlxPoint;
 
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
         public var patrol:Array;
@@ -32,6 +34,10 @@ package
             _map = map;
 
             _player = ThePlayer;
+
+            //Adjust how arrow flies
+            _arrowOffset = new FlxPoint(4,4);
+            _playerOffset = new FlxPoint(4,4);
             
             width = 8;
             height = 14;
@@ -68,21 +74,25 @@ package
             return false;
         }
 
-        public function aim():void {
+        public function checkShoot(test:Boolean):void {
             velocity.x = 0;
             velocity.y = 0;
             angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
             play("shooting");
-            if(spot()) {
+            if(test) {
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;
-                    _currentState.createArrow(x, y, _player.x+4, _player.y+4);
+                    _currentState.createArrow(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y);
                     _state = GuardState.SHOOTING;
                 }
             } else {
                 _state = GuardState.PATROL;
             }
+        }
+
+        public function aim():void {
+            checkShoot(spot());
             checkCapture();
         }
         
@@ -95,20 +105,7 @@ package
         }
         
         public function capture():void {
-            velocity.x = 0;
-            velocity.y = 0;
-            angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
-            play("shooting");
-            if(checkCapture()) {
-                _sightTimer -= FlxG.elapsed;
-                if(_sightTimer <= 0) {
-                    _player.mobile = false;
-                    _currentState.createArrow(x+4, y+4, _player.x+4, _player.y+4);
-                    _state = GuardState.SHOOTING;
-                }
-            } else {
-                _state = GuardState.PATROL;
-            }
+            checkShoot(checkCapture());
         }
 
         public function advance():void {
@@ -163,7 +160,7 @@ package
         public function spot():Boolean {
             var p:FlxPoint;
 
-            if(onScreen() && spotted() && (!_map.ray(x+4, y+4, _player.x+4, _player.y+4, p, 1) && _player.light.exists)) {
+            if(onScreen() && spotted() && (!_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 1) && _player.light.exists)) {
                 return true;                
             } else {
                 _sightTimer = _sightLimit;
