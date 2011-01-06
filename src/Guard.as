@@ -16,7 +16,7 @@ package
         
         //Shootin' arrows
         private var _sightLimit:Number = 0.5;
-        private var _sightTimer:Number = 0.5;
+        private var _sightTimer:Number = 0.25;
         private var _currentState:PlayState;
 
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
@@ -60,10 +60,12 @@ package
             super.update();
         }
 
-        public function checkCapture():void {
+        public function checkCapture():Boolean {
             if(distance(x,y,_player.x,_player.y) < 30) {
                 _state = GuardState.CAPTURE;
+                return true;
             }
+            return false;
         }
 
         public function aim():void {
@@ -93,13 +95,20 @@ package
         }
         
         public function capture():void {
-            _currentState.createArrow(x, y, _player.x+4, _player.y+4);
-            _player.mobile = false;
             velocity.x = 0;
             velocity.y = 0;
             angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
             play("shooting");
-            _state = GuardState.SHOOTING;
+            if(checkCapture()) {
+                _sightTimer -= FlxG.elapsed;
+                if(_sightTimer <= 0) {
+                    _player.mobile = false;
+                    _currentState.createArrow(x+4, y+4, _player.x+4, _player.y+4);
+                    _state = GuardState.SHOOTING;
+                }
+            } else {
+                _state = GuardState.PATROL;
+            }
         }
 
         public function advance():void {
@@ -154,7 +163,7 @@ package
         public function spot():Boolean {
             var p:FlxPoint;
 
-            if(onScreen() && spotted() && (!_map.ray(x+8, y+8, _player.x+8, _player.y+8, p, 1) && _player.light.exists)) {
+            if(onScreen() && spotted() && (!_map.ray(x+4, y+4, _player.x+4, _player.y+4, p, 1) && _player.light.exists)) {
                 return true;                
             } else {
                 _sightTimer = _sightLimit;
