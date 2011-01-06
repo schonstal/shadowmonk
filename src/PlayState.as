@@ -26,9 +26,12 @@ package
         //HUD
         protected var _timer:FlxText;
         protected var _gameTimer:GameTimer;
+        //Bar... Should class it
         protected var _bar:FlxSprite;
         protected var _frame:FlxSprite;
         protected var _inside:FlxSprite;
+        protected var _chargeColor:uint = 0xffff0000;
+        protected var _fullColor:uint = 0xff00ff00;
 
         public var barScale:Number = 1;
 		
@@ -107,10 +110,11 @@ package
             lyrHUD.add(_inside);
 
             _bar = new FlxSprite(FlxG.width - 106, 16);
-            _bar.createGraphic(1,8,0xff00aaaa);
+            _bar.createGraphic(1,8,0xffffffff);
             _bar.scrollFactor.x = _bar.scrollFactor.y = 0;
             _bar.origin.x = _bar.origin.y = 0;
             _bar.scale.x = 96;
+            _bar.color = _fullColor;
             lyrHUD.add(_bar);
 
             //Add layers
@@ -150,6 +154,11 @@ package
             _gameTimer.update();
             _timer.text = _gameTimer.render();
             _bar.scale.x = 96 * barScale;
+            if(barScale >= 1) {
+                _bar.color = _fullColor;
+            } else {
+                _bar.color = _chargeColor;
+            }
             //FlxU.collide(_guards, _map);
         }
 
