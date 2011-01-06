@@ -107,7 +107,7 @@ package
             lyrHUD.add(_inside);
 
             _bar = new FlxSprite(FlxG.width - 106, 16);
-            _bar.createGraphic(1,8,0xff00ff00);
+            _bar.createGraphic(1,8,0xff00aaaa);
             _bar.scrollFactor.x = _bar.scrollFactor.y = 0;
             _bar.origin.x = _bar.origin.y = 0;
             _bar.scale.x = 96;

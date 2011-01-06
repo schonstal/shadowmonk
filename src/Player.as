@@ -40,8 +40,6 @@ package
 
         override public function update():void
         {
-            _state.barScale = _lastLight / _recharge;
-
             if (mobile) {
                 if (FlxG.keys.LEFT) {
                     _direction = LEFT;
@@ -67,11 +65,23 @@ package
                 velocity.y = 0;
             }
 
-            if(light && light.exists)
-                _recharge = 0;
+            if(light && light.exists) {
+                _lastLight = 0;
+            } else {
+                if(_lastLight < _recharge)
+                    _lastLight += FlxG.elapsed;
+            }
+            
+            if(_lastLight > _recharge)
+                _lastLight = _recharge;
+            
+            _state.barScale = _lastLight / _recharge;
 
             if (FlxG.keys.justPressed("X") && light) {
-                light.exists = !light.exists;
+                if(!light.exists && _lastLight >= _recharge)
+                    light.exists = true;
+                else
+                    light.exists = false;
             }
 
             angle = _heading[_direction];
