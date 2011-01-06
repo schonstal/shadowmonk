@@ -11,6 +11,11 @@ package
         private var _direction:int = 0; //LEFT, RIGHT, UP, DOWN
         private var _heading:Array = new Array(270,90,0,180);
 
+        private var _recharge:Number = 0.5;
+        private var _lastLight:Number = 0.5;
+
+        private var _state:PlayState;
+
         public var light:Light;
         public var mobile:Boolean = true;
 
@@ -24,6 +29,8 @@ package
             height = 8;
             offset.x = 4;
             offset.y = 4;
+            
+            _state = FlxG.state as PlayState;
 
             addAnimation("normal", [1, 0, 2, 0], 8);
             addAnimation("stopped", [0]);
@@ -33,6 +40,8 @@ package
 
         override public function update():void
         {
+            _state.barScale = _lastLight / _recharge;
+
             if (mobile) {
                 if (FlxG.keys.LEFT) {
                     _direction = LEFT;
@@ -57,6 +66,9 @@ package
                 velocity.x = 0;
                 velocity.y = 0;
             }
+
+            if(light && light.exists)
+                _recharge = 0;
 
             if (FlxG.keys.justPressed("X") && light) {
                 light.exists = !light.exists;

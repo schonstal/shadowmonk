@@ -23,10 +23,16 @@ package
         protected var _guards:Array;
         protected var _lights:Array;
         
+        //HUD
         protected var _timer:FlxText;
         protected var _gameTimer:GameTimer;
+        protected var _bar:FlxSprite;
+        protected var _frame:FlxSprite;
+        protected var _inside:FlxSprite;
 
-		public static var lyrStage:FlxGroup;
+        public var barScale:Number = 1;
+		
+        public static var lyrStage:FlxGroup;
         public static var lyrSprites:FlxGroup;
         public static var lyrLight:FlxGroup;
         public static var lyrWalls:FlxGroup;
@@ -83,11 +89,29 @@ package
 			lyrStage.add(_floor);
 
             //HUD			
-			_timer = new FlxText(FlxG.width/2-50,10,100,"00:00.000");
+			_timer = new FlxText(10,10,100,"00:00.000");
 			_timer.alignment = "left";
             _timer.size = 16;
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
+
+            //Thanks Flixel Wiki :)
+            _frame = new FlxSprite(FlxG.width - 107, 15);
+            _frame.createGraphic(98,10,0xffffffff);
+            _frame.scrollFactor.x = _frame.scrollFactor.y = 0;
+            lyrHUD.add(_frame);
+             
+            _inside = new FlxSprite(FlxG.width - 106, 16);
+            _inside.createGraphic(96,8,0xff000000);
+            _inside.scrollFactor.x = _inside.scrollFactor.y = 0;
+            lyrHUD.add(_inside);
+
+            _bar = new FlxSprite(FlxG.width - 106, 16);
+            _bar.createGraphic(1,8,0xff00ff00);
+            _bar.scrollFactor.x = _bar.scrollFactor.y = 0;
+            _bar.origin.x = _bar.origin.y = 0;
+            _bar.scale.x = 96;
+            lyrHUD.add(_bar);
 
             //Add layers
 			this.add(lyrStage);
@@ -125,6 +149,7 @@ package
             _map.collide(_player);
             _gameTimer.update();
             _timer.text = _gameTimer.render();
+            _bar.scale.x = 96 * barScale;
             //FlxU.collide(_guards, _map);
         }
 
