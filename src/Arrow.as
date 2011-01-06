@@ -10,7 +10,7 @@ package
         private var _embers:FlxEmitter;
         private var _dest:FlxPoint;
 
-        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, Layer:FlxGroup):void
+        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, Layer:FlxGroup, collideWalls:Boolean):void
         {
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);

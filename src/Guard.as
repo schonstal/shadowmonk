@@ -18,12 +18,14 @@ package
         private var _sightLimit:Number = 0.5;
         private var _sightTimer:Number = 0.5;
         private var _shot:Boolean = false;
+        private var _currentState:PlayState;
 
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
         public var patrol:Array;
 
         public function Guard(Patrol:Array, ThePlayer:Player,Heading:int, map:FlxTilemap):void
         {
+            _currentState = FlxG.state as PlayState;
             _state = GuardState.PATROL;
             patrol = Patrol;
             super(patrol[0].x*16+4,patrol[0].y*16+4);
@@ -96,6 +98,10 @@ package
                 play("shooting");
             else
                 play("normal");
+
+
+            if(spot())
+                _currentState.createArrow(x, y, _player.x, _player.y);
 
         }
         

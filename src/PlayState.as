@@ -112,15 +112,10 @@ package
             _map.collide(_player);
             //FlxU.collide(_guards, _map);
            
-            for(var i:int = 0; i < _guards.length; i++) {
-                if(_guards[i].spot()) {
-                    createArrow(_guards[i].x, _guards[i].y, _player.x, _player.y);
-                }
-            }
         }
 
-        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number):void {
-            var arrow:Arrow = new Arrow(X, Y, X2, Y2, lyrWalls);
+        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, collideWalls:Boolean = false):void {
+            var arrow:Arrow = new Arrow(X, Y, X2, Y2, lyrWalls, collideWalls);
             lyrSprites.add(arrow);
             _lights.push(new Light(arrow));
         }
