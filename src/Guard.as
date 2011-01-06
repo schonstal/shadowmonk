@@ -47,17 +47,23 @@ package
 
         override public function update():void
         {
-            if(_state == GuardState.PATROL)
-                advance();
+            if(_state == GuardState.SHOOTING)
+                shoot();
             else if (_state == GuardState.AIM)
                 aim();
             else if (_state == GuardState.LOST)
                 lost();
             else if (_state == GuardState.CAPTURE)
                 capture();
-            else if (_state == GuardState.SHOOTING)
-                shoot();
+            else if (_state == GuardState.PATROL)
+                advance();
             super.update();
+        }
+
+        public function checkCapture():void {
+            if(distance(x,y,_player.x,_player.y) < 30) {
+                _state = GuardState.CAPTURE;
+            }
         }
 
         public function aim():void {
@@ -75,6 +81,7 @@ package
             } else {
                 _state = GuardState.PATROL;
             }
+            checkCapture();
         }
         
         public function shoot():void {
@@ -82,10 +89,17 @@ package
         }
 
         public function lost():void {
+            checkCapture();
         }
         
         public function capture():void {
-            //Not sure if we'll use this one
+            _currentState.createArrow(x, y, _player.x+4, _player.y+4);
+            _player.mobile = false;
+            velocity.x = 0;
+            velocity.y = 0;
+            angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
+            play("shooting");
+            _state = GuardState.SHOOTING;
         }
 
         public function advance():void {
@@ -134,13 +148,13 @@ package
             
             if(spot())
                 _state = GuardState.AIM;
-
+            checkCapture();
         }
         
         public function spot():Boolean {
             var p:FlxPoint;
 
-            if(onScreen() && spotted() && ((!_map.ray(x+8, y+8, _player.x+8, _player.y+8, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
+            if(onScreen() && spotted() && (!_map.ray(x+8, y+8, _player.x+8, _player.y+8, p, 1) && _player.light.exists)) {
                 return true;                
             } else {
                 _sightTimer = _sightLimit;

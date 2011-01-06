@@ -8,6 +8,6 @@ package
         public static const AIM:Number = 2;
         public static const LOST:Number = 3;
         public static const CAPTURE:Number = 4;
-        public static const SHOOTING:Number = 4;
+        public static const SHOOTING:Number = 5;
     }
 }
