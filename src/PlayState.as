@@ -24,6 +24,7 @@ package
         protected var _lights:Array;
         
         protected var _timer:FlxText;
+        protected var _gameTimer:GameTimer;
 
 		public static var lyrStage:FlxGroup;
         public static var lyrSprites:FlxGroup;
@@ -45,6 +46,8 @@ package
 
             _guards = new Array;
             _lights = new Array;
+
+            _gameTimer = new GameTimer;
 			
             _map = new FlxTilemap;
 			_map.loadMap(new WallMap, ImgTiles, 16)
@@ -73,7 +76,7 @@ package
 			lyrStage.add(_floor);
 			
 			_timer = new FlxText(FlxG.width/2-50,10,100,"00:00.000");
-			_timer.alignment = "center";
+			_timer.alignment = "left";
             _timer.size = 16;
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
@@ -111,8 +114,9 @@ package
         override public function update():void {
             super.update();
             _map.collide(_player);
+            _gameTimer.update();
+            _timer.text = _gameTimer.render();
             //FlxU.collide(_guards, _map);
-           
         }
 
         public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, collideWalls:Boolean = false):void {
