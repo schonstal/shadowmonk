@@ -22,6 +22,8 @@ package
 
         protected var _guards:Array;
         protected var _lights:Array;
+        
+        protected var _timer:FlxText;
 
 		public static var lyrStage:FlxGroup;
         public static var lyrSprites:FlxGroup;
@@ -70,12 +72,11 @@ package
 			_floor.collideIndex = 6;
 			lyrStage.add(_floor);
 			
-            var t:FlxText;
-			t = new FlxText(FlxG.width/2-50,10,100,"00:00.000");
-			t.alignment = "center";
-            t.size = 16;
-            t.scrollFactor.x = t.scrollFactor.y = 0;
-            lyrHUD.add(t);
+			_timer = new FlxText(FlxG.width/2-50,10,100,"00:00.000");
+			_timer.alignment = "center";
+            _timer.size = 16;
+            _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
+            lyrHUD.add(_timer);
 
 			this.add(lyrStage);
 			this.add(lyrSprites);
