@@ -38,49 +38,58 @@ package
 		}
 
 		public override function create():void {
+            //Create Layers
             lyrStage = new FlxGroup;
             lyrSprites = new FlxGroup;
             lyrLight = new FlxGroup;
             lyrWalls = new FlxGroup;
             lyrHUD = new FlxGroup;
 
+            //Initialize vars
             _guards = new Array;
             _lights = new Array;
-
             _gameTimer = new GameTimer;
 			
+            //Create wall map
             _map = new FlxTilemap;
 			_map.loadMap(new WallMap, ImgTiles, 16)
 			_map.drawIndex = 1;
 			_map.collideIndex = 1;
 			lyrWalls.add(_map);
 
+            //Level-specific setup
 			initialize();
 
+            //Sprites
 			lyrSprites.add(_player);
 			_player.light = new Light(_player);
 			_lights.push(_player.light);
 			_player.light.exists = false;
-		   
+
+            //Light		   
 			_mask = new LightMask(_lights);
 			lyrLight.add(_mask);
-
+            
+            //Camera
 			FlxG.follow(_player, 2.5);
 			FlxG.followAdjust(0.5, 0.5);
 			FlxG.followBounds(1,1,640-1,480-1);
 
+            //Stage
 			_floor = new FlxTilemap;
 			_floor.loadMap(new GroundMap, ImgTiles, 16)
 			_floor.drawIndex = 1;
 			_floor.collideIndex = 6;
 			lyrStage.add(_floor);
-			
+
+            //HUD			
 			_timer = new FlxText(FlxG.width/2-50,10,100,"00:00.000");
 			_timer.alignment = "left";
             _timer.size = 16;
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
 
+            //Add layers
 			this.add(lyrStage);
 			this.add(lyrSprites);
 			this.add(lyrLight);
