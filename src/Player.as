@@ -11,8 +11,8 @@ package
         private var _direction:int = 0; //LEFT, RIGHT, UP, DOWN
         private var _heading:Array = new Array(270,90,0,180);
 
-        private var _recharge:Number = 0.5;
-        private var _lastLight:Number = 0.5;
+        private var _recharge:Number = 1;
+        private var _lastLight:Number = _recharge;
 
         private var _state:PlayState;
 
