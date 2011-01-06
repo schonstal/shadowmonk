@@ -27,6 +27,8 @@ package
         public static var lyrSprites:FlxGroup;
         public static var lyrLight:FlxGroup;
         public static var lyrWalls:FlxGroup;
+		
+        public static var lyrHUD:FlxGroup;
         
         public function PlayState() {
             super();
@@ -37,7 +39,7 @@ package
             lyrSprites = new FlxGroup;
             lyrLight = new FlxGroup;
             lyrWalls = new FlxGroup;
-            //lyrHUD = new FlxGroup;
+            lyrHUD = new FlxGroup;
 
             _guards = new Array;
             _lights = new Array;
@@ -67,11 +69,19 @@ package
 			_map.drawIndex = 1;
 			_map.collideIndex = 1;
 			lyrWalls.add(_map);
+			
+            var t:FlxText;
+			t = new FlxText(FlxG.width/2-50,10,100,"00:00.000");
+			t.alignment = "center";
+            t.size = 16;
+            t.scrollFactor.x = t.scrollFactor.y = 0;
+            lyrHUD.add(t);
 
 			this.add(lyrStage);
 			this.add(lyrSprites);
 			this.add(lyrLight);
 			this.add(lyrWalls);
+			this.add(lyrHUD);
 		}
 
 		public function initialize():void {
