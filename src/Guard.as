@@ -50,7 +50,23 @@ package
         {
             if(_state == GuardState.PATROL)
                 advance();
+            else if (_state == GuardState.AIM)
+                aim();
+            else if (_state == GuardState.LOST)
+                lost();
+            else if (_state == GuardState.CAPTURE)
+                capture();
             super.update();
+        }
+
+        public function aim():void {
+        }
+
+        public function lost():void {
+        }
+        
+        public function capture():void {
+            //Not sure if we'll use this one
         }
 
         public function advance():void {
