@@ -11,6 +11,8 @@ package
         private var _player:Player;
         private var _next:int = 1;
         private var _ang:Number;
+        private var _state:Number;
+        private var _map:FlxTilemap;
         
         //Shootin' arrows
         private var _sightLimit:Number = 0.5;
@@ -20,11 +22,13 @@ package
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
         public var patrol:Array;
 
-        public function Guard(Patrol:Array, ThePlayer:Player,Heading:int):void
+        public function Guard(Patrol:Array, ThePlayer:Player,Heading:int, map:FlxTilemap):void
         {
+            _state = GuardState.PATROL;
             patrol = Patrol;
             super(patrol[0].x*16+4,patrol[0].y*16+4);
             loadGraphic(ImgGuard, true, true, 16, 16); 
+            _map = map;
 
             _player = ThePlayer;
             
@@ -42,6 +46,12 @@ package
 
         override public function update():void
         {
+            if(_state == GuardState.PATROL)
+                advance();
+            super.update();
+        }
+
+        public function advance():void {
             angle = _heading[direction];
             var X:int = int(x/16);
             var Y:int = int(y/16);
@@ -87,13 +97,12 @@ package
             else
                 play("normal");
 
-            super.update();
         }
         
-        public function spot(map:FlxTilemap):Boolean {
+        public function spot():Boolean {
             var p:FlxPoint;
 
-            if(spotted() && ((!map.ray(x, y, _player.x, _player.y, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
+            if(spotted() && ((!_map.ray(x, y, _player.x, _player.y, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
                 
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {

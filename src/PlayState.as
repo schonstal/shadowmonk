@@ -43,6 +43,12 @@ package
 
             _guards = new Array;
             _lights = new Array;
+			
+            _map = new FlxTilemap;
+			_map.loadMap(new WallMap, ImgTiles, 16)
+			_map.drawIndex = 1;
+			_map.collideIndex = 1;
+			lyrWalls.add(_map);
 
 			initialize();
 
@@ -64,12 +70,6 @@ package
 			_floor.collideIndex = 6;
 			lyrStage.add(_floor);
 			
-			_map = new FlxTilemap;
-			_map.loadMap(new WallMap, ImgTiles, 16)
-			_map.drawIndex = 1;
-			_map.collideIndex = 1;
-			lyrWalls.add(_map);
-			
             var t:FlxText;
 			t = new FlxText(FlxG.width/2-50,10,100,"00:00.000");
 			t.alignment = "center";
@@ -89,7 +89,7 @@ package
 		}
 
         protected function addGuard(Patrol:Array, Heading:int):void {
-            _guard = new Guard(Patrol, _player, Heading);
+            _guard = new Guard(Patrol, _player, Heading, _map);
             lyrSprites.add(_guard);
             _lights.push(new Light(_guard));
             _guards.push(_guard);
@@ -113,7 +113,7 @@ package
             //FlxU.collide(_guards, _map);
            
             for(var i:int = 0; i < _guards.length; i++) {
-                if(_guards[i].spot(_map)) {
+                if(_guards[i].spot()) {
                     var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player, lyrWalls);
                     lyrSprites.add(arrow);
                     _lights.push(new Light(arrow));
