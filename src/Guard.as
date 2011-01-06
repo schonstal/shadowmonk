@@ -124,7 +124,7 @@ package
         public function spot():Boolean {
             var p:FlxPoint;
 
-            if(spotted() && ((!_map.ray(x, y, _player.x, _player.y, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
+            if(onScreen() && spotted() && ((!_map.ray(x, y, _player.x, _player.y, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
                 
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
