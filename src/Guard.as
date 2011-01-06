@@ -69,7 +69,7 @@ package
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;
-                    _currentState.createArrow(x, y, _player.x, _player.y);
+                    _currentState.createArrow(x, y, _player.x+4, _player.y+4);
                     _state = GuardState.SHOOTING;
                 }
             } else {
@@ -140,7 +140,7 @@ package
         public function spot():Boolean {
             var p:FlxPoint;
 
-            if(onScreen() && spotted() && ((!_map.ray(x, y, _player.x, _player.y, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
+            if(onScreen() && spotted() && ((!_map.ray(x+8, y+8, _player.x+8, _player.y+8, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
                 return true;                
             } else {
                 _sightTimer = _sightLimit;
