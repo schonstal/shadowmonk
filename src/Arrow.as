@@ -8,19 +8,19 @@ package
         [Embed(source = "../data/Ember.png")] private var ImgEmber:Class;
         
         private var _embers:FlxEmitter;
-        private var _player:Player;
+        private var _dest:FlxPoint;
 
-        public function Arrow(X:Number, Y:Number, ThePlayer:Player, Layer:FlxGroup):void
+        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, Layer:FlxGroup):void
         {
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);
             
-            _player = ThePlayer;
+            _dest = new FlxPoint(X2, Y2);
             
-            var dX:Number = X - ThePlayer.x;
-            var dY:Number = Y - ThePlayer.y;
+            var dX:Number = X - _dest.x;
+            var dY:Number = Y - _dest.y;
             var dist:Number = Math.sqrt(dX*dX+dY*dY);
-            var ang:Number = getAngle(X,Y,ThePlayer.x,ThePlayer.y);
+            var ang:Number = getAngle(X,Y,_dest.x,_dest.y);
            
             //This angle is in RADIANS! 
             var emberSpread:Number = 0.17;
@@ -29,14 +29,14 @@ package
             var emberMin:FlxPoint = new FlxPoint();
             var emberMax:FlxPoint = new FlxPoint();
             
-            velocity.x = Math.sin(ang) * (_player.x>X?400:-400);
-            velocity.y = Math.cos(ang) * (_player.x>X?-400:400);
+            velocity.x = Math.sin(ang) * (_dest.x>X?400:-400);
+            velocity.y = Math.cos(ang) * (_dest.x>X?-400:400);
             
-            emberMax.x = Math.sin(ang+emberSpread) * (_player.x>X?400:-400) * emberSpeed;
-            emberMax.y = Math.cos(ang+emberSpread) * (_player.x>X?-400:400) * emberSpeed;
+            emberMax.x = Math.sin(ang+emberSpread) * (_dest.x>X?400:-400) * emberSpeed;
+            emberMax.y = Math.cos(ang+emberSpread) * (_dest.x>X?-400:400) * emberSpeed;
             
-            emberMin.x = Math.sin(ang-emberSpread) * (_player.x>X?400:-400) * emberSpeed;
-            emberMin.y = Math.cos(ang-emberSpread) * (_player.x>X?-400:400) * emberSpeed;
+            emberMin.x = Math.sin(ang-emberSpread) * (_dest.x>X?400:-400) * emberSpeed;
+            emberMin.y = Math.cos(ang-emberSpread) * (_dest.x>X?-400:400) * emberSpeed;
 
             addAnimation("normal", [0,1,2], 20);      
             _embers = FlxG.state.add(new FlxEmitter(X, Y)) as FlxEmitter;
@@ -70,7 +70,7 @@ package
             _embers.x = x + 8;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(distance(_player.x, _player.y, x, y) < 16)
+            if(distance(_dest.x, _dest.y, x, y) < 16)
                 FlxG.state = new Dead(Level07, "SHOT BY AN ARROW");
             super.update();
         }

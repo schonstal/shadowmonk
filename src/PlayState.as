@@ -114,11 +114,15 @@ package
            
             for(var i:int = 0; i < _guards.length; i++) {
                 if(_guards[i].spot()) {
-                    var arrow:Arrow = new Arrow(_guards[i].x, _guards[i].y, _player, lyrWalls);
-                    lyrSprites.add(arrow);
-                    _lights.push(new Light(arrow));
+                    createArrow(_guards[i].x, _guards[i].y, _player.x, _player.y);
                 }
             }
+        }
+
+        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number):void {
+            var arrow:Arrow = new Arrow(X, Y, X2, Y2, lyrWalls);
+            lyrSprites.add(arrow);
+            _lights.push(new Light(arrow));
         }
     }
 }
