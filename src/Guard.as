@@ -17,7 +17,6 @@ package
         //Shootin' arrows
         private var _sightLimit:Number = 0.5;
         private var _sightTimer:Number = 0.5;
-        private var _shot:Boolean = false;
         private var _currentState:PlayState;
 
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
@@ -56,10 +55,30 @@ package
                 lost();
             else if (_state == GuardState.CAPTURE)
                 capture();
+            else if (_state == GuardState.SHOOTING)
+                shoot();
             super.update();
         }
 
         public function aim():void {
+            velocity.x = 0;
+            velocity.y = 0;
+            angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
+            play("shooting");
+            if(spot()) {
+                _sightTimer -= FlxG.elapsed;
+                if(_sightTimer <= 0) {
+                    _player.mobile = false;
+                    _currentState.createArrow(x, y, _player.x, _player.y);
+                    _state = GuardState.SHOOTING;
+                }
+            } else {
+                _state = GuardState.PATROL;
+            }
+        }
+        
+        public function shoot():void {
+            play("shooting");
         }
 
         public function lost():void {
@@ -110,14 +129,11 @@ package
 
             if (velocity.x == 0 && velocity.y == 0)
                 play("stopped");
-            else if (_shot)
-                play("shooting");
             else
                 play("normal");
-
-
+            
             if(spot())
-                _currentState.createArrow(x, y, _player.x, _player.y);
+                _state = GuardState.AIM;
 
         }
         
@@ -125,15 +141,7 @@ package
             var p:FlxPoint;
 
             if(onScreen() && spotted() && ((!_map.ray(x, y, _player.x, _player.y, p, 1) && _player.light.exists) || (distance(x,y,_player.x,_player.y) < 30))) {
-                
-                _sightTimer -= FlxG.elapsed;
-                if(_sightTimer <= 0) {
-                    _player.mobile = false;
-                    if(!_shot) {
-                        _shot = true;
-                        return true;
-                    }
-                }
+                return true;                
             } else {
                 _sightTimer = _sightLimit;
             }
