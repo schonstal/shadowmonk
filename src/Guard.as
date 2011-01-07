@@ -15,9 +15,15 @@ package
         private var _map:FlxTilemap;
         
         //Shootin' arrows
-        private var _sightLimit:Number = 0.5;
-        private var _sightTimer:Number = 0.25;
-        private var _sightLost:Number = 0.5;
+        private var _sightLimit:Number = 0.25;
+        private var _sightTimer:Number = _sightLimit;
+        private var _lostLimit:Number = 1;
+        private var _lostTimer:Number = _lostLimit;
+
+        //So many flags
+        private var _firstTurn:Boolean = true;
+        private var _secondTurn:Boolean = true;
+        
         private var _currentState:PlayState;
         private var _arrowOffset:FlxPoint;
         private var _playerOffset:FlxPoint;
@@ -90,6 +96,9 @@ package
                     _state = GuardState.SHOOTING;
                 }
             } else {
+                _lostTimer = _lostLimit;
+                _firstTurn = true;
+                _secondTurn = true;
                 _state = GuardState.LOST;
             }
         }
@@ -104,7 +113,21 @@ package
         }
 
         public function lost():void {
+            if(spot())
+                _state = GuardState.AIM;
             checkCapture();
+            
+            _lostTimer -= FlxG.elapsed;
+            
+            if(_lostTimer <= 0) {
+                _state = GuardState.PATROL;
+            } else if (_secondTurn && (_lostTimer/_lostLimit <= 0.33)) {
+                _secondTurn = false;
+                angle += 90;
+            } else if (_firstTurn && (_lostTimer/_lostLimit <= 0.66)) {
+                _firstTurn = false;
+                angle -= 45;
+            }
         }
         
         public function capture():void {
