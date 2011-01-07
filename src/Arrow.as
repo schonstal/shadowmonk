@@ -42,11 +42,12 @@ package
 
             addAnimation("normal", [0,1,2], 20);      
             _embers = FlxG.state.add(new FlxEmitter(X, Y)) as FlxEmitter;
-            _embers.createSprites(ImgEmber, 100, 0, true, 0);
+            _embers.createSprites(ImgEmber, 20, 0, true, 0);
             _embers.setXSpeed(emberMin.x,emberMax.x);
             _embers.setYSpeed(emberMin.y,emberMax.y);
             _embers.gravity = 0;
             _embers.delay = 0.1;
+            _embers.particleDrag = new FlxPoint(5,5);
             _embers.start(false);
 
             angle = ang * (180/Math.PI);
