@@ -69,7 +69,7 @@ package
 
         public function checkCapture():Boolean {
             var p:FlxPoint;
-            if(distance(x,y,_player.x,_player.y) < 26 && 
+            if(!_player.dead && distance(x,y,_player.x,_player.y) < 26 && 
                 !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 1)) {
                 _state = GuardState.CAPTURE;
                 return true;
@@ -163,7 +163,7 @@ package
         public function spot():Boolean {
             var p:FlxPoint;
 
-            if(onScreen() && spotted() && (_player.light.exists && !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 1))) {
+            if(onScreen() && !_player.dead && spotted() && (_player.light.exists && !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 1))) {
                 return true;                
             } else {
                 _sightTimer = _sightLimit;
