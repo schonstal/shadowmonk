@@ -33,6 +33,8 @@ package
         protected var _chargeColor:uint = 0xffff0000;
         protected var _fullColor:uint = 0xff00ff00;
 
+        protected var _gameOver:Boolean = false;
+
         public var barScale:Number = 1;
 		
         public static var lyrStage:FlxGroup;
@@ -150,14 +152,37 @@ package
 
         override public function update():void {
             super.update();
-            _map.collide(_player);
-            _gameTimer.update();
-            _timer.text = _gameTimer.render();
-            _bar.scale.x = 96 * barScale;
-            if(barScale >= 1) {
-                _bar.color = _fullColor;
+            if(!_gameOver) {
+                _map.collide(_player);
+                _gameTimer.update();
+                _timer.text = _gameTimer.render();
+                _bar.scale.x = 96 * barScale;
+                if(barScale >= 1) {
+                    _bar.color = _fullColor;
+                } else {
+                    _bar.color = _chargeColor;
+                }
             } else {
-                _bar.color = _chargeColor;
+                if(FlxG.keys.justPressed("X")) {
+                    if(FlxG.level == 1)
+                        FlxG.state = new Level01();
+                    if(FlxG.level == 2)
+                        FlxG.state = new Level02();
+                    if(FlxG.level == 3)
+                        FlxG.state = new Level03();
+                    if(FlxG.level == 4)
+                        FlxG.state = new Level04();
+                    if(FlxG.level == 5)
+                        FlxG.state = new Level05();
+                    if(FlxG.level == 6)
+                        FlxG.state = new Level06();
+                    if(FlxG.level == 7)
+                        FlxG.state = new Level07();
+                    if(FlxG.level == 8)
+                        FlxG.state = new Level08();
+                    if (FlxG.level == 9)
+                        FlxG.state = new Level09();
+                }
             }
             //FlxU.collide(_guards, _map);
         }
@@ -166,6 +191,34 @@ package
             var arrow:Arrow = new Arrow(X, Y, X2, Y2, lyrWalls, collideWalls);
             lyrSprites.add(arrow);
             _lights.push(new Light(arrow));
+        }
+        
+        public function dead(Reason:String = "You Fucked Up"):void {
+            if(!_gameOver) {
+                var t:FlxText;
+                t = new FlxText(0,FlxG.height/2-10,FlxG.width,"YOU ARE DEAD");
+                t.size = 16;
+                t.alignment = "center";
+                t.scrollFactor.x = t.scrollFactor.y = 0;
+                lyrHUD.add(t);
+                
+                t = new FlxText(0,FlxG.height/2+8,FlxG.width,Reason);
+                t.size = 8;
+                t.alignment = "center";
+                t.scrollFactor.x = t.scrollFactor.y = 0;
+                lyrHUD.add(t);
+
+                t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Press X to Play Again");
+                t.alignment = "center";
+                t.scrollFactor.x = t.scrollFactor.y = 0;
+                lyrHUD.add(t);
+                FlxG.flash.start(0x99dd0000, 3);
+                
+                _player.dead = true;
+                _player.light.exists = false;
+                lyrSprites.remove(_player);
+                _gameOver = true;
+            }
         }
     }
 }

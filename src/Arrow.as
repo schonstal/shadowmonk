@@ -9,6 +9,7 @@ package
         
         private var _embers:FlxEmitter;
         private var _dest:FlxPoint;
+        private var _state:PlayState;
 
         public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, Layer:FlxGroup, collideWalls:Boolean):void
         {
@@ -16,6 +17,7 @@ package
             loadGraphic(ImgArrow, true, true, 16, 16);
             
             _dest = new FlxPoint(X2, Y2);
+            _state = FlxG.state as PlayState;
             
             var dX:Number = X - _dest.x;
             var dY:Number = Y - _dest.y;
@@ -71,7 +73,7 @@ package
             _embers.y = y + 8;
             //Is there a normal collide?
             if(distance(_dest.x, _dest.y, x, y) < 16)
-                FlxG.state = new Dead(Level07, "SHOT BY AN ARROW");
+                _state.dead("SHOT BY AN ARROW");
             super.update();
         }
         

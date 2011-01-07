@@ -10,10 +10,12 @@ package
         private var _glow:Glow;
         private var _map:FlxTilemap;
         private var _trapped:Boolean = false;
+        private var _state:PlayState;
         
 		public function Trap(X:Number, Y:Number, Tiles:FlxTilemap, ThePlayer:Player, glow:Glow):void
 		{
             super(X*16,Y*16);
+            _state = FlxG.state as PlayState;
             loadGraphic(ImgPit, true, true, 16, 16); 
 
             _player = ThePlayer;
@@ -39,7 +41,7 @@ package
             if(_trapped) {
                 play("open");
                 if(finished)
-                    FlxG.state = new Dead(Level07, "FELL INTO A TRAP");
+                    _state.dead("FELL INTO A TRAP");
             } 
             
             alert();
