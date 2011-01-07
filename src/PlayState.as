@@ -41,8 +41,10 @@ package
         public static var lyrSprites:FlxGroup;
         public static var lyrLight:FlxGroup;
         public static var lyrWalls:FlxGroup;
-		
         public static var lyrHUD:FlxGroup;
+        public static var lyrMessage:FlxGroup;
+        
+        protected var _deadSprite:DeadSprite;
         
         public function PlayState() {
             super();
@@ -55,6 +57,8 @@ package
             lyrLight = new FlxGroup;
             lyrWalls = new FlxGroup;
             lyrHUD = new FlxGroup;
+            lyrMessage = new FlxGroup;
+            _deadSprite = new DeadSprite();
 
             //Initialize vars
             _guards = new Array;
@@ -124,7 +128,9 @@ package
 			this.add(lyrSprites);
 			this.add(lyrLight);
 			this.add(lyrWalls);
+            this.add(_deadSprite);
 			this.add(lyrHUD);
+            this.add(lyrMessage);
 		}
 
 		public function initialize():void {
@@ -152,6 +158,7 @@ package
 
         override public function update():void {
             super.update();
+            _deadSprite.fade();
             if(!_gameOver) {
                 _map.collide(_player);
                 _gameTimer.update();
@@ -193,13 +200,16 @@ package
                 t.scrollFactor.x = t.scrollFactor.y = 0;
                 lyrHUD.add(t);
 
-                FlxG.flash.start(0xbbdd0000, 3);
-                FlxG.fade.start(0xff000000, 10);
+                FlxG.flash.start(0xbbdd0000, 1, _deadSprite.die);
                 
                 _player.die();
 
                 _gameOver = true;
             }
+        }
+        
+        public function addEmitter(sprite:FlxEmitter):void {
+            lyrWalls.add(sprite);
         }
     }
 }

@@ -101,12 +101,14 @@ package
         }
 
         public function die():void {
-            _blood = FlxG.state.add(new FlxEmitter(x, y)) as FlxEmitter;
+            var state:PlayState = FlxG.state as PlayState;
+            _blood = new FlxEmitter(x, y);
+            state.addEmitter(_blood);
             _blood.createSprites(ImgBlood, 60, 0, true, 0);
             _blood.setXSpeed(-50,50);
             _blood.setYSpeed(-50,50);
             _blood.gravity = 0;
-            _blood.delay = 10;
+            _blood.delay = 20;
             _blood.particleDrag = new FlxPoint(47,47);
             _blood.start();
             dead = true;
