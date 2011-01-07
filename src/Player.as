@@ -5,6 +5,7 @@ package
 	public class Player extends FlxSprite
 	{
         [Embed(source='../data/Player.png')] private var ImgPlayer:Class;
+        [Embed(source = "../data/Blood.png")] private var ImgBlood:Class;
 
         private var _move_speed:int = 50;
         private var _max_health:int = 1;
@@ -15,6 +16,8 @@ package
         private var _lastLight:Number = _recharge;
 
         private var _state:PlayState;
+                
+        private var _blood:FlxEmitter;
 
         public var light:Light;
         public var mobile:Boolean = true;
@@ -91,7 +94,24 @@ package
             else
                 play("normal");
 
+            if(_blood != null)
+                _blood.update();
+
             super.update();
+        }
+
+        public function die():void {
+            _blood = FlxG.state.add(new FlxEmitter(x, y)) as FlxEmitter;
+            _blood.createSprites(ImgBlood, 60, 0, true, 0);
+            _blood.setXSpeed(-50,50);
+            _blood.setYSpeed(-50,50);
+            _blood.gravity = 0;
+            _blood.delay = 10;
+            _blood.particleDrag = new FlxPoint(47,47);
+            _blood.start();
+            dead = true;
+            light.exists = false;
+            visible = false;
         }
 	}
 }

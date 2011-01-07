@@ -203,10 +203,7 @@ package
                 FlxG.flash.start(0xbbdd0000, 3);
                 FlxG.fade.start(0xff000000, 10);
                 
-                _player.dead = true;
-                _player.light.exists = false;
-                _player.visible = false;
-                
+                _player.die();
 
                 _gameOver = true;
             }
