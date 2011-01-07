@@ -196,23 +196,18 @@ package
         public function dead(Reason:String = "You Fucked Up"):void {
             if(!_gameOver) {
                 var t:FlxText;
-                t = new FlxText(0,FlxG.height/2-10,FlxG.width,"YOU ARE DEAD");
-                t.size = 16;
+                t = new FlxText(4,FlxG.height/2-54,FlxG.width,"DEAD");
+                t.size = 64;
                 t.alignment = "center";
+                t.color = 0xffdd0000
                 t.scrollFactor.x = t.scrollFactor.y = 0;
                 lyrHUD.add(t);
                 
-                t = new FlxText(0,FlxG.height/2+8,FlxG.width,Reason);
-                t.size = 8;
-                t.alignment = "center";
-                t.scrollFactor.x = t.scrollFactor.y = 0;
-                lyrHUD.add(t);
-
                 t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Press X to Play Again");
                 t.alignment = "center";
                 t.scrollFactor.x = t.scrollFactor.y = 0;
                 lyrHUD.add(t);
-                FlxG.flash.start(0x99dd0000, 3);
+                FlxG.flash.start(0xbbdd0000, 3);
                 
                 _player.dead = true;
                 _player.light.exists = false;
