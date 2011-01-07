@@ -164,24 +164,10 @@ package
                 }
             } else {
                 if(FlxG.keys.justPressed("X")) {
-                    if(FlxG.level == 1)
-                        FlxG.state = new Level01();
-                    if(FlxG.level == 2)
-                        FlxG.state = new Level02();
-                    if(FlxG.level == 3)
-                        FlxG.state = new Level03();
-                    if(FlxG.level == 4)
-                        FlxG.state = new Level04();
-                    if(FlxG.level == 5)
-                        FlxG.state = new Level05();
-                    if(FlxG.level == 6)
-                        FlxG.state = new Level06();
-                    if(FlxG.level == 7)
-                        FlxG.state = new Level07();
-                    if(FlxG.level == 8)
-                        FlxG.state = new Level08();
-                    if (FlxG.level == 9)
-                        FlxG.state = new Level09();
+                    Starter.startLevel();
+                } 
+                if (FlxG.keys.justPressed("C")) {
+                    FlxG.state = new LevelSelect();
                 }
             }
             //FlxU.collide(_guards, _map);
@@ -196,10 +182,17 @@ package
         public function dead(Reason:String = "You Fucked Up"):void {
             if(!_gameOver) {
                 var t:FlxText;
+
                 t = new FlxText(FlxG.width/2-70,FlxG.height-30,140,"Press X to Play Again");
                 t.alignment = "center";
                 t.scrollFactor.x = t.scrollFactor.y = 0;
                 lyrHUD.add(t);
+                
+                t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Press C to Select a Level");
+                t.alignment = "center";
+                t.scrollFactor.x = t.scrollFactor.y = 0;
+                lyrHUD.add(t);
+
                 FlxG.flash.start(0xbbdd0000, 3);
                 FlxG.fade.start(0xff000000, 10);
                 
