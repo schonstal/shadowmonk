@@ -17,6 +17,7 @@ package
         //Shootin' arrows
         private var _sightLimit:Number = 0.5;
         private var _sightTimer:Number = 0.25;
+        private var _sightLost:Number = 0.5;
         private var _currentState:PlayState;
         private var _arrowOffset:FlxPoint;
         private var _playerOffset:FlxPoint;
@@ -68,7 +69,7 @@ package
 
         public function checkCapture():Boolean {
             var p:FlxPoint;
-            if(distance(x,y,_player.x,_player.y) < 30 && 
+            if(distance(x,y,_player.x,_player.y) < 26 && 
                 !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 1)) {
                 _state = GuardState.CAPTURE;
                 return true;
@@ -89,7 +90,7 @@ package
                     _state = GuardState.SHOOTING;
                 }
             } else {
-                _state = GuardState.PATROL;
+                _state = GuardState.LOST;
             }
         }
 
