@@ -25,7 +25,7 @@ package
                 f = false;
             }
 			if(FlxG.keys.justPressed("X"))
-				FlxG.state = new Level01();
+				FlxG.fade.start(0xff000000, 1, function():void { FlxG.state = new LevelSelect(); });
 		}
 	}
 }
