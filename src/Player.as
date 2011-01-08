@@ -97,6 +97,8 @@ package
             if(_blood != null)
                 _blood.update();
 
+            if(dead)
+                _state.barScale = 0.001;
             super.update();
         }
 

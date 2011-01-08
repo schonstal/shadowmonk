@@ -107,8 +107,8 @@ package
 			this.add(lyrSprites);
 			this.add(lyrLight);
 			this.add(lyrWalls);
-            this.add(_deadSprite);
 			this.add(lyrHUD);
+            this.add(_deadSprite);
             this.add(lyrMessage);
 		}
 
@@ -167,12 +167,12 @@ package
                 t = new FlxText(FlxG.width/2-70,FlxG.height-30,140,"Press X to Play Again");
                 t.alignment = "center";
                 t.scrollFactor.x = t.scrollFactor.y = 0;
-                lyrHUD.add(t);
+                lyrMessage.add(t);
                 
                 t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Press C to Select a Level");
                 t.alignment = "center";
                 t.scrollFactor.x = t.scrollFactor.y = 0;
-                lyrHUD.add(t);
+                lyrMessage.add(t);
 
                 FlxG.flash.start(0xaadd0000, 0.5, _deadSprite.die);
                 
