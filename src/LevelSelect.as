@@ -32,6 +32,11 @@ package
 			_t.alignment = "left";
             _t.color = 0xffffffff;
 			add(_t);
+			
+            var t:FlxText;
+			t = new FlxText(FlxG.width/2-50,FlxG.height-20,100,"Press X to Select");
+			t.alignment = "center";
+			add(t);
 
 		}
 
@@ -46,7 +51,7 @@ package
                 if(FlxG.level < _maxLevel) {
                     moveCursor(FlxG.level + 1);
                 }
-            } else if(FlxG.keys.justPressed("X")) {
+            } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
 				Starter.startLevel();
             }
             
