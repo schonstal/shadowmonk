@@ -28,7 +28,7 @@ package
             addLevel(8, "Grim Moisturizing Cream");
             addLevel(9, "Desecration of the Destroyer");
 
-			_t = new FlxText(220, 30, 200, ""+FlxG.level);
+			_t = new FlxText(220, 30, 200, "Best: --:--.--");
 			_t.alignment = "left";
             _t.color = 0xffffffff;
 			add(_t);
@@ -37,26 +37,39 @@ package
 
 		override public function update():void
 		{
-            _t.text = ""+FlxG.level;
 			super.update();
             if(FlxG.keys.justPressed("UP")) {
-                if(FlxG.level > 1)
-                    FlxG.level--;
-            }
-            if(FlxG.keys.justPressed("DOWN")) {
-                if(FlxG.level < _maxLevel)
-                    FlxG.level++;
-            }
-			if(FlxG.keys.justPressed("X"))
+                if(FlxG.level > 1) {
+                    moveCursor(FlxG.level - 1);
+                }
+            } else if(FlxG.keys.justPressed("DOWN")) {
+                if(FlxG.level < _maxLevel) {
+                    moveCursor(FlxG.level + 1);
+                }
+            } else if(FlxG.keys.justPressed("X")) {
 				Starter.startLevel();
+            }
+            
 		}
         
         private function addLevel(level:Number, title:String):void {
 			var t:FlxText;
 			t = new FlxText(25,30 + (level * 10),200,level + ". " + title);
 			t.alignment = "left";
-            t.color = 0xff000000;
+            t.color = (FlxG.level==level?0xffffffff:0xff000000);
+            levels[level-1] = t;
 			add(t);
+        }
+        
+        private function moveCursor(newLevel:int):void {
+            var selected:FlxText = levels[FlxG.level-1] as FlxText;
+            selected.color = 0xff000000;
+
+            FlxG.level = newLevel;
+
+            selected = levels[FlxG.level-1] as FlxText;
+            selected.color = 0xffffffff;
+            _t.text = "Best: 12:34.56";
         }
 	}
 }
