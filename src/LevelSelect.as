@@ -12,7 +12,6 @@ package
 
 		public function LevelSelect()
 		{
-            FlxG.level = 1;
             levels = new Array();
 
             var m:SelectScroll;

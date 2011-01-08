@@ -154,10 +154,11 @@ package
             //FlxU.collide(_guards, _map);
         }
 
-        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, collideWalls:Boolean = false):void {
-            var arrow:Arrow = new Arrow(X, Y, X2, Y2, lyrWalls, collideWalls);
+        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number):void {
+            var arrow:Arrow = new Arrow(X, Y, X2, Y2, lyrWalls);
+            arrow.light = new Light(arrow);
             lyrSprites.add(arrow);
-            _lights.push(new Light(arrow));
+            _lights.push(arrow.light);
         }
         
         public function dead(Reason:String = "You Fucked Up"):void {

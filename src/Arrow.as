@@ -10,8 +10,11 @@ package
         private var _embers:FlxEmitter;
         private var _dest:FlxPoint;
         private var _state:PlayState;
+        private var _penetrating:Boolean = true;
+        
+        public var light:Light;
 
-        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, Layer:FlxGroup, collideWalls:Boolean):void
+        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, Layer:FlxGroup):void
         {
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);
@@ -68,13 +71,25 @@ package
         public override function update():void {
             play("normal");
             //Randomize frequency :)
-            _embers.delay = 0.15 * Math.random() + 0.02;
             _embers.update();
             _embers.x = x + 8;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(distance(_dest.x, _dest.y, x, y) < 16)
+            if(distance(_dest.x, _dest.y, x, y) < 16) {
                 _state.dead("SHOT BY AN ARROW");
+                visible = false;
+                light.exists = false;
+                dead = true;
+            } else {
+                if(!dead) {
+                    _embers.delay = 0.15 * Math.random() + 0.02;
+                } else {
+                    if(onScreen())
+                        _embers.delay = 1;
+                    else
+                        _embers.delay = 0.1;
+                }
+            }
             super.update();
         }
         

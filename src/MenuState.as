@@ -15,6 +15,7 @@ package
 			t = new FlxText(FlxG.width/2-50,FlxG.height-20,100,"Press X to Play");
 			t.alignment = "center";
 			add(t);
+            FlxG.level = 1;
 		}
 
 		override public function update():void
