@@ -200,7 +200,7 @@ package
                 t.scrollFactor.x = t.scrollFactor.y = 0;
                 lyrHUD.add(t);
 
-                FlxG.flash.start(0xbbdd0000, 1, _deadSprite.die);
+                FlxG.flash.start(0xaadd0000, 0.5, _deadSprite.die);
                 
                 _player.die();
 
