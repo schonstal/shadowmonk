@@ -26,12 +26,6 @@ package
         //HUD
         protected var _timer:FlxText;
         protected var _gameTimer:GameTimer;
-        //Bar... Should class it
-        protected var _bar:FlxSprite;
-        protected var _frame:FlxSprite;
-        protected var _inside:FlxSprite;
-        protected var _chargeColor:uint = 0xffff0000;
-        protected var _fullColor:uint = 0xff00ff00;
 
         protected var _gameOver:Boolean = false;
 
@@ -44,6 +38,7 @@ package
         public static var lyrHUD:FlxGroup;
         public static var lyrMessage:FlxGroup;
         
+        protected var _lightBar:LightBar;
         protected var _deadSprite:DeadSprite;
         
         public function PlayState() {
@@ -104,24 +99,8 @@ package
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
 
-            //Thanks Flixel Wiki :)
-            _frame = new FlxSprite(FlxG.width - 107, 15);
-            _frame.createGraphic(98,10,0xffffffff);
-            _frame.scrollFactor.x = _frame.scrollFactor.y = 0;
-            lyrHUD.add(_frame);
-             
-            _inside = new FlxSprite(FlxG.width - 106, 16);
-            _inside.createGraphic(96,8,0xff000000);
-            _inside.scrollFactor.x = _inside.scrollFactor.y = 0;
-            lyrHUD.add(_inside);
-
-            _bar = new FlxSprite(FlxG.width - 106, 16);
-            _bar.createGraphic(1,8,0xffffffff);
-            _bar.scrollFactor.x = _bar.scrollFactor.y = 0;
-            _bar.origin.x = _bar.origin.y = 0;
-            _bar.scale.x = 96;
-            _bar.color = _fullColor;
-            lyrHUD.add(_bar);
+            _lightBar = new LightBar();
+            lyrHUD.add(_lightBar);
 
             //Add layers
 			this.add(lyrStage);
@@ -163,12 +142,7 @@ package
                 _map.collide(_player);
                 _gameTimer.update();
                 _timer.text = _gameTimer.render();
-                _bar.scale.x = 96 * barScale;
-                if(barScale >= 1) {
-                    _bar.color = _fullColor;
-                } else {
-                    _bar.color = _chargeColor;
-                }
+                _lightBar.scale = barScale;
             } else {
                 if(FlxG.keys.justPressed("X")) {
                     Starter.startLevel();
