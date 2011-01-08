@@ -8,7 +8,7 @@ package
         
         public function Shine():void
 		{
-            super(224,4);
+            super(232,4);
 
             loadGraphic(ImgShine, true, true, 80, 40); 
             scrollFactor.x = scrollFactor.y = 0;

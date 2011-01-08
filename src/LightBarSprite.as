@@ -11,14 +11,14 @@ package
 
 		public function LightBarSprite():void
 		{
-    		super(224, 4);
+    		super(232, 4);
             loadGraphic(ImgBar, true, true, 80, 48); 
             scrollFactor.x = scrollFactor.y = 0;
             
             _state = FlxG.state as PlayState;
 
             addAnimation("charging", [0]);
-            addAnimation("full", [1,2,3,4,5,6,7,8], 15);
+            addAnimation("full", [1,2,3,4,5,6,7,8], 5);
             addAnimation("glow", [9]);
 		}
 
