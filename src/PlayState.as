@@ -30,6 +30,7 @@ package
         protected var _gameOver:Boolean = false;
 
         public var barScale:Number = 1;
+        public var debug:FlxText;
 		
         public static var lyrStage:FlxGroup;
         public static var lyrSprites:FlxGroup;
@@ -101,6 +102,12 @@ package
 
             _lightBar = new LightBar();
             lyrHUD.add(_lightBar);
+            	
+            debug = new FlxText(10,40,200,"");
+            debug.alignment = "left";
+            debug.size = 8;
+            debug.scrollFactor.x = debug.scrollFactor.y = 0;
+            lyrHUD.add(debug);
 
             //Add layers
 			this.add(lyrStage);
@@ -136,6 +143,7 @@ package
         }
 
         override public function update():void {
+            debug.text = "";
             super.update();
             _deadSprite.fade();
             if(!_gameOver) {

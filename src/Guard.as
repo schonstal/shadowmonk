@@ -27,6 +27,8 @@ package
         private var _currentState:PlayState;
         private var _arrowOffset:FlxPoint;
         private var _playerOffset:FlxPoint;
+        
+        private var _sightSpread:Number = 90;
 
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
         public var patrol:Array;
@@ -39,6 +41,8 @@ package
             super(patrol[0].x*16+4,patrol[0].y*16+4);
             loadGraphic(ImgGuard, true, true, 16, 16); 
             _map = map;
+
+            _sightSpread = _sightSpread/2;
 
             _player = ThePlayer;
 
@@ -185,8 +189,16 @@ package
         
         public function spot():Boolean {
             var p:FlxPoint;
+            var sightAngle:Number = FlxU.getAngle(_player.x - x, _player.y - y);
+            var absoluteAngle:Number = angle - 90;
 
-            if(onScreen() && !_player.dead && spotted() && (_player.light.exists && !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 1))) {
+            if(onScreen() && !_player.dead && 
+                spotted() && _player.light.exists && 
+                (_state == GuardState.PATROL?
+                    sightAngle > (absoluteAngle - _sightSpread) && sightAngle < (absoluteAngle + _sightSpread)
+                    :true) &&
+                !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, 
+                    _player.y + _playerOffset.y, p, 1)) {
                 return true;                
             } else {
                 _sightTimer = _sightLimit;
