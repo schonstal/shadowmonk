@@ -83,7 +83,7 @@ package
                 _state.dead("SHOT BY AN ARROW");
                 die();
             } else if(!(_player.x == _dest.x && _player.y == _dest.y) &&
-                    distance(_dest.x, _dest.y, x, y) < 16) {
+                    distance(_dest.x, _dest.y, x, y) < 8) {
                 die();
             } else {
                 if(!dead) {
