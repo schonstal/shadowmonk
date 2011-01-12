@@ -162,11 +162,12 @@ package
             //FlxU.collide(_guards, _map);
         }
 
-        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number):void {
-            var arrow:Arrow = new Arrow(X, Y, X2, Y2, lyrWalls);
+        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number):Arrow {
+            var arrow:Arrow = new Arrow(X, Y, X2, Y2, _player);
             arrow.light = new Light(arrow);
             lyrSprites.add(arrow);
             _lights.push(arrow.light);
+            return arrow;
         }
         
         public function dead(Reason:String = "You Fucked Up"):void {
