@@ -129,6 +129,11 @@ package
             _lights.push(new Light(_guard));
             _guards.push(_guard);
         }
+
+        protected function addArrowTrap(X:Number, Y:Number, X2:Number, Y2:Number, 
+                refire:Number, offset:Number = 0):void {
+            lyrWalls.add(new ArrowTrap(X, Y, X2, Y2, refire, offset));
+        }
         
         protected function addTrap(X:Number, Y:Number):void {
             var glow:Glow = new Glow(X*16 - 8, Y*16 - 8);

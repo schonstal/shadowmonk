@@ -81,6 +81,7 @@ package
             //Is there a normal collide?
             if(!dead && distance(_player.x, _player.y, x, y) < 16) {
                 _state.dead("SHOT BY AN ARROW");
+                _player.mobile = false;
                 die();
             } else if(!(_player.x == _dest.x && _player.y == _dest.y) &&
                     distance(_dest.x, _dest.y, x, y) < 8) {
