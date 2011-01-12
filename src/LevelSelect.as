@@ -7,7 +7,7 @@ package
         [Embed(source='../data/Level_select.png')] private var ImgGlow:Class;
 
         private var levels:Array;
-        private var _maxLevel:Number = 9;
+        private var _maxLevel:Number = 10;
         private var _t:FlxText;
 
 		public function LevelSelect()
@@ -27,6 +27,7 @@ package
             addLevel(7, "Summoning of the Carrion-Bird");
             addLevel(8, "Grim Moisturizing Cream");
             addLevel(9, "Desecration of the Destroyer");
+			addLevel(10, "BLARG");
 
 			_t = new FlxText(220, 30, 200, "Best: --:--.--");
 			_t.alignment = "left";

@@ -23,6 +23,8 @@ package
                 FlxG.state = new Level08();
             if (FlxG.level == 9)
                 FlxG.state = new Level09();
+			if (FlxG.level == 10)
+				FlxG.state = new Level10();
         }
 
         public static function levelSelect():void {
