@@ -9,18 +9,22 @@ package
         
         private var _embers:FlxEmitter;
         private var _dest:FlxPoint;
+        private var _start:FlxPoint;
         private var _state:PlayState;
         private var _penetrating:Boolean = true;
+        private var _player:Player;
         
         public var light:Light;
 
-        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, Layer:FlxGroup):void
+        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, ThePlayer:Player):void
         {
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);
-            
+           
+            _start = new FlxPoint(X, Y);
             _dest = new FlxPoint(X2, Y2);
             _state = FlxG.state as PlayState;
+            _player = ThePlayer;
             
             var dX:Number = X - _dest.x;
             var dY:Number = Y - _dest.y;
@@ -75,11 +79,12 @@ package
             _embers.x = x + 8;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(distance(_dest.x, _dest.y, x, y) < 16) {
+            if(!dead && distance(_player.x, _player.y, x, y) < 16) {
                 _state.dead("SHOT BY AN ARROW");
-                visible = false;
-                light.exists = false;
-                dead = true;
+                die();
+            } else if(!(_player.x == _dest.x && _player.y == _dest.y) &&
+                    distance(_dest.x, _dest.y, x, y) < 16) {
+                die();
             } else {
                 if(!dead) {
                     _embers.delay = 0.15 * Math.random() + 0.02;
@@ -91,6 +96,20 @@ package
                 }
             }
             super.update();
+        }
+        
+        public function die():void {
+            visible = false;
+            light.exists = false;
+            dead = true;
+        }
+        
+        public function refire():void {
+            x = _start.x;
+            y = _start.y;
+            visible = true;
+            light.exists = true;
+            dead = false;
         }
         
     }
