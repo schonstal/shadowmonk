@@ -7,6 +7,7 @@ package
         [Embed(source='../data/Level_select.png')] private var ImgGlow:Class;
 
         private var levels:Array;
+        private var _maxLevel:Number = 10;
         private var _t:FlxText;
 
 		public function LevelSelect()
@@ -27,6 +28,7 @@ package
             addLevel(8, "Grim Moisturizing Cream");
             addLevel(9, "Desecration of the Destroyer");
 			addLevel(10, "BLARG");
+			addLevel(11, "Arrows");
 
 			_t = new FlxText(220, 30, 200, "Best: --:--.--");
 			_t.alignment = "left";
@@ -48,7 +50,7 @@ package
                     moveCursor(FlxG.level - 1);
                 }
             } else if(FlxG.keys.justPressed("DOWN")) {
-                if(FlxG.level < levels.length) {
+                if(FlxG.level < _maxLevel) {
                     moveCursor(FlxG.level + 1);
                 }
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
