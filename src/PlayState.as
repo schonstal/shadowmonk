@@ -103,7 +103,7 @@ package
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
             
-            _stars = new StarRating(5,14);
+            _stars = new StarRating(6,14);
             lyrHUD.add(_stars);
 
             _lightBar = new LightBar();
