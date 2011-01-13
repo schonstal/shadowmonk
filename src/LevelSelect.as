@@ -7,7 +7,6 @@ package
         [Embed(source='../data/Level_select.png')] private var ImgGlow:Class;
 
         private var levels:Array;
-        private var _maxLevel:Number = 10;
         private var _t:FlxText;
 
 		public function LevelSelect()
@@ -50,7 +49,7 @@ package
                     moveCursor(FlxG.level - 1);
                 }
             } else if(FlxG.keys.justPressed("DOWN")) {
-                if(FlxG.level < _maxLevel) {
+                if(FlxG.level < levels.length) {
                     moveCursor(FlxG.level + 1);
                 }
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {

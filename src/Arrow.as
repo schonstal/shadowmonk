@@ -13,10 +13,11 @@ package
         private var _state:PlayState;
         private var _penetrating:Boolean = true;
         private var _player:Player;
+        private var _big:Boolean;
         
         public var light:Light;
 
-        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, ThePlayer:Player):void
+        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, ThePlayer:Player, Big:Boolean):void
         {
             super(X-8, Y-8);
             loadGraphic(ImgArrow, true, true, 16, 16);
@@ -25,6 +26,7 @@ package
             _dest = new FlxPoint(X2, Y2);
             _state = FlxG.state as PlayState;
             _player = ThePlayer;
+            _big = Big;
             
             var dX:Number = X - _dest.x;
             var dY:Number = Y - _dest.y;
@@ -48,7 +50,8 @@ package
             emberMin.y = Math.cos(ang-emberSpread) * (_dest.x>X?-400:400) * emberSpeed;
 
             addAnimation("normal", [0,1,2], 20);      
-            _embers = FlxG.state.add(new FlxEmitter(X, Y)) as FlxEmitter;
+            _embers = new FlxEmitter(X, Y);
+            _state.addEmitter(_embers);
             _embers.createSprites(ImgEmber, 20, 0, true, 0);
             _embers.setXSpeed(emberMin.x,emberMax.x);
             _embers.setYSpeed(emberMin.y,emberMax.y);
@@ -58,10 +61,14 @@ package
             _embers.start(false);
 
             angle = ang * (180/Math.PI);
+
+            refire();
         }
         
         private function getAngle(X:Number,Y:Number,X2:Number,Y2:Number):Number
         {
+            if(X == X2)
+                X += 0.00001;
             var ret:Number = Math.atan((Y2-Y)/(X2-X));
             return ret + Math.PI/2;
         }
@@ -79,7 +86,7 @@ package
             _embers.x = x + 8;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(!dead && distance(_player.x, _player.y, x, y) < 16) {
+            if(!dead && distance(_player.x - 4, _player.y, x, y) < (_big?16:6)) {
                 _state.dead("SHOT BY AN ARROW");
                 _player.mobile = false;
                 die();
@@ -109,7 +116,8 @@ package
             x = _start.x;
             y = _start.y;
             visible = true;
-            light.exists = true;
+            if(light)
+                light.exists = true;
             dead = false;
         }
         

@@ -25,7 +25,7 @@ package
                 FlxG.state = new Level09();
 			if (FlxG.level == 10)
 				FlxG.state = new Level10();
-			if FlxG.level == 11)
+			if (FlxG.level == 11)
 				FlxG.state = new Level11();
         }
 

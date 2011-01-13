@@ -103,7 +103,7 @@ package
             _lightBar = new LightBar();
             lyrHUD.add(_lightBar);
             	
-            debug = new FlxText(10,40,200,"");
+            debug = new FlxText(10,40,320,"");
             debug.alignment = "left";
             debug.size = 8;
             debug.scrollFactor.x = debug.scrollFactor.y = 0;
@@ -130,9 +130,8 @@ package
             _guards.push(_guard);
         }
 
-        protected function addArrowTrap(X:Number, Y:Number, X2:Number, Y2:Number, 
-                refire:Number, offset:Number = 0):void {
-            lyrWalls.add(new ArrowTrap(X, Y, X2, Y2, refire, offset));
+        protected function addArrow(X:Number, Y:Number, X2:Number, Y2:Number):void { 
+            lyrWalls.add(new ArrowTrap(X, Y, X2, Y2));
         }
         
         protected function addTrap(X:Number, Y:Number):void {
@@ -167,8 +166,8 @@ package
             //FlxU.collide(_guards, _map);
         }
 
-        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number):Arrow {
-            var arrow:Arrow = new Arrow(X, Y, X2, Y2, _player);
+        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true):Arrow {
+            var arrow:Arrow = new Arrow(X, Y, X2, Y2, _player, Big);
             arrow.light = new Light(arrow);
             lyrSprites.add(arrow);
             _lights.push(arrow.light);
