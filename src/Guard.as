@@ -80,7 +80,7 @@ package
         public function checkCapture():Boolean {
             var p:FlxPoint;
             if(!_player.dead && distance(x,y,_player.x,_player.y) < 26 && 
-                !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 1)) {
+                !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 0.1)) {
                 _state = GuardState.CAPTURE;
                 return true;
             }
@@ -96,7 +96,8 @@ package
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;
-                    _currentState.createArrow(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y);
+                    //_currentState.createArrow(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y);
+                    _currentState.createArrow(x,y,_player.x,_player.y);
                     _state = GuardState.SHOOTING;
                 }
             } else {
