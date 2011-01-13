@@ -52,7 +52,7 @@ package
             addAnimation("normal", [0,1,2], 20);      
             _embers = new FlxEmitter(X, Y);
             _state.addEmitter(_embers);
-            _embers.createSprites(ImgEmber, 20, 0, true, 0);
+            _embers.createSprites(ImgEmber, 10, 0, true, 0);
             _embers.setXSpeed(emberMin.x,emberMax.x);
             _embers.setYSpeed(emberMin.y,emberMax.y);
             _embers.gravity = 0;
