@@ -7,6 +7,7 @@ package
         protected var _state:PlayState;
         protected var _stars:Array;
         public var rating:int;
+        public var urgent:Boolean;
 
         public function StarRating(X:Number, Y:Number, Rating:int = 3) {
             x = X;
@@ -30,6 +31,9 @@ package
             for (i = 2; i > (rating-1); i--) {
                 _stars[i].dead = true;
             }
+
+            if(urgent && rating > 0)
+                _stars[rating-1].urgent = true;
         }
         
     }

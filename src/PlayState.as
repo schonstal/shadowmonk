@@ -181,6 +181,11 @@ package
                 if (_gameTimer.getElapsed() < _ratings[i])
                     _stars.rating = i;
             }
+            
+            if (_ratings[_stars.rating] - _gameTimer.getElapsed() < 1)
+                _stars.urgent = true;
+            else
+                _stars.urgent = false;
         }
 
         public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true):Arrow {
