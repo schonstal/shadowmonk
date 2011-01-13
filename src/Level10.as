@@ -19,7 +19,7 @@ package
             addGuard(new Array(new FlxPoint(5,13), new FlxPoint(9,13), new FlxPoint(9,8), new FlxPoint(5,8)),  2);
             addGuard(new Array(new FlxPoint(9,13), new FlxPoint(5,13), new FlxPoint(5,8), new FlxPoint(9,8)), 2);
 			addGuard(new Array(new FlxPoint(8,11), new FlxPoint(13, 11), new FlxPoint(13,8), new FlxPoint(8,8)), 3);
-			addGuard(new Array(new FlxPoint(16,18), new FlxPoint(12, 18)), 0);
+			addGuard(new Array(new FlxPoint(18,18), new FlxPoint(12, 18)), 0);
 			addGuard(new Array(new FlxPoint(25, 8), new FlxPoint(25, 11), new FlxPoint(21, 11), new FlxPoint(25, 8)), 0);
 			addGuard(new Array(new FlxPoint(25, 14), new FlxPoint(20, 14), new FlxPoint(20, 11), new FlxPoint(25, 11)), 0);
 
@@ -28,18 +28,17 @@ package
             addTrap(11,13);
             addTrap(13, 16);
 			addTrap(13, 17);
-			addTrap(16, 17);
-			addTrap(16, 18);
+			addTrap(17, 17);
+			addTrap(18, 17);
 			addTrap(15, 17);
-			addTrap(19, 13);
 			addTrap(19, 12);
 			addTrap(19, 11);
 			addTrap(22, 14);
 			addTrap(22, 11);
-			addTrap(25, 10);
 			addTrap(24, 12);
-            addStairs(26,11);
-            addStairs(26,12);
+			addTrap(26, 10);
+            addStairs(29,12);
+            addStairs(29,13);
         }
     }
 }  
