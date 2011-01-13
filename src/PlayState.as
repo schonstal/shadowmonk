@@ -27,6 +27,9 @@ package
         protected var _timer:FlxText;
         protected var _gameTimer:GameTimer;
 
+        protected var _ratings:Array = [20,15,10,5];
+        protected var _stars:StarRating;
+
         protected var _gameOver:Boolean = false;
 
         public var barScale:Number = 1;
@@ -99,6 +102,9 @@ package
             _timer.setFormat("SNES");
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
+            
+            _stars = new StarRating(5,14);
+            lyrHUD.add(_stars);
 
             _lightBar = new LightBar();
             lyrHUD.add(_lightBar);
@@ -146,6 +152,11 @@ package
             lyrSprites.add(stairs);
         }
 
+        //Just makes it easier for level designers...
+        protected function setGoals(One:Number, Two:Number, Three:Number):void {
+            _ratings = new Array(100000, Three, Two, One);
+        }
+
         override public function update():void {
             debug.text = "";
             super.update();
@@ -164,6 +175,12 @@ package
                 }
             }
             //FlxU.collide(_guards, _map);
+
+            var i:int;
+            for(i = 0; i < 4; i++) {
+                if (_gameTimer.getElapsed() < _ratings[i])
+                    _stars.rating = i;
+            }
         }
 
         public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true):Arrow {

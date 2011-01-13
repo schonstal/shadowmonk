@@ -35,5 +35,9 @@ package
                 ret="0" + ret;
             return ret;
         }
+
+        public function getElapsed():Number {
+            return _elapsed;
+        }
     }
 }
