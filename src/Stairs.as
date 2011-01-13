@@ -19,7 +19,7 @@ package
         override public function update():void
         {
             if(collide(_player)) {
-                FlxG.state = new Win();
+                FlxG.fade.start(0xff000000,0.3,function():void { FlxG.state = new Win() });
             }
 
             super.update();
