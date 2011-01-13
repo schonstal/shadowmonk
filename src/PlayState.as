@@ -96,7 +96,6 @@ package
             //HUD			
 			_timer = new FlxText(10,10,100,"00:00.000");
 			_timer.alignment = "left";
-            _timer.size = 16;
             _timer.setFormat("SNES");
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
