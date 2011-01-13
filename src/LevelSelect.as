@@ -21,16 +21,17 @@ package
             addLevel(2, "Grim Thundergod");
             addLevel(3, "Eminent Casket");
             addLevel(4, "Vulgar Cannibal");
-            addLevel(5, "Celestial Scornflame");
-            addLevel(6, "Dominion of the Gravehound");
-            addLevel(7, "Summoning of the Carrion-Bird");
-            addLevel(8, "Grim Moisturizing Cream");
-            addLevel(9, "Desecration of the Destroyer");
+            addLevel(5, "Doom Scornflame");
+            addLevel(6, "Super Happy");
+            addLevel(7, "Really Awesome");
+            addLevel(8, "That One Level");
+            addLevel(9, "How Are You?");
 			addLevel(10, "BLARG");
 			addLevel(11, "Arrows");
 
 			_t = new FlxText(220, 30, 200, "Best: --:--.--");
 			_t.alignment = "left";
+            _t.setFormat("SNES");
             _t.color = 0xffffffff;
 			add(_t);
 			
@@ -60,8 +61,9 @@ package
         
         private function addLevel(level:Number, title:String):void {
 			var t:FlxText;
-			t = new FlxText(25,30 + (level * 10),200,level + ". " + title);
+			t = new FlxText(25,30 + (level * 12),200,level + ". " + title);
 			t.alignment = "left";
+            t.setFormat("SNES");
             t.color = (FlxG.level==level?0xffffffff:0xff000000);
             levels[level-1] = t;
 			add(t);

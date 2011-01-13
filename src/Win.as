@@ -8,14 +8,17 @@ package
 		{
 			var t:FlxText;
 			t = new FlxText(0,FlxG.height/2-10,FlxG.width,"YOU WON THE LEVEL!");
+			t.alignment = "center";
+            t.setFormat("SNES");
 			t.size = 16;
-			t.alignment = "center";
 			add(t);
-			t = new FlxText(FlxG.width/2-70,FlxG.height-30,140,"Press X to Advance");
+			t = new FlxText(FlxG.width/2-100,FlxG.height-30,200,"Press X to Advance");
 			t.alignment = "center";
+            t.setFormat("SNES");
 			add(t);
-			t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Press C to Select a Level");
+			t = new FlxText(FlxG.width/2-100,FlxG.height-20,200,"Press C to Select a Level");
 			t.alignment = "center";
+            t.setFormat("SNES");
 			add(t);
 		}
 

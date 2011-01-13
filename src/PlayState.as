@@ -97,6 +97,7 @@ package
 			_timer = new FlxText(10,10,100,"00:00.000");
 			_timer.alignment = "left";
             _timer.size = 16;
+            _timer.setFormat("SNES");
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
 
@@ -178,14 +179,16 @@ package
             if(!_gameOver) {
                 var t:FlxText;
 
-                t = new FlxText(FlxG.width/2-70,FlxG.height-30,140,"Press X to Play Again");
+                t = new FlxText(FlxG.width/2-100,FlxG.height-34,200,"Press X to Play Again");
                 t.alignment = "center";
                 t.scrollFactor.x = t.scrollFactor.y = 0;
+                t.setFormat("SNES");
                 lyrMessage.add(t);
                 
-                t = new FlxText(FlxG.width/2-70,FlxG.height-20,140,"Press C to Select a Level");
+                t = new FlxText(FlxG.width/2-100,FlxG.height-20,200,"Press C to Select a Level");
                 t.alignment = "center";
                 t.scrollFactor.x = t.scrollFactor.y = 0;
+                t.setFormat("SNES");
                 lyrMessage.add(t);
 
                 FlxG.flash.start(0xaadd0000, 0.5, _deadSprite.die);
