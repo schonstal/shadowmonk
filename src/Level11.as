@@ -38,6 +38,8 @@ package
             addArrow(15,5,15,14);
             addArrow(17,4,17,15);
             addArrow(19,3,19,16);
+
+            setGoals(7.5, 9, 15);
         }
     }
 }  
