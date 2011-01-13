@@ -7,8 +7,8 @@ package
         [Embed(source='../data/Star.png')] private var ImgStar:Class;
 
         public var urgent:Boolean;
-        
-		public function Star(X:Number, Y:Number):void
+		
+        public function Star(X:Number, Y:Number):void
 		{
     		super(X, Y);
             loadGraphic(ImgStar, true, true, 16, 16); 
@@ -18,7 +18,7 @@ package
             addAnimation("off", [0]);
             //addAnimation("urgent", [2,2,2,1,1,1,2,2,2,1,1,1,2,2,2,1,1,1,2,2,1,1,2,2,1,1,2,1,2,1], 30);
             //addAnimation("urgent", [2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,1,1,1,1,2,2,2,1,1,2], 28);
-            addAnimation("urgent", [2,1], 5);
+            addAnimation("urgent", [1]);
 		}
 
         override public function update():void
@@ -29,6 +29,13 @@ package
                 play("on");
             else
                 play("urgent");
+
+            if(urgent && !dead) {
+                alpha -= FlxG.elapsed/2;
+            } else {
+                alpha = 1;
+            }
+
             super.update();
         }
 	}

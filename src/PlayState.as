@@ -216,6 +216,7 @@ package
                 FlxG.flash.start(0xaadd0000, 0.5, _deadSprite.die);
                 
                 _player.die();
+                _stars.rating = 0;
 
                 _gameOver = true;
             }
