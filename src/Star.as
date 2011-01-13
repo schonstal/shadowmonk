@@ -16,7 +16,7 @@ package
             
             addAnimation("on", [1]);
             addAnimation("off", [0]);
-            addAnimation("urgent", [0,1], 10);
+            addAnimation("urgent", [2,2,2,2,1,1,1,1,2,2,2,1,1,1,2,2,2,1,1,1,2,2,1,1,2,2,1,1,2,1], 30);
 		}
 
         override public function update():void

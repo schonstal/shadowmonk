@@ -176,6 +176,7 @@ package
             }
             //FlxU.collide(_guards, _map);
 
+            //Update the rating indicator
             var i:int;
             for(i = 0; i < 4; i++) {
                 if (_gameTimer.getElapsed() < _ratings[i])
