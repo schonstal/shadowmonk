@@ -2,23 +2,18 @@ package
 {
 	import org.flixel.*;
 
-	public class Stairs extends FlxSprite
+	public class Stairs extends FlxObject
 	{
-        [Embed(source='../data/Exit.png')] private var ImgExit:Class;
-
         private var _player:Player;
         
 		public function Stairs(X:Number, Y:Number, ThePlayer:Player):void
 		{
             super(X*16,Y*16);
-            loadGraphic(ImgExit, true, true, 16, 32); 
 
             _player = ThePlayer;
             
             width = 16;
-            height = 32;
-            offset.x = 0;
-            offset.y = 0;
+            height = 16;
 		}
 
         override public function update():void
