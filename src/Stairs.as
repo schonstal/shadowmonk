@@ -23,7 +23,7 @@ package
         {
             if(collide(_player) || (debug && FlxG.keys.Q)) {
                 FlxG.flash.start(0xff0000cc,0.3);
-                FlxG.state = new Win(_state.gameTimer.render(), _state.rating); 
+                FlxG.state = new Win(_state.gameTimer, _state.rating); 
             }
 
             super.update();

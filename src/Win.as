@@ -4,7 +4,7 @@ package
 
 	public class Win extends FlxState
 	{
-		public function Win(timer:String, rating:int)
+		public function Win(timer:GameTimer, rating:int)
 		{
 			var t:FlxText;
 			t = new FlxText(0,10,FlxG.width,"LEVEL COMPLETE");
@@ -18,7 +18,7 @@ package
             t.setFormat("SNES");
             add(t);
             
-            t = new FlxText(0, 64, FlxG.width, timer);
+            t = new FlxText(0, 64, FlxG.width, timer.render());
             t.alignment = "center";
             t.setFormat("SNES");
             add(t);
@@ -36,7 +36,7 @@ package
             t.setFormat("SNES");
             add(t);
             
-            t = new FlxText(0, 140, FlxG.width, timer);
+            t = new FlxText(0, 140, FlxG.width, timer.render());
             t.alignment = "center";
             t.setFormat("SNES");
             add(t);
