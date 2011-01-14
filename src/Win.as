@@ -74,8 +74,12 @@ package
 		{
 			super.update();
             if(FlxG.keys.justPressed("X")) {
-                FlxG.level++;
-                Starter.startLevel();
+                if(FlxG.level >= SaveData.levels) {
+                    FlxG.state = new Credits();
+                } else {
+                    FlxG.level++;
+                    Starter.startLevel();
+                }
             } 
             if (FlxG.keys.justPressed("C")) {
                 FlxG.state = new LevelSelect();
