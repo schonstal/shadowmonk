@@ -32,6 +32,15 @@ package
             
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
 
+            var star:Star = new Star(220,12);
+            add(star);
+			
+            _t = new FlxText(238, 14, 200, "" + SaveData.totalStars);
+			_t.alignment = "left";
+            _t.setFormat("SNES");
+            _t.color = 0xffffffff;
+			add(_t);
+
 			_t = new FlxText(220, 30, 200, "Best: " + bestTimer.render());
 			_t.alignment = "left";
             _t.setFormat("SNES");
