@@ -50,6 +50,10 @@ package
 			t.alignment = "center";
             t.setFormat("SNES");
 			add(t);
+
+            if(FlxG.level > SaveData.completed) {
+                SaveData.completed = FlxG.level;
+            }
 		}
 
 		override public function update():void

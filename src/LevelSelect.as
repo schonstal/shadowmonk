@@ -48,10 +48,14 @@ package
             if(FlxG.keys.justPressed("UP")) {
                 if(FlxG.level > 1) {
                     moveCursor(FlxG.level - 1);
+                } else {
+                    moveCursor(SaveData.completed + 1);
                 }
             } else if(FlxG.keys.justPressed("DOWN")) {
-                if(FlxG.level < levels.length) {
+                if(FlxG.level <= SaveData.completed) {
                     moveCursor(FlxG.level + 1);
+                } else {
+                    moveCursor(1);
                 }
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
 				Starter.startLevel();
@@ -61,7 +65,7 @@ package
         
         private function addLevel(level:Number, title:String):void {
 			var t:FlxText;
-			t = new FlxText(25,30 + (level * 12),200,level + ". " + title);
+			t = new FlxText(25,30 + (level * 12),200,level + ". " + (SaveData.completed+1<level?"--------":title));
 			t.alignment = "left";
             t.setFormat("SNES");
             t.color = (FlxG.level==level?0xffffffff:0xff000000);
