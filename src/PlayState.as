@@ -166,7 +166,21 @@ package
                 _gameTimer.update();
                 _timer.text = _gameTimer.render();
                 _lightBar.scale = barScale;
+                
+                //Update the rating indicator
+                var i:int;
+                for(i = 0; i < 4; i++) {
+                    if (_gameTimer.elapsed < _ratings[i])
+                        _stars.rating = i;
+                }
+                
+                if (_ratings[_stars.rating] - _gameTimer.elapsed < 1)
+                    _stars.urgent = true;
+                else
+                    _stars.urgent = false;
             } else {
+                _stars.rating = 0;
+
                 if(FlxG.keys.justPressed("X")) {
                     Starter.startLevel();
                 } 
@@ -176,17 +190,6 @@ package
             }
             //FlxU.collide(_guards, _map);
 
-            //Update the rating indicator
-            var i:int;
-            for(i = 0; i < 4; i++) {
-                if (_gameTimer.elapsed < _ratings[i])
-                    _stars.rating = i;
-            }
-            
-            if (_ratings[_stars.rating] - _gameTimer.elapsed < 1)
-                _stars.urgent = true;
-            else
-                _stars.urgent = false;
         }
 
         public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true):Arrow {
@@ -216,8 +219,6 @@ package
                 FlxG.flash.start(0xaadd0000, 0.5, _deadSprite.die);
                 
                 _player.die();
-                _stars.rating = 0;
-
                 _gameOver = true;
             }
         }

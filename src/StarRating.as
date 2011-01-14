@@ -27,7 +27,13 @@ package
         override public function update():void {
             super.update();
             var i:int;
+
+            //Hilight active stars
+            for(i = 0; i < rating; i++) {
+                _stars[i].dead = false;
+            }
             
+            //Kill dead stars
             for (i = 2; i > (rating-1); i--) {
                 _stars[i].dead = true;
             }

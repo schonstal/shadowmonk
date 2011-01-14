@@ -8,6 +8,7 @@ package
 
         private var levels:Array;
         private var _t:FlxText;
+        private var _stars:StarRating;
 
 		public function LevelSelect()
 		{
@@ -36,6 +37,9 @@ package
             _t.setFormat("SNES");
             _t.color = 0xffffffff;
 			add(_t);
+            
+            _stars = new StarRating(110, 22, SaveData.stars);
+            add(_stars);
 			
             var t:FlxText;
 			t = new FlxText(FlxG.width/2-50,FlxG.height-20,100,"Press X to Select");
@@ -81,6 +85,7 @@ package
             
             FlxG.level = newLevel;
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
+            _stars.rating = SaveData.stars;
 
             selected = levels[FlxG.level-1] as FlxText;
             selected.color = 0xffffffff;

@@ -12,6 +12,9 @@ package
             
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
 
+            if(rating > SaveData.stars)
+                SaveData.stars = rating;
+
             if(FlxG.level > SaveData.completed) {
                 SaveData.completed = FlxG.level;
             }
@@ -51,6 +54,9 @@ package
             t.alignment = "center";
             t.setFormat("SNES");
             add(t);
+            
+            stars = new StarRating(66.5, 77, SaveData.stars);
+            add(stars);
 			
             t = new FlxText(FlxG.width/2-100,FlxG.height-34,200,"Press X to Advance");
 			t.alignment = "center";
