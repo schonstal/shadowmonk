@@ -194,6 +194,7 @@ package
 
         public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true):Arrow {
             var arrow:Arrow = new Arrow(X, Y, X2, Y2, _player, Big);
+            arrow.refire();
             arrow.light = new Light(arrow);
             lyrSprites.add(arrow);
             _lights.push(arrow.light);

@@ -19,7 +19,7 @@ package
 
         public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, ThePlayer:Player, Big:Boolean):void
         {
-            super(X-8, Y-8);
+            super(X, Y);
             loadGraphic(ImgArrow, true, true, 16, 16);
            
             _start = new FlxPoint(X, Y);
@@ -31,23 +31,27 @@ package
             var dX:Number = X - _dest.x;
             var dY:Number = Y - _dest.y;
             var dist:Number = Math.sqrt(dX*dX+dY*dY);
-            var ang:Number = getAngle(X,Y,_dest.x,_dest.y);
+            
+            angle = getAngle(X,Y,_dest.x,_dest.y);
+            var ang:Number = angle * (Math.PI/180);
+            angle -= 90;
            
             //This angle is in RADIANS! 
             var emberSpread:Number = 0.17;
             //% of arrow velocity
             var emberSpeed:Number = 0.05;
+            var arrowSpeed:Number = 400;
             var emberMin:FlxPoint = new FlxPoint();
             var emberMax:FlxPoint = new FlxPoint();
             
-            velocity.x = Math.sin(ang) * (_dest.x>X?400:-400);
-            velocity.y = Math.cos(ang) * (_dest.x>X?-400:400);
+            velocity.y = Math.sin(ang) * arrowSpeed;
+            velocity.x = Math.cos(ang) * arrowSpeed;
             
-            emberMax.x = Math.sin(ang+emberSpread) * (_dest.x>X?400:-400) * emberSpeed;
-            emberMax.y = Math.cos(ang+emberSpread) * (_dest.x>X?-400:400) * emberSpeed;
+            emberMax.y = Math.sin(ang+emberSpread) * arrowSpeed * emberSpeed;// * (_dest.x>X?400:-400) * emberSpeed;
+            emberMax.x = Math.cos(ang+emberSpread) * arrowSpeed * emberSpeed;
             
-            emberMin.x = Math.sin(ang-emberSpread) * (_dest.x>X?400:-400) * emberSpeed;
-            emberMin.y = Math.cos(ang-emberSpread) * (_dest.x>X?-400:400) * emberSpeed;
+            emberMin.y = Math.sin(ang-emberSpread) * arrowSpeed * emberSpeed;
+            emberMin.x = Math.cos(ang-emberSpread) * arrowSpeed * emberSpeed;
 
             addAnimation("normal", [0,1,2], 20);      
             _embers = new FlxEmitter(X, Y);
@@ -60,8 +64,6 @@ package
             _embers.particleDrag = new FlxPoint(5,5);
             _embers.start(false);
 
-            angle = ang * (180/Math.PI);
-
             refire();
         }
         
@@ -69,8 +71,9 @@ package
         {
             if(X == X2)
                 X += 0.00001;
-            var ret:Number = Math.atan((Y2-Y)/(X2-X));
-            return ret + Math.PI/2;
+         /*   var ret:Number = Math.atan((Y2-Y)/(X2-X));
+            return ret + Math.PI/2;*/
+            return FlxU.getAngle(X2-X,Y2-Y);
         }
         
         private function distance(X:Number,Y:Number,X0:Number,Y0:Number):Number {

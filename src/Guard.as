@@ -25,7 +25,6 @@ package
         private var _secondTurn:Boolean = true;
         
         private var _currentState:PlayState;
-        private var _arrowOffset:FlxPoint;
         private var _playerOffset:FlxPoint;
         
         private var _sightSpread:Number = 90;
@@ -47,8 +46,7 @@ package
             _player = ThePlayer;
 
             //Adjust how arrow flies
-            _arrowOffset = new FlxPoint(4,4);
-            _playerOffset = new FlxPoint(4,4);
+            _playerOffset = new FlxPoint(-4,-4);
             
             width = 8;
             height = 14;
@@ -80,7 +78,7 @@ package
         public function checkCapture():Boolean {
             var p:FlxPoint;
             if(!_player.dead && distance(x,y,_player.x,_player.y) < 26 && 
-                !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 0.1)) {
+                !_map.ray(x, y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 0.1)) {
                 _state = GuardState.CAPTURE;
                 return true;
             }
@@ -90,14 +88,14 @@ package
         public function checkShoot(test:Boolean):void {
             velocity.x = 0;
             velocity.y = 0;
-            angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
+            angle = FlxU.getAngle(_player.x - x, _player.y - 4 - y) + 90;
             play("shooting");
             if(test) {
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;
-                    //_currentState.createArrow(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, _player.y + _playerOffset.y);
-                    _currentState.createArrow(x,y,_player.x,_player.y);
+                    _currentState.createArrow(x, y, _player.x + _playerOffset.x, _player.y + _playerOffset.y);
+//                    _currentState.createArrow(x,y,_player.x,_player.y);
                     _state = GuardState.SHOOTING;
                 }
             } else {
@@ -198,7 +196,7 @@ package
                 (_state == GuardState.PATROL?
                     sightAngle > (absoluteAngle - _sightSpread) && sightAngle < (absoluteAngle + _sightSpread)
                     :true) &&
-                !_map.ray(x + _arrowOffset.x, y + _arrowOffset.y, _player.x + _playerOffset.x, 
+                !_map.ray(x, y, _player.x + _playerOffset.x, 
                     _player.y + _playerOffset.y, p, 1)) {
                 return true;                
             } else {
