@@ -7,6 +7,13 @@ package
         private var _elapsed:Number = 0;
         private var _stopped:Boolean = false;
 
+        public function GameTimer(fixed:Number = 0) {
+            if(fixed > 0) {
+                _stopped = true;
+                _elapsed = fixed;
+            }
+        } 
+
         public function update():void {
             if(!_stopped)
                 _elapsed += FlxG.elapsed;
@@ -44,6 +51,10 @@ package
 
         public function stop():void {
             _stopped = true;
+        }
+
+        public function start():void {
+            _stopped = false;
         }
     }
 }
