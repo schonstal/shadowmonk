@@ -54,7 +54,7 @@ package
 		}
 
         private function addText(text:String, gap:Boolean = false, left:Boolean = true):void {
-            var addAmount:Number = (gap?36:10);
+            var addAmount:Number = (gap?36:12);
             if(left)
                 _location.x += addAmount;
             else
