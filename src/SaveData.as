@@ -37,6 +37,20 @@ package
             else
                 instance.volCompleted = value;
         }
+
+        public static function get best():Number {
+            if(instance.loaded)
+                return instance.saveState.data.times[FlxG.level-1];
+            else
+                return instance.volTimes[FlxG.level-1];
+        }
+
+        public static function set best(value:Number):void {
+            if(instance.loaded)
+                instance.saveState.data.times[FlxG.level-1] = value;
+            else
+                instance.volTimes[FlxG.level-1] = value;
+        }
         
         public static function load():void {
             instance.saveState = new FlxSave();

@@ -179,11 +179,11 @@ package
             //Update the rating indicator
             var i:int;
             for(i = 0; i < 4; i++) {
-                if (_gameTimer.getElapsed() < _ratings[i])
+                if (_gameTimer.elapsed < _ratings[i])
                     _stars.rating = i;
             }
             
-            if (_ratings[_stars.rating] - _gameTimer.getElapsed() < 1)
+            if (_ratings[_stars.rating] - _gameTimer.elapsed < 1)
                 _stars.urgent = true;
             else
                 _stars.urgent = false;

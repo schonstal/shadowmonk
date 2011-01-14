@@ -45,7 +45,7 @@ package
             return ret;
         }
 
-        public function getElapsed():Number {
+        public function get elapsed():Number {
             return _elapsed;
         }
 

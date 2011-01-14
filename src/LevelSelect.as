@@ -28,8 +28,10 @@ package
             addLevel(9, "How Are You?");
 			addLevel(10, "BLARG");
 			addLevel(11, "Arrows");
+            
+            var bestTimer:GameTimer = new GameTimer(SaveData.best);
 
-			_t = new FlxText(220, 30, 200, "Best: --:--.--");
+			_t = new FlxText(220, 30, 200, "Best: " + bestTimer.render());
 			_t.alignment = "left";
             _t.setFormat("SNES");
             _t.color = 0xffffffff;
@@ -76,12 +78,13 @@ package
         private function moveCursor(newLevel:int):void {
             var selected:FlxText = levels[FlxG.level-1] as FlxText;
             selected.color = 0xff000000;
-
+            
             FlxG.level = newLevel;
+            var bestTimer:GameTimer = new GameTimer(SaveData.best);
 
             selected = levels[FlxG.level-1] as FlxText;
             selected.color = 0xffffffff;
-            _t.text = "Best: 12:34.56";
+            _t.text = "Best: " + (bestTimer.elapsed>5999?"--:--.--":bestTimer.render());
         }
 	}
 }

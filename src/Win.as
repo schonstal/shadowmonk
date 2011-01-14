@@ -6,6 +6,17 @@ package
 	{
 		public function Win(timer:GameTimer, rating:int)
 		{
+            //Save stuff
+            if(timer.elapsed < SaveData.best)
+                SaveData.best = timer.elapsed;
+            
+            var bestTimer:GameTimer = new GameTimer(SaveData.best);
+
+            if(FlxG.level > SaveData.completed) {
+                SaveData.completed = FlxG.level;
+            }
+
+            //Display stuff
 			var t:FlxText;
 			t = new FlxText(0,10,FlxG.width,"LEVEL COMPLETE");
 			t.alignment = "center";
@@ -35,8 +46,8 @@ package
             t.alignment = "center";
             t.setFormat("SNES");
             add(t);
-            
-            t = new FlxText(0, 140, FlxG.width, timer.render());
+
+            t = new FlxText(0, 140, FlxG.width, bestTimer.render());
             t.alignment = "center";
             t.setFormat("SNES");
             add(t);
@@ -51,9 +62,6 @@ package
             t.setFormat("SNES");
 			add(t);
 
-            if(FlxG.level > SaveData.completed) {
-                SaveData.completed = FlxG.level;
-            }
 		}
 
 		override public function update():void
