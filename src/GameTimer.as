@@ -5,9 +5,11 @@ package
     public class GameTimer
     {
         private var _elapsed:Number = 0;
+        private var _stopped:Boolean = false;
 
         public function update():void {
-            _elapsed += FlxG.elapsed;
+            if(!_stopped)
+                _elapsed += FlxG.elapsed;
         }
         
         public function render():String {
@@ -38,6 +40,10 @@ package
 
         public function getElapsed():Number {
             return _elapsed;
+        }
+
+        public function stop():void {
+            _stopped = true;
         }
     }
 }
