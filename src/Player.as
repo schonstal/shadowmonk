@@ -35,7 +35,7 @@ package
             
             _state = FlxG.state as PlayState;
 
-            addAnimation("normal", [1, 0, 2, 0], 8);
+            addAnimation("normal", [1, 0, 3, 0], 8);
             addAnimation("stopped", [0]);
 
             _direction = Heading;
