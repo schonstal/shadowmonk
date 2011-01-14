@@ -59,15 +59,18 @@ package
 
 		override public function update():void
 		{
+            var maxLevel:Number = (SaveData.completed>=SaveData.levels?SaveData.levels:SaveData.completed+1);
+
 			super.update();
+
             if(FlxG.keys.justPressed("UP")) {
                 if(FlxG.level > 1) {
                     moveCursor(FlxG.level - 1);
                 } else {
-                    moveCursor(SaveData.completed + 1);
+                    moveCursor(maxLevel);
                 }
             } else if(FlxG.keys.justPressed("DOWN")) {
-                if(FlxG.level <= SaveData.completed) {
+                if(FlxG.level < maxLevel) {
                     moveCursor(FlxG.level + 1);
                 } else {
                     moveCursor(1);
