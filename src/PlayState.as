@@ -225,5 +225,13 @@ package
         public function addEmitter(sprite:FlxEmitter):void {
             lyrWalls.add(sprite);
         }
+
+        public function get gameTimer():GameTimer {
+            return _gameTimer;
+        }
+
+        public function get rating():int {
+            return _stars.rating;
+        }
     }
 }
