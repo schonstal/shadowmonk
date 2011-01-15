@@ -13,6 +13,7 @@ package
 			//showLogo = true;
             SaveData.load();
             SoundBank.load();
+            SoundBank.music("intro");
 		}
 	}
 }

@@ -8,6 +8,7 @@ package
 
 		public function Credits()
 		{
+            SoundBank.music("credits");
             _location = new FlxPoint;
             _location.x = _location.y = 36;
 

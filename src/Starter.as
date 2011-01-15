@@ -30,7 +30,7 @@ package
         }
 
         public static function levelSelect():void {
-            FlxG.fade.start(0xff000000, 1, function():void { FlxG.state = new LevelSelect(); });
+            FlxG.fade.start(0xff000000, 0.5, function():void { FlxG.state = new LevelSelect(); });
         }
     }
 }
