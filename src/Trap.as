@@ -27,33 +27,29 @@ package
             offset.x = 0;
             offset.y = 0;
 
+            fixed = true;
+
             addAnimation("normal", [0]);
-            addAnimation("open", [1, 2, 3, 4, 5, 6], 12);
+            addAnimation("open", [1, 2, 3, 4, 5, 6], 12, false);
+            addAnimation("black", [6]);
 		}
 
         override public function update():void
         {
             if(collide(_player)) {
+                SoundBank.play("trap");
                 _player.mobile = false;
                 _trapped = true;
+                _state.dead("trap");
             }
 
-            if(_trapped) {
-                play("open");
-                if(finished)
-                    _state.dead("FELL INTO A TRAP");
-            } 
-            
-            alert();
-            super.update();
-        }
-        
-        public function alert():void {
-            if( _player.light.exists && (distance(x,y,_player.x,_player.y) < 30)) {
+            if( _player.light.exists && (distance(x,y,_player.x,_player.y) < 30) || _trapped) {
                 _glow.exists = true;
             } else {
                 _glow.exists = false;
             }
+            
+            super.update();
         }
         
         private function distance(X:Number,Y:Number,X0:Number,Y0:Number):Number {

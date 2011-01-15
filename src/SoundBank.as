@@ -14,7 +14,7 @@ package
         [Embed(source="../data/Sounds/Level_win.mp3")] public var LevelWin:Class;
         [Embed(source="../data/Sounds/Monk_explode.mp3")] public var MonkExplode:Class;
         [Embed(source="../data/Sounds/Level_select.mp3")] public var LevelSelect:Class;
-        //[Embed(source="../data/Sounds/Monk_fall.mp3")] public var MonkFall:Class;
+        [Embed(source="../data/Sounds/Monk_fall.mp3")] public var MonkFall:Class;
         
         //Music
         [Embed(source="../data/Music/credits.mp3")] public var CreditsMusic:Class;
@@ -62,6 +62,7 @@ package
             loadSound("win", instance.LevelWin);
             loadSound("explode", instance.MonkExplode);
             loadSound("select", instance.LevelSelect);
+            loadSound("trap", instance.MonkFall);
 
             loadMusic("credits", instance.CreditsMusic);
             loadMusic("game", instance.GameMusic);
