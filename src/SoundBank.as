@@ -18,6 +18,7 @@ package
         protected static var _instance:SoundBank;
         
         public var sounds:Object;
+        public var classes:Object;
         public var fader:Number = 1;
 
         public static function get instance():SoundBank {
@@ -29,12 +30,16 @@ package
         public static function play(Id:String, Stop:Boolean = true):FlxSound {
             if(Stop)
                 instance.sounds[Id].stop();
-            instance.sounds[Id].play();
+            if(!instance.sounds[Id].playing) {
+                instance.sounds[Id].destroy();
+                instance.sounds[Id] = FlxG.play(instance.classes[Id]);
+            }
             return instance.sounds[Id];
         }
 
         public function SoundBank() {
             sounds = new Object();
+            classes = new Object();
         }
 
         //Load all the sounds into the bank
@@ -51,6 +56,7 @@ package
         }
         
         private static function loadSound(Id:String, EmbeddedSound:Class):void {
+            instance.classes[Id] = EmbeddedSound;
             instance.sounds[Id] = new FlxSound();
             instance.sounds[Id].loadEmbedded(EmbeddedSound);
         }
