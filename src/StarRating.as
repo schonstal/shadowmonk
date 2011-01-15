@@ -22,12 +22,21 @@ package
                 _stars[i] = new Star(x+(i*20),y);
                 add(_stars[i]);
             }
+
+            updateStars();
         }
 
         override public function update():void {
             super.update();
-            var i:int;
 
+            updateStars();
+
+            if(urgent && rating > 0)
+                _stars[rating-1].urgent = true;
+        }
+        
+        private function updateStars():void {
+            var i:int;
             //Hilight active stars
             for(i = 0; i < rating; i++) {
                 _stars[i].dead = false;
@@ -37,9 +46,6 @@ package
             for (i = 2; i > (rating-1); i--) {
                 _stars[i].dead = true;
             }
-
-            if(urgent && rating > 0)
-                _stars[rating-1].urgent = true;
         }
         
     }
