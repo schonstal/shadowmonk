@@ -58,8 +58,13 @@ package
             
             stars = new StarRating(66.5, 77, SaveData.stars);
             add(stars);
+            
+            t = new FlxText(FlxG.width/2-100,FlxG.height-48,200,"Press Z to Advance");
+			t.alignment = "center";
+            t.setFormat("SNES");
+			add(t);
 			
-            t = new FlxText(FlxG.width/2-100,FlxG.height-34,200,"Press X to Advance");
+            t = new FlxText(FlxG.width/2-100,FlxG.height-34,200,"Press X to Play Again");
 			t.alignment = "center";
             t.setFormat("SNES");
 			add(t);
@@ -74,7 +79,7 @@ package
 		override public function update():void
 		{
 			super.update();
-            if(FlxG.keys.justPressed("X")) {
+            if(FlxG.keys.justPressed("Z")) {
                 if(FlxG.level >= SaveData.levels) {
                     FlxG.state = new Credits();
                 } else {
@@ -84,6 +89,9 @@ package
             } 
             if (FlxG.keys.justPressed("C")) {
                 FlxG.state = new LevelSelect();
+            }
+            if(FlxG.keys.justPressed("X")) {
+                Starter.startLevel();
             }
 		}
 	}
