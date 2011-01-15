@@ -59,6 +59,9 @@ package
             lyrMessage = new FlxGroup;
             _deadSprite = new DeadSprite();
 
+            //Fresh Sounds
+            //SoundBank.reset();
+
             //Initialize vars
             _guards = new Array;
             _lights = new Array;
@@ -180,6 +183,7 @@ package
                     _stars.urgent = false;
             } else {
                 _stars.rating = 0;
+                SoundBank.fadeOut(10);
 
                 if(FlxG.keys.justPressed("X")) {
                     Starter.startLevel();

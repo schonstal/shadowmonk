@@ -18,7 +18,7 @@ package
         protected static var _instance:SoundBank;
         
         public var sounds:Object;
-        public var fader:Number;
+        public var fader:Number = 1;
 
         public static function get instance():SoundBank {
             if(_instance == null)
@@ -55,10 +55,19 @@ package
             instance.sounds[Id].loadEmbedded(EmbeddedSound);
         }
 
+        //Setting the volume of a sound breaks it...
         public static function fadeOut(Seconds:Number):void {
-            instance.fader -= FlxG.elapsed / Seconds;
-            for each (var sound:FlxSound in instance.sounds) {
-                sound.volume = fader;
+            instance.fader -= 0.01;//FlxG.elapsed / Seconds;
+            /*
+            for (var key:String in instance.sounds) {
+                instance.sounds[key].volume = 0.5;
+            }*/
+        }
+
+        public static function reset():void {
+            instance.fader = 1;
+            for (var key:String in instance.sounds) {
+                instance.sounds[key].volume = instance.fader;
             }
         }
     }
