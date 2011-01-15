@@ -4,6 +4,7 @@ package
 
     public class SoundBank
     {
+        //Sounds
         [Embed(source="../data/Sounds/Arrow_fire.mp3")] public var ArrowFire:Class;
         [Embed(source="../data/Sounds/Guard_alert.mp3")] public var GuardAlert:Class;
         [Embed(source="../data/Sounds/Guard_lost.mp3")] public var GuardLost:Class;
@@ -14,12 +15,19 @@ package
         [Embed(source="../data/Sounds/Monk_explode.mp3")] public var MonkExplode:Class;
         [Embed(source="../data/Sounds/Level_select.mp3")] public var LevelSelect:Class;
         //[Embed(source="../data/Sounds/Monk_fall.mp3")] public var MonkFall:Class;
+        
+        //Music
+        [Embed(source="../data/Music/credits.mp3")] public var CreditsMusic:Class;
+        [Embed(source="../data/Music/game.mp3")] public var GameMusic:Class;
+        [Embed(source="../data/Music/intro.mp3")] public var IntroMusic:Class;
+        [Embed(source="../data/Music/level_select.mp3")] public var LevelSelectMusic:Class;
 
         protected static var _instance:SoundBank;
         
         public var sounds:Object;
         public var classes:Object;
         public var fader:Number = 1;
+        public var music:Object;
 
         public static function get instance():SoundBank {
             if(_instance == null)
@@ -40,6 +48,7 @@ package
         public function SoundBank() {
             sounds = new Object();
             classes = new Object();
+            music = new Object();
         }
 
         //Load all the sounds into the bank
@@ -53,12 +62,25 @@ package
             loadSound("win", instance.LevelWin);
             loadSound("explode", instance.MonkExplode);
             loadSound("select", instance.LevelSelect);
+
+            loadMusic("credits", instance.CreditsMusic);
+            loadMusic("game", instance.GameMusic);
+            loadMusic("intro", instance.IntroMusic);
+            loadMusic("level_select", instance.LevelSelectMusic);
         }
         
         private static function loadSound(Id:String, EmbeddedSound:Class):void {
             instance.classes[Id] = EmbeddedSound;
             instance.sounds[Id] = new FlxSound();
             instance.sounds[Id].loadEmbedded(EmbeddedSound);
+        }
+        
+        private static function loadMusic(Id:String, EmbeddedSound:Class):void {
+            instance.music[Id] = EmbeddedSound;
+        }
+
+        public static function music(Id:String):void {
+            FlxG.playMusic(instance.music[Id]);
         }
 
         //Setting the volume of a sound breaks it...

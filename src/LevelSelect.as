@@ -12,6 +12,7 @@ package
 
 		public function LevelSelect()
 		{
+            SoundBank.music("level_select");
             levels = new Array();
 
             var m:SelectScroll;
@@ -78,6 +79,7 @@ package
                     moveCursor(1);
                 }
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
+                SoundBank.music("game");
                 SoundBank.play("select");
 				FlxG.fade.start(0xff000000, 0.5, function():void { Starter.startLevel() });
             }
