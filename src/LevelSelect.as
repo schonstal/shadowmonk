@@ -9,6 +9,9 @@ package
         private var levels:Array;
         private var _t:FlxText;
         private var _stars:StarRating;
+        
+        private var _dark:Number = 0xff000000;
+        private var _light:Number = 0xff682777;
 
 		public function LevelSelect()
 		{
@@ -47,15 +50,15 @@ package
             _t.setFormat("SNES");
             _t.color = 0xffffffff;
 			add(_t);
+
+			var t:FlxText = new FlxText(27, 42, 158, "Level Select");
+			t.alignment = "center";
+            t.setFormat("SNES");
+            t.color = _dark;
+			add(t);
             
             _stars = new StarRating(110, 22, SaveData.stars);
             add(_stars);
-			
-            var t:FlxText;
-			t = new FlxText(FlxG.width/2-50,FlxG.height-20,100,"Press X to Select");
-			t.alignment = "center";
-			add(t);
-
 		}
 
 		override public function update():void
@@ -81,31 +84,31 @@ package
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
                 SoundBank.music("game");
                 SoundBank.play("select");
-				FlxG.fade.start(0xff000000, 0.5, function():void { Starter.startLevel() });
+				FlxG.fade.start(_dark, 0.5, function():void { Starter.startLevel() });
             }
             
 		}
         
         private function addLevel(level:Number, title:String):void {
 			var t:FlxText;
-			t = new FlxText(25,30 + (level * 12),200,level + ". " + (SaveData.completed+1<level?"--------":title));
+			t = new FlxText(27,54 + (level * 12),200,level + ". " + (SaveData.completed+1<level?"--------":title));
 			t.alignment = "left";
             t.setFormat("SNES");
-            t.color = (FlxG.level==level?0xffffffff:0xff000000);
+            t.color = (FlxG.level==level?_light:_dark);
             levels[level-1] = t;
 			add(t);
         }
         
         private function moveCursor(newLevel:int):void {
             var selected:FlxText = levels[FlxG.level-1] as FlxText;
-            selected.color = 0xff000000;
+            selected.color = _dark;
             
             FlxG.level = newLevel;
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
             _stars.rating = SaveData.stars;
 
             selected = levels[FlxG.level-1] as FlxText;
-            selected.color = 0xffffffff;
+            selected.color = _light;
             _t.text = "Best: " + (bestTimer.elapsed>5999?"--:--.--":bestTimer.render());
         }
 	}
