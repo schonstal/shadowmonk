@@ -9,7 +9,7 @@ package
         [Embed(source = '../data/celtic-bit.ttf', fontFamily="SNES", embedAsCFF="false")] public var CelticFont:String;
 		public function shadowmonk()
 		{
-			super(320,240,MenuState,2);
+			super(320,240,IntroCutscene,2);
 			//showLogo = true;
             SaveData.load();
             SoundBank.load();
