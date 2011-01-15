@@ -15,6 +15,10 @@ package
  
         override public function create():void
         {
+            var m:Title;
+            m = new Title();
+            add(m);
+
             movie = new SwfClass();
             var zoomFactor:int = 2;
             movie.scaleX = 0.5 * zoomFactor;
