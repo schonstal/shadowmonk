@@ -12,6 +12,7 @@ package
 			super(320,240,MenuState,2);
 			//showLogo = true;
             SaveData.load();
+            SoundBank.load();
 		}
 	}
 }

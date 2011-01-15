@@ -75,10 +75,12 @@ package
             super.update();
         }
 
-        public function checkCapture():Boolean {
+        public function checkCapture(Sound:Boolean = true):Boolean {
             var p:FlxPoint;
             if(!_player.dead && distance(x,y,_player.x,_player.y) < 26 && 
                 !_map.ray(x, y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 0.1)) {
+                if(Sound)
+                    SoundBank.play("alert");
                 _state = GuardState.CAPTURE;
                 return true;
             }
@@ -102,6 +104,7 @@ package
                 _lostTimer = _lostLimit;
                 _firstTurn = true;
                 _secondTurn = true;
+                SoundBank.play("lost");
                 _state = GuardState.LOST;
             }
         }
@@ -116,8 +119,7 @@ package
         }
 
         public function lost():void {
-            if(spot())
-                _state = GuardState.AIM;
+            checkSpot();
             checkCapture();
             
             _lostTimer -= FlxG.elapsed;
@@ -132,9 +134,16 @@ package
                 angle -= 45;
             }
         }
-        
+
         public function capture():void {
-            checkShoot(checkCapture());
+            checkShoot(checkCapture(false));
+        }
+
+        public function checkSpot():void {
+            if(spot()) {
+                SoundBank.play("alert");
+                _state = GuardState.AIM;
+            }
         }
 
         public function advance():void {
@@ -181,8 +190,7 @@ package
             else
                 play("normal");
             
-            if(spot())
-                _state = GuardState.AIM;
+            checkSpot();
             checkCapture();
         }
         

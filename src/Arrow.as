@@ -116,6 +116,7 @@ package
         }
         
         public function refire():void {
+            SoundBank.play("arrow", false);
             x = _start.x;
             y = _start.y;
             visible = true;

@@ -64,19 +64,22 @@ package
 			super.update();
 
             if(FlxG.keys.justPressed("UP")) {
+                SoundBank.play("up");
                 if(FlxG.level > 1) {
                     moveCursor(FlxG.level - 1);
                 } else {
                     moveCursor(maxLevel);
                 }
             } else if(FlxG.keys.justPressed("DOWN")) {
+                SoundBank.play("down");
                 if(FlxG.level < maxLevel) {
                     moveCursor(FlxG.level + 1);
                 } else {
                     moveCursor(1);
                 }
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
-				Starter.startLevel();
+                SoundBank.play("select");
+				FlxG.fade.start(0xff000000, 0.5, function():void { Starter.startLevel() });
             }
             
 		}

@@ -6,6 +6,7 @@ package
 	{
 		public function Win(timer:GameTimer, rating:int)
 		{
+            SoundBank.play("win");
             //Save stuff
             if(timer.elapsed < SaveData.best)
                 SaveData.best = timer.elapsed;
