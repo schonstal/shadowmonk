@@ -30,7 +30,7 @@ package
 
         override public function update():void {
             if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
-                FlxG.state = new MenuState();
+                startGame();
             } 
         }
 
@@ -39,10 +39,14 @@ package
             length--;
             if (length <= 0)
             {
+                startGame();
+            }
+        }
+
+        private function startGame():void {
                 movie.removeEventListener(Event.EXIT_FRAME, next);
                 removeChild(movie);
                 FlxG.state = new MenuState();
-            }
         }
     } 
 }
