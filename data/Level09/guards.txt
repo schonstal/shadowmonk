@@ -1,0 +1,13 @@
+addGuard(new Array(new Point(4,3), new Point(4,11), new Point(12,11), new Point(12,7), new Point(8,7), new Point(8,3)), 3);
+addGuard(new Array(new Point(12,11), new Point(12,7), new Point(8,7), new Point(8,3), new Point(4,3), new Point(4,11)), 2);
+
+addTrap(5,4);
+addTrap(7,4);
+addTrap(4,7);
+addTrap(8,7);
+addTrap(11,8);
+addTrap(5,10);
+addTrap(11,10);
+addTrap(8,11);
+
+_player = new Player(1,9,3);
