@@ -27,11 +27,11 @@ package
         addTrap(12, 7);
 		addTrap(12, 11);
 		addArrow(11, 6, 11, 11);
-        addTrap(19,11);
+        addTrap(19, 11);
+		addTrap(24, 10);
+		addTrap(24, 11);
         addTrap(27,8);
         addTrap(27,9);
-        addTrap(27,10);
-        addTrap(27,11);
         addStairs(30, 8);
 		addStairs(39, 9);
     }
