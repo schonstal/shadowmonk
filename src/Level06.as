@@ -28,7 +28,7 @@ package
       addTrap(11,8);
       addTrap(11,9);
       addStairs(19, 8);
-	  addStairs19, 9);
+	  addStairs(19, 9);
     }
   }
 }

@@ -80,7 +80,7 @@ package
 		{
 			super.update();
             if(FlxG.keys.justPressed("Z")) {
-                if(FlxG.level >= SaveData.levels) {
+                if(FlxG.level >= Starter.levels) {
                     FlxG.state = new Credits();
                 } else {
                     FlxG.level++;

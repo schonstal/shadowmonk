@@ -29,18 +29,24 @@ package
         public var fader:Number = 1;
         public var music:Object;
 
+        public var musicVol:Number = 1.0;
+        public var sfxVol:Number = 1.0;
+
+        public var musicVolOrig:Number = 1.0;
+        public var sfxVolOrig:Number = 1.0;
+
         public static function get instance():SoundBank {
             if(_instance == null)
                 _instance = new SoundBank();
             return _instance;
         }
 
-        public static function play(Id:String, Stop:Boolean = true):FlxSound {
+        public static function play(Id:String, Stop:Boolean = true, volume:Number = 1.0):FlxSound {
             if(Stop)
                 instance.sounds[Id].stop();
             if(!instance.sounds[Id].playing) {
                 instance.sounds[Id].destroy();
-                instance.sounds[Id] = FlxG.play(instance.classes[Id]);
+                instance.sounds[Id] = FlxG.play(instance.classes[Id], volume * instance.sfxVol);
             }
             return instance.sounds[Id];
         }
@@ -49,6 +55,24 @@ package
             sounds = new Object();
             classes = new Object();
             music = new Object();
+        }
+
+        public static function set musicVolume(value:Number):void {
+            instance.musicVolOrig = value;
+            instance.musicVol = value;
+        }
+        
+        public static function set sfxVolume(value:Number):void {
+            instance.sfxVolOrig = value;
+            instance.sfxVol = value;
+        }
+        
+        public static function get musicVolume():Number {
+            return instance.musicVol;
+        }
+        
+        public static function get sfxVolume():Number {
+            return instance.sfxVol;
         }
 
         //Load all the sounds into the bank
@@ -80,13 +104,14 @@ package
             instance.music[Id] = EmbeddedSound;
         }
 
-        public static function music(Id:String):void {
-            FlxG.playMusic(instance.music[Id]);
+        public static function music(Id:String, volume:Number = 1.0):void {
+            FlxG.playMusic(instance.music[Id], volume * instance.musicVol);
         }
 
         //Setting the volume of a sound breaks it...
         public static function fadeOut(Seconds:Number):void {
-            instance.fader -= 0.01;//FlxG.elapsed / Seconds;
+            instance.sfxVol -= (FlxG.elapsed / Seconds) * instance.sfxVolOrig;
+            FlxG.music.volume -= (FlxG.elapsed / Seconds) * musicVolume;
             /*
             for (var key:String in instance.sounds) {
                 instance.sounds[key].volume = 0.5;
@@ -94,7 +119,8 @@ package
         }
 
         public static function reset():void {
-            instance.fader = 1;
+            instance.sfxVol = instance.sfxVolOrig;
+            FlxG.music.volume = musicVolume;
             for (var key:String in instance.sounds) {
                 instance.sounds[key].volume = instance.fader;
             }

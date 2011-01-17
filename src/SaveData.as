@@ -7,6 +7,7 @@ package
         protected static var _instance:SaveData;
 
         public static var levels:int = 11;
+        public var levelNames:Array;
         
         public var saveState:FlxSave;
 

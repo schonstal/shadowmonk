@@ -5,7 +5,6 @@ package
 	public class PlayState extends FlxState
 	{
         [Embed(source = '../data/Tileset_dungeon.png')] private var ImgTiles:Class;
-	
 		//Children load these
 		protected var GroundMap:Class;
 		protected var WallMap:Class;
@@ -60,7 +59,7 @@ package
             _deadSprite = new DeadSprite();
 
             //Fresh Sounds
-            //SoundBank.reset();
+            SoundBank.reset();
 
             //Initialize vars
             _guards = new Array;

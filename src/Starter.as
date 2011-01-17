@@ -4,29 +4,34 @@ package
 
 	public class Starter
 	{
+        private static var levelClasses:Array = [
+            Level01, 
+            Level02,
+            Level03,
+            Level04,
+            Level05,
+            Level06,
+            Level07,
+            Level08,
+            Level09,
+            Level10,
+            Level11,
+            Level12,
+            Level13
+        ];
+
+        public static function get levels():Number {
+            return levelClasses.length;
+        }
+
+        public static function levelName(Level:Number):String {
+            var levelClass:Class = levelClasses[Level-1];
+            return levelClass.title;
+        }
+
         public static function startLevel():void {
-            if(FlxG.level == 1)
-                FlxG.state = new Level01();
-            if(FlxG.level == 2)
-                FlxG.state = new Level02();
-            if(FlxG.level == 3)
-                FlxG.state = new Level03();
-            if(FlxG.level == 4)
-                FlxG.state = new Level04();
-            if(FlxG.level == 5)
-                FlxG.state = new Level05();
-            if(FlxG.level == 6)
-                FlxG.state = new Level06();
-            if(FlxG.level == 7)
-                FlxG.state = new Level07();
-            if(FlxG.level == 8)
-                FlxG.state = new Level08();
-            if (FlxG.level == 9)
-                FlxG.state = new Level09();
-			if (FlxG.level == 10)
-				FlxG.state = new Level10();
-			if (FlxG.level == 11)
-				FlxG.state = new Level11();
+            var levelClass:Class = levelClasses[FlxG.level - 1];
+            FlxG.state = new levelClass();
         }
 
         public static function levelSelect():void {

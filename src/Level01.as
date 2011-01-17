@@ -6,6 +6,7 @@ package
 	{
         [Embed(source = '../data/Level01/layer_0.txt', mimeType = "application/octet-stream")] private var Ground:Class;
         [Embed(source = '../data/Level01/layer_1.txt', mimeType = "application/octet-stream")] private var Wall:Class;
+        public static var title:String = "The Prison";
 
         public function Level01() {
             GroundMap = Ground;

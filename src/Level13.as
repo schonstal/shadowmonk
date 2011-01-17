@@ -19,7 +19,7 @@ package
       _player = new Player(3,12,1);
       addGuard(new Array(new FlxPoint(5,11), new FlxPoint(5,13), new FlxPoint(6,13), new FlxPoint(6, 16), new FlxPoint(7,16), new FlxPoint(7,18), new FlxPoint(11,18), new FlxPoint (11,14), new FlxPoint(8,14), new FlxPoint(8,9), new FlxPoint(11,9), new FlxPoint(11,12), new FlxPoint(13,12), new FlxPoint(13,7), new FlxPoint(6,7), new FlxPoint(6,10), new FlxPoint(5,10)), 2);
       addGuard(new Array(new FlxPoint(4, 10), new FlxPoint(6, 10)), 3);
-	  addGuard(new Array(new FlxPoint(13, 14), new FlxPoint(13, 18)), 2;
+	  addGuard(new Array(new FlxPoint(13, 14), new FlxPoint(13, 18)), 2);
 	  addGuard(new Array(new FlxPoint(15, 8), new FlxPoint(15, 17), new FlxPoint(20, 17), new FlxPoint(20, 13), new FlxPoint(17, 13), new FlxPoint(17, 11), new FlxPoint(22, 11), new FlxPoint(22, 18), new FlxPoint(24, 18), new FlxPoint(7, 24), new FlxPoint(7, 15)), 2);
 	  addGuard(new Array(new FlxPoint(18, 15), new FlxPoint(18, 18)), 2);
 	  addGuard(new Array(new FlxPoint(20, 9), new FlxPoint(20, 13)), 2);
@@ -42,7 +42,7 @@ package
 	  addTrap(7, 10);
 	  addTrap(7, 11);
 	  addTrap(7, 12);
-	  ddTrap(7,13);
+	  addTrap(7,13);
       addTrap(7,14);
       addTrap(7,15);
       addTrap(8,8);

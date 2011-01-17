@@ -13,6 +13,9 @@ package
         private var _dark:Number = 0xff000000;
         private var _light:Number = 0xff682777;
 
+        private var _upArrow:ScrollArrow;
+        private var _downArrow:ScrollArrow;
+
 		public function LevelSelect()
 		{
             SoundBank.music("level_select");
@@ -22,17 +25,19 @@ package
             m = new SelectScroll();
             add(m);
 
-            addLevel(1, "The Prison");
-            addLevel(2, "Grim Thundergod");
-            addLevel(3, "Eminent Casket");
-            addLevel(4, "Vulgar Cannibal");
-            addLevel(5, "Doom Scornflame");
-            addLevel(6, "Super Happy");
-            addLevel(7, "Really Awesome");
-            addLevel(8, "That One Level");
-            addLevel(9, "How Are You?");
-			addLevel(10, "BLARG");
-			addLevel(11, "Arrows");
+            var level:int;
+            for(level=1; level <= Starter.levels; level++) {
+                var levelText:FlxText;
+                levelText = new FlxText(27,54 + (level * 12),200,
+                    level + ". " + (SaveData.completed+1<level?"--------":Starter.levelName(level)));
+                levelText.alignment = "left";
+                levelText.setFormat("SNES");
+                levelText.color = (FlxG.level==level?_light:_dark);
+                levels[level-1] = levelText;
+
+                if(level < 11)
+                    add(levelText);
+            }
             
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
 
@@ -63,7 +68,7 @@ package
 
 		override public function update():void
 		{
-            var maxLevel:Number = (SaveData.completed>=SaveData.levels?SaveData.levels:SaveData.completed+1);
+            var maxLevel:Number = (SaveData.completed>=Starter.levels?Starter.levels:SaveData.completed+1);
 
 			super.update();
 
@@ -88,16 +93,6 @@ package
             }
             
 		}
-        
-        private function addLevel(level:Number, title:String):void {
-			var t:FlxText;
-			t = new FlxText(27,54 + (level * 12),200,level + ". " + (SaveData.completed+1<level?"--------":title));
-			t.alignment = "left";
-            t.setFormat("SNES");
-            t.color = (FlxG.level==level?_light:_dark);
-            levels[level-1] = t;
-			add(t);
-        }
         
         private function moveCursor(newLevel:int):void {
             var selected:FlxText = levels[FlxG.level-1] as FlxText;
