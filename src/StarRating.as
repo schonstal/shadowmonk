@@ -19,7 +19,7 @@ package
 
             var i:int;
             for(i = 0; i < 3; i++) {
-                _stars[i] = new Star(x+(i*20),y);
+                _stars[i] = new Star(x+(i*18),y);
                 add(_stars[i]);
             }
 

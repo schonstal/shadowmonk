@@ -8,6 +8,9 @@ package
 
         private var levels:Array;
         private var _t:FlxText;
+        private var _oneStar:FlxText;
+        private var _twoStar:FlxText;
+        private var _threeStar:FlxText;
         private var _stars:StarRating;
         
         //Colors for text
@@ -64,23 +67,36 @@ package
             
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
 
-            //Total stars icon
-            var star:Star = new Star(220,12);
-            add(star);
-			
             //Total stars
-            _t = new FlxText(238, 14, 200, "" + SaveData.totalStars);
-			_t.alignment = "left";
+            _t = new FlxText(200, 10, 92, "" + SaveData.totalStars);
+			_t.alignment = "right";
             _t.setFormat("SNES");
             _t.color = 0xffffffff;
 			add(_t);
 
             //Best time
-			_t = new FlxText(220, 30, 200, "Best: " + bestTimer.render());
-			_t.alignment = "left";
+			_t = new FlxText(192, 50, 128, (SaveData.completed>0?bestTimer.render():"--:--.--"));
+			_t.alignment = "center";
             _t.setFormat("SNES");
             _t.color = 0xffffffff;
 			add(_t);
+            
+            //Star times
+			_oneStar = new FlxText(192, 122, 128, "--:--.--");
+			_oneStar.alignment = "center";
+            _oneStar.setFormat("SNES");
+            _oneStar.color = 0xffffffff;
+			add(_oneStar);
+			_twoStar = new FlxText(192, 156, 128, "--:--.--");
+			_twoStar.alignment = "center";
+            _twoStar.setFormat("SNES");
+            _twoStar.color = 0xffffffff;
+			add(_twoStar);
+			_threeStar = new FlxText(192, 190, 128, "--:--.--");
+			_threeStar.alignment = "center";
+            _threeStar.setFormat("SNES");
+            _threeStar.color = 0xffffffff;
+			add(_threeStar);
 
             //"Level Select"
 			var t:FlxText = new FlxText(27, 42, 158, "Level Select");
@@ -100,7 +116,7 @@ package
             setArrows();
             
             //Show the rating for the current level
-            _stars = new StarRating(110, 22, SaveData.stars);
+            _stars = new StarRating(115, 32, SaveData.stars);
             add(_stars);
 		}
 
@@ -205,7 +221,7 @@ package
             FlxG.level = newLevel;
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
             _stars.rating = SaveData.stars;
-            _t.text = "Best: " + (bestTimer.elapsed>5999?"--:--.--":bestTimer.render());
+            _t.text = (bestTimer.elapsed>5999?"--:--.--":bestTimer.render());
             
             //Hilight the selected text
             levels[FlxG.level-1].color = _light;

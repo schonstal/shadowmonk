@@ -30,10 +30,10 @@ package
         public var fader:Number = 1;
         public var music:Object;
 
-        public var musicVol:Number = 1.0;
+        public var musicVol:Number = 0.0;
         public var sfxVol:Number = 1.0;
 
-        public var musicVolOrig:Number = 1.0;
+        public var musicVolOrig:Number = 0.0;
         public var sfxVolOrig:Number = 1.0;
 
         public static function get instance():SoundBank {

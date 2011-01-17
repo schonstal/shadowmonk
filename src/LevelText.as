@@ -32,6 +32,9 @@ package
             _num.x = x;
             _title.x = x + 20;
             _num.y = _title.y = y;
+            
+            _num.visible = visible;
+            _title.visible = visible;
         }
         
     }
