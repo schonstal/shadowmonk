@@ -6,6 +6,7 @@ package
     {
         [Embed(source = '../data/Level11/layer_0.txt', mimeType = "application/octet-stream")] private var Ground:Class;        
         [Embed(source = '../data/Level11/layer_1.txt', mimeType = "application/octet-stream")] private var Wall:Class;
+        public static var title:String = "MY GIRLFRIEND";
 
         public function Level11() {
             GroundMap = Ground;

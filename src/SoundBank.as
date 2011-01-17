@@ -15,6 +15,7 @@ package
         [Embed(source="../data/Sounds/Monk_explode.mp3")] public var MonkExplode:Class;
         [Embed(source="../data/Sounds/Level_select.mp3")] public var LevelSelect:Class;
         [Embed(source="../data/Sounds/Monk_fall.mp3")] public var MonkFall:Class;
+        [Embed(source="../data/Sounds/Nope.mp3")] public var Nope:Class;
         
         //Music
         [Embed(source="../data/Music/credits.mp3")] public var CreditsMusic:Class;
@@ -87,6 +88,7 @@ package
             loadSound("explode", instance.MonkExplode);
             loadSound("select", instance.LevelSelect);
             loadSound("trap", instance.MonkFall);
+            loadSound("nope", instance.Nope);
 
             loadMusic("credits", instance.CreditsMusic);
             loadMusic("game", instance.GameMusic);
