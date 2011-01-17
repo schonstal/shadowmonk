@@ -30,7 +30,6 @@ package
       addTrap(5,10);
       addTrap(5,7);
       addTrap(5,8);
-      addTrap(5,9);
       addTrap(5, 14);
 	  addTrap(5, 15);
 	  addTrap(5, 17);
@@ -60,7 +59,6 @@ package
 	  addTrap(10, 17);
 	  addTrap(11, 8);
 	  addTrap(11,13);
-      addTrap(11,17);
       addTrap(12,8);
       addTrap(12,9);
       addTrap(12,10);
