@@ -42,12 +42,13 @@ package
             return _instance;
         }
 
-        public static function play(Id:String, Stop:Boolean = true, volume:Number = 1.0):FlxSound {
-            if(Stop)
-                instance.sounds[Id].stop();
-            if(!instance.sounds[Id].playing) {
+        public static function play(Id:String, Multi:Boolean = true, volume:Number = 1.0):FlxSound {
+            if(!Multi && !instance.sounds[Id].playing) {
                 instance.sounds[Id].destroy();
                 instance.sounds[Id] = FlxG.play(instance.classes[Id], volume * instance.sfxVol);
+            } else if (Multi) {
+                //If this becomes a problem, this should be saved somewhere...
+                return FlxG.play(instance.classes[Id], volume * instance.sfxVol);
             }
             return instance.sounds[Id];
         }

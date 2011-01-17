@@ -146,7 +146,6 @@ package
             if(FlxG.keys.justPressed("UP") || 
                     _holdTimer > _holdInterval && 
                     _scrollTimer >= _scrollInterval) {
-                SoundBank.play("up");
                 if(FlxG.level > 1) {
                     moveCursor(FlxG.level - 1);
                 //Don't loop the cursor when the key is held
@@ -157,7 +156,6 @@ package
             } else if(FlxG.keys.justPressed("DOWN") || 
                     _holdTimer < -_holdInterval && 
                     _scrollTimer >= _scrollInterval) {
-                SoundBank.play("down");
                 if(FlxG.level < Starter.levels) {
                     moveCursor(FlxG.level + 1);
                 } else if(_holdTimer > -_holdInterval) {
@@ -179,6 +177,11 @@ package
         private function moveCursor(newLevel:int):void {
             //loop var
             var i:int;
+
+            if(newLevel > FlxG.level)
+                SoundBank.play("down");
+            else
+                SoundBank.play("up");
             
             //Set the previously selected text back to default
             levels[FlxG.level-1].color = _dark;
