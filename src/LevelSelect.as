@@ -144,7 +144,7 @@ package
                 if(FlxG.level > 1) {
                     moveCursor(FlxG.level - 1);
                 //Don't loop the cursor when the key is held
-                } else if(_holdTimer == 0) {
+                } else if(_holdTimer < _holdInterval) {
                     moveCursor(maxLevel);
                 }
             //See if the player wants to go down
@@ -154,7 +154,7 @@ package
                 SoundBank.play("down");
                 if(FlxG.level < maxLevel) {
                     moveCursor(FlxG.level + 1);
-                } else if(_holdTimer == 0) {
+                } else if(_holdTimer > -_holdInterval) {
                     moveCursor(1);
                 }
             //Check if the player wants to start the game
