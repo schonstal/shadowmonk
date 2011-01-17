@@ -6,6 +6,7 @@ package
   {
     [Embed(source = '../data/Level12/layer_0.txt', mimeType = "application/octet-stream")] private var Ground:Class;
     [Embed(source = '../data/Level12/layer_1.txt', mimeType = "application/octet-stream")] private var Wall:Class;
+    public static var title:String = "Fugget McGee";
 
     public function Level12()
     {

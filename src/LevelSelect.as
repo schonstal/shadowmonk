@@ -49,16 +49,9 @@ package
             //Add all the text to the list
             var level:int;
             for(level=1; level <= Starter.levels; level++) {
-                var levelText:FlxText;
+                var levelText:LevelText;
+                levelText = new LevelText(27, 54 + (level * 12), level);
 
-                //12 pixels apart, 200 pixels wide, and ----- them out when you don't have it unlocked
-                levelText = new FlxText(27, 54 + (level * 12), 200,
-                    level + ". " + 
-                    (SaveData.completed + 1 < level ? "--------" : Starter.levelName(level))
-                );
-
-                levelText.alignment = "left";
-                levelText.setFormat("SNES");
                 //Make sure the selected level is hilighted
                 levelText.color = (FlxG.level==level?_light:_dark);
                 levels[level-1] = levelText;
@@ -120,9 +113,6 @@ package
                 _downArrow.y = 186;
             }
 
-            //Set max to either total levels or amount of levels completed (whichever is greater)
-            var maxLevel:Number = (SaveData.completed>=Starter.levels?Starter.levels:SaveData.completed+1);
-
 			super.update();
 
             //Allow the player to scroll if they haven't recently
@@ -145,23 +135,27 @@ package
                     moveCursor(FlxG.level - 1);
                 //Don't loop the cursor when the key is held
                 } else if(_holdTimer < _holdInterval) {
-                    moveCursor(maxLevel);
+                    moveCursor(Starter.levels);
                 }
             //See if the player wants to go down
             } else if(FlxG.keys.justPressed("DOWN") || 
                     _holdTimer < -_holdInterval && 
                     _scrollTimer >= _scrollInterval) {
                 SoundBank.play("down");
-                if(FlxG.level < maxLevel) {
+                if(FlxG.level < Starter.levels) {
                     moveCursor(FlxG.level + 1);
                 } else if(_holdTimer > -_holdInterval) {
                     moveCursor(1);
                 }
             //Check if the player wants to start the game
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
-                SoundBank.music("game");
-                SoundBank.play("select");
-				FlxG.fade.start(0xff000000, 0.5, function():void { Starter.startLevel() });
+                if(FlxG.level <= SaveData.completed+1) {
+                    SoundBank.music("game");
+                    SoundBank.play("select");
+    				FlxG.fade.start(0xff000000, 0.5, function():void { Starter.startLevel() });
+                } else {
+                    SoundBank.play("nope");
+                }
             }
             
 		}
@@ -171,8 +165,7 @@ package
             var i:int;
             
             //Set the previously selected text back to default
-            var selected:FlxText = levels[FlxG.level-1] as FlxText;
-            selected.color = _dark;
+            levels[FlxG.level-1].color = _dark;
             
             //Reset the timer so they can't scroll again for a little while (useful for holding)
             _scrollTimer = 0;
@@ -215,8 +208,7 @@ package
             _t.text = "Best: " + (bestTimer.elapsed>5999?"--:--.--":bestTimer.render());
             
             //Hilight the selected text
-            selected = levels[FlxG.level-1] as FlxText;
-            selected.color = _light;
+            levels[FlxG.level-1].color = _light;
         }
 
         //Sets visibility of a menu item depending on it's index relative to the window
