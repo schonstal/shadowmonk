@@ -20,6 +20,12 @@ package
         private var _arrowAmount:Number = 2;
         private var _arrowInterval:Number = 0.1;
 
+        private var _holdTimer:Number;
+        private var _holdInterval:Number = 0.5;
+
+        private var _scrollTimer:Number;
+        private var _scrollInterval:Number = 0.05;
+
         private var _window:Number = 1;
 
 		public function LevelSelect()
@@ -91,22 +97,36 @@ package
                 _upArrow.y = 54;
                 _downArrow.y = 186;
             }
+
             var maxLevel:Number = (SaveData.completed>=Starter.levels?Starter.levels:SaveData.completed+1);
 
 			super.update();
 
-            if(FlxG.keys.justPressed("UP")) {
+            _scrollTimer += FlxG.elapsed;
+
+            if(FlxG.keys.DOWN)
+                _holdTimer -= FlxG.elapsed;
+            if(FlxG.keys.UP)
+                _holdTimer += FlxG.elapsed;
+            if(!FlxG.keys.UP && !FlxG.keys.DOWN)
+                _holdTimer = 0;
+
+            if(FlxG.keys.justPressed("UP") || 
+                    _holdTimer > _holdInterval && 
+                    _scrollTimer >= _scrollInterval) {
                 SoundBank.play("up");
                 if(FlxG.level > 1) {
                     moveCursor(FlxG.level - 1);
-                } else {
+                } else if(_holdTimer == 0) {
                     moveCursor(maxLevel);
                 }
-            } else if(FlxG.keys.justPressed("DOWN")) {
+            } else if(FlxG.keys.justPressed("DOWN") || 
+                    _holdTimer < -_holdInterval && 
+                    _scrollTimer >= _scrollInterval) {
                 SoundBank.play("down");
                 if(FlxG.level < maxLevel) {
                     moveCursor(FlxG.level + 1);
-                } else {
+                } else if(_holdTimer == 0) {
                     moveCursor(1);
                 }
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
@@ -120,6 +140,8 @@ package
         private function moveCursor(newLevel:int):void {
             var selected:FlxText = levels[FlxG.level-1] as FlxText;
             selected.color = _dark;
+
+            _scrollTimer = 0;
 
             var i:int;
             
@@ -152,7 +174,6 @@ package
             selected = levels[FlxG.level-1] as FlxText;
             selected.color = _light;
             _t.text = "Best: " + (bestTimer.elapsed>5999?"--:--.--":bestTimer.render());
-            _t.text += "\n\n\n\n\n\n" + _window;
         }
 
         private function setVisibility(i:int):void {
