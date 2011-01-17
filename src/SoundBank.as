@@ -5,17 +5,17 @@ package
     public class SoundBank
     {
         //Sounds
-        [Embed(source="../data/Sounds/Arrow_fire.mp3")] public var ArrowFire:Class;
-        [Embed(source="../data/Sounds/Guard_alert.mp3")] public var GuardAlert:Class;
-        [Embed(source="../data/Sounds/Guard_lost.mp3")] public var GuardLost:Class;
-        [Embed(source="../data/Sounds/Level_select_down.mp3")] public var LevelSelectDown:Class;
-        [Embed(source="../data/Sounds/Level_select_up.mp3")] public var LevelSelectUp:Class;
-        [Embed(source="../data/Sounds/Level_start.mp3")] public var LevelStart:Class;
-        [Embed(source="../data/Sounds/Level_win.mp3")] public var LevelWin:Class;
-        [Embed(source="../data/Sounds/Monk_explode.mp3")] public var MonkExplode:Class;
-        [Embed(source="../data/Sounds/Level_select.mp3")] public var LevelSelect:Class;
-        [Embed(source="../data/Sounds/Monk_fall.mp3")] public var MonkFall:Class;
-        [Embed(source="../data/Sounds/Nope.mp3")] public var Nope:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Arrow_fire.wav")] public var ArrowFire:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Guard_alert.wav")] public var GuardAlert:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Guard_lost.wav")] public var GuardLost:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Level_select_down.wav")] public var LevelSelectDown:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Level_select_up.wav")] public var LevelSelectUp:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Level_start.wav")] public var LevelStart:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Level_win.wav")] public var LevelWin:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Monk_explode.wav")] public var MonkExplode:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Level_select.wav")] public var LevelSelect:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Monk_fall.wav")] public var MonkFall:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Nope.wav")] public var Nope:Class;
         
         //Music
         [Embed(source="../data/Music/credits.mp3")] public var CreditsMusic:Class;
