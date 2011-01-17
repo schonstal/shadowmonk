@@ -68,31 +68,31 @@ package
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
 
             //Total stars
-            _t = new FlxText(200, 10, 92, "" + SaveData.totalStars);
+            _t = new FlxText(203, 9, 92, "" + SaveData.totalStars);
 			_t.alignment = "right";
             _t.setFormat("SNES");
             _t.color = 0xffffffff;
 			add(_t);
 
             //Best time
-			_t = new FlxText(192, 50, 128, (SaveData.completed>0?bestTimer.render():"--:--.--"));
+			_t = new FlxText(191, 49, 128, (SaveData.completed>0?bestTimer.render():"--:--.--"));
 			_t.alignment = "center";
             _t.setFormat("SNES");
             _t.color = 0xffffffff;
 			add(_t);
             
             //Star times
-			_oneStar = new FlxText(192, 122, 128, "--:--.--");
+			_oneStar = new FlxText(191, 121, 128, "--:--.--");
 			_oneStar.alignment = "center";
             _oneStar.setFormat("SNES");
             _oneStar.color = 0xffffffff;
 			add(_oneStar);
-			_twoStar = new FlxText(192, 156, 128, "--:--.--");
+			_twoStar = new FlxText(191, 155, 128, "--:--.--");
 			_twoStar.alignment = "center";
             _twoStar.setFormat("SNES");
             _twoStar.color = 0xffffffff;
 			add(_twoStar);
-			_threeStar = new FlxText(192, 190, 128, "--:--.--");
+			_threeStar = new FlxText(191, 189, 128, "--:--.--");
 			_threeStar.alignment = "center";
             _threeStar.setFormat("SNES");
             _threeStar.color = 0xffffffff;
