@@ -16,6 +16,12 @@ package
         private var _upArrow:ScrollArrow;
         private var _downArrow:ScrollArrow;
 
+        private var _arrowTime:Number = 0;
+        private var _arrowAmount:Number = 2;
+        private var _arrowInterval:Number = 0.1;
+
+        private var _window:Number = 1;
+
 		public function LevelSelect()
 		{
             SoundBank.music("level_select");
@@ -24,6 +30,9 @@ package
             var m:SelectScroll;
             m = new SelectScroll();
             add(m);
+
+            if(FlxG.level > 10)
+                _window = FlxG.level - 9;
 
             var level:int;
             for(level=1; level <= Starter.levels; level++) {
@@ -35,8 +44,9 @@ package
                 levelText.color = (FlxG.level==level?_light:_dark);
                 levels[level-1] = levelText;
 
-                if(level < 11)
-                    add(levelText);
+                setVisibility(level-1);
+
+                add(levelText);
             }
             
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
@@ -62,12 +72,25 @@ package
             t.color = _dark;
 			add(t);
             
+            _upArrow = new ScrollArrow(100, 54, "up");
+            _upArrow.visible = false;
+            add(_upArrow);
+            _downArrow = new ScrollArrow(100, 186, "down");
+            add(_downArrow);
+            
+            setArrows();
+            
             _stars = new StarRating(110, 22, SaveData.stars);
             add(_stars);
 		}
 
 		override public function update():void
 		{
+            _arrowTime -= FlxG.elapsed;
+            if(_arrowTime <= 0) {
+                _upArrow.y = 54;
+                _downArrow.y = 186;
+            }
             var maxLevel:Number = (SaveData.completed>=Starter.levels?Starter.levels:SaveData.completed+1);
 
 			super.update();
@@ -97,7 +120,31 @@ package
         private function moveCursor(newLevel:int):void {
             var selected:FlxText = levels[FlxG.level-1] as FlxText;
             selected.color = _dark;
+
+            var i:int;
             
+            if(newLevel < _window) {
+                if(_arrowTime <= 0)
+                    _upArrow.y -= _arrowAmount;
+                _arrowTime = _arrowInterval;
+                for(i = 0; i < levels.length; i++) {
+                    _window = newLevel;
+                    setVisibility(i);
+                }
+            }
+            
+            if(newLevel > _window + 9) {
+                if(_arrowTime <= 0)
+                    _downArrow.y += _arrowAmount;
+                _arrowTime = _arrowInterval;
+                for(i = 0; i < levels.length; i++) {
+                    _window = newLevel - 9;
+                    setVisibility(i);
+                }
+            }
+            
+            setArrows();
+
             FlxG.level = newLevel;
             var bestTimer:GameTimer = new GameTimer(SaveData.best);
             _stars.rating = SaveData.stars;
@@ -105,6 +152,30 @@ package
             selected = levels[FlxG.level-1] as FlxText;
             selected.color = _light;
             _t.text = "Best: " + (bestTimer.elapsed>5999?"--:--.--":bestTimer.render());
+            _t.text += "\n\n\n\n\n\n" + _window;
+        }
+
+        private function setVisibility(i:int):void {
+            levels[i].y = 66 + (i*12) - ((_window-1) * 12);
+            if(i < _window - 1)
+                levels[i].visible = false;
+            else if(i < _window + 9)
+                levels[i].visible = true;
+            if(i >= _window + 9)
+                levels[i].visible = false;
+        }
+
+        private function setArrows():void {
+            if(_window > 1)
+                _upArrow.visible = true;
+            else
+                _upArrow.visible = false;
+
+            if(_window + 9 < Starter.levels)
+                _downArrow.visible = true;
+            else
+                _downArrow.visible = false;
+            
         }
 	}
 }
