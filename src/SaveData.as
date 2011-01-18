@@ -6,7 +6,6 @@ package
     {
         protected static var _instance:SaveData;
 
-        public static var levels:int = 11;
         public var levelNames:Array;
         
         public var saveState:FlxSave;
@@ -71,7 +70,7 @@ package
             var i:int;
             var total:int = 0;
 
-            for(i=0; i<levels; i++) {
+            for(i=0; i<Starter.levels; i++) {
                 if(instance.loaded)
                     total += instance.saveState.data.stars[i];
                 else
@@ -84,8 +83,7 @@ package
         public static function load():void {
             instance.saveState = new FlxSave();
             instance.loaded = instance.saveState.bind("shadowmonk");
-            var i:int
-;
+            var i:int;
             if(instance.loaded) {
                 if(instance.saveState.data.stars == null)
                     instance.saveState.data.stars = new Array();
@@ -96,7 +94,7 @@ package
                 if(instance.saveState.data.completed == null)
                     instance.saveState.data.completed = 0;
 
-                for(i=0; i < levels; i++) {
+                for(i=0; i < Starter.levels; i++) {
                     if(instance.saveState.data.stars[i] == null)
                         instance.saveState.data.stars[i] = 0;
 
@@ -107,7 +105,7 @@ package
                 instance.volStars = new Array();
                 instance.volTimes = new Array();
                 instance.volCompleted = 0;
-                for(i=0; i < levels; i++) {
+                for(i=0; i < Starter.levels; i++) {
                     instance.volStars[i] = 0;
                     instance.volTimes[i] = 5999.99;
                 }
