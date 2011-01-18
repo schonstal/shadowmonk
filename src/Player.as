@@ -123,6 +123,7 @@ package
             dead = true;
             light.exists = false;
             visible = false;
+            FlxG.quake.start(0.005, 0.5);
         }
 	}
 }
