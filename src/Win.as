@@ -4,9 +4,10 @@ package
 
 	public class Win extends FlxState
 	{
+        private var _won:Boolean = false;
+
 		public function Win(timer:GameTimer, rating:int)
 		{
-            SoundBank.play("win");
             //Save stuff
             if(timer.elapsed < SaveData.best)
                 SaveData.best = timer.elapsed;
@@ -74,11 +75,17 @@ package
             t.setFormat("SNES");
 			add(t);
 
+//            SoundBank.play("win");
 		}
 
 		override public function update():void
 		{
 			super.update();
+
+            if(!_won)
+                SoundBank.play("win");
+            _won = true;
+
             if(FlxG.keys.justPressed("Z")) {
                 if(FlxG.level >= Starter.levels) {
                     FlxG.state = new Credits();
