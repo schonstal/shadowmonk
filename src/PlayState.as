@@ -24,6 +24,7 @@ package
         
         //HUD
         protected var _timer:FlxText;
+        protected var _levelName:FlxText;
         protected var _gameTimer:GameTimer;
 
         protected var _ratings:Array = [20,15,10,5];
@@ -104,6 +105,12 @@ package
             _timer.setFormat("SNES");
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
             lyrHUD.add(_timer);
+            
+            _levelName = new FlxText(FlxG.width/2-100,FlxG.height-22,200,Starter.levelName(FlxG.level));
+            _levelName.alignment = "center";
+            _levelName.scrollFactor.x = _levelName.scrollFactor.y = 0;
+            _levelName.setFormat("SNES");
+            lyrMessage.add(_levelName);
             
             _stars = new StarRating(6,14);
             lyrHUD.add(_stars);
@@ -207,6 +214,7 @@ package
         public function dead(Reason:String = "You Fucked Up"):void {
             if(!_gameOver) {
                 var t:FlxText;
+                _levelName.visible = false;
 
                 t = new FlxText(FlxG.width/2-100,FlxG.height-34,200,"Press X to Play Again");
                 t.alignment = "center";
