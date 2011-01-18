@@ -100,7 +100,7 @@ package
 			lyrStage.add(_floor);
 
             //HUD			
-			_timer = new FlxText(10,10,100,"00:00.000");
+			_timer = new FlxText(10,9,100,"00:00.000");
 			_timer.alignment = "left";
             _timer.setFormat("SNES");
             _timer.scrollFactor.x = _timer.scrollFactor.y = 0;
@@ -112,7 +112,7 @@ package
             _levelName.setFormat("SNES");
             lyrMessage.add(_levelName);
             
-            _stars = new StarRating(6,14);
+            _stars = new StarRating(6,12);
             lyrHUD.add(_stars);
 
             _lightBar = new LightBar();
