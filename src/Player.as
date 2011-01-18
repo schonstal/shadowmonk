@@ -32,7 +32,7 @@ package
             height = 8;
             offset.x = 4;
             offset.y = 4;
-            
+
             _state = FlxG.state as PlayState;
 
             addAnimation("normal", [1, 0, 3, 0], 8);

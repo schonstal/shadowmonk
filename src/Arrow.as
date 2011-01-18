@@ -19,20 +19,27 @@ package
 
         public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, ThePlayer:Player, Big:Boolean):void
         {
-            super(X, Y);
+            super(X + 6.5, Y);
             loadGraphic(ImgArrow, true, true, 16, 16);
            
-            _start = new FlxPoint(X, Y);
-            _dest = new FlxPoint(X2, Y2);
+            _start = new FlxPoint(x, y);
+            _dest = new FlxPoint(X2 + 6.5, Y2);
             _state = FlxG.state as PlayState;
             _player = ThePlayer;
             _big = Big;
+
+            width = 3;
+            height = 16;
             
-            var dX:Number = X - _dest.x;
-            var dY:Number = Y - _dest.y;
+            offset.x = 6.5;
+
+            fixed = true;
+            
+            var dX:Number = x - _dest.x;
+            var dY:Number = y - _dest.y;
             var dist:Number = Math.sqrt(dX*dX+dY*dY);
             
-            angle = getAngle(X,Y,_dest.x,_dest.y);
+            angle = getAngle(x,y,_dest.x,_dest.y);
             var ang:Number = angle * (Math.PI/180);
             angle -= 90;
            
@@ -54,7 +61,7 @@ package
             emberMin.x = Math.cos(ang-emberSpread) * arrowSpeed * emberSpeed;
 
             addAnimation("normal", [0,1,2], 20);      
-            _embers = new FlxEmitter(X, Y);
+            _embers = new FlxEmitter(x-offset.x, y);
             _state.addEmitter(_embers);
             _embers.createSprites(ImgEmber, 10, 0, true, 0);
             _embers.setXSpeed(emberMin.x,emberMax.x);
@@ -86,10 +93,10 @@ package
             play("normal");
             //Randomize frequency :)
             _embers.update();
-            _embers.x = x + 8;
+            _embers.x = x + 8 - offset.x;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(!dead && distance(_player.x - 4, _player.y, x, y) < (_big?16:6)) {
+            if(!dead && !_player.dead && collide(_player)) {
                 _state.dead("SHOT BY AN ARROW");
                 _player.mobile = false;
                 die();
