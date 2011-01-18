@@ -19,7 +19,7 @@ package
         
         //Music
         [Embed(source="../data/Music/credits.mp3")] public var CreditsMusic:Class;
-        [Embed(source="../data/Music/game.mp3")] public var GameMusic:Class;
+        [Embed(source="../data/Music_package.swf", symbol="game.wav")] public var GameMusic:Class;
         [Embed(source="../data/Music/intro.mp3")] public var IntroMusic:Class;
         [Embed(source="../data/Music/level_select.mp3")] public var LevelSelectMusic:Class;
 
