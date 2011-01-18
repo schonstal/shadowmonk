@@ -96,7 +96,7 @@ package
             _embers.x = x + 8 - offset.x;
             _embers.y = y + 8;
             //Is there a normal collide?
-            if(!dead && !_player.dead && collide(_player)) {
+            if(!dead && !_player.dead && (collide(_player) || _big && distance(x,y,_player.x,_player.y) < 20)) {
                 _state.dead("SHOT BY AN ARROW");
                 _player.mobile = false;
                 die();
