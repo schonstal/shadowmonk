@@ -35,6 +35,11 @@ package
 
         //First displayed item on the list
         private var _window:Number = 1;
+        private var _windowOffset:Number = 9;
+
+        private function get _windowMax():Number {
+            return _window + _windowOffset;
+        }
 
 		public function LevelSelect()
 		{
@@ -204,7 +209,7 @@ package
             }
             
             //Scroll the window down if necessary
-            if(newLevel > _window + 9) {
+            if(newLevel > _windowMax) {
                 //Animate down arrow
                 if(_arrowTime <= 0)
                     _downArrow.y += _arrowAmount;
@@ -238,9 +243,9 @@ package
             //Check if it's in the window, set visibility accordingly
             if(i < _window - 1)
                 levels[i].visible = false;
-            else if(i < _window + 9)
+            else if(i < _windowMax)
                 levels[i].visible = true;
-            if(i >= _window + 9)
+            if(i >= _windowMax)
                 levels[i].visible = false;
         }
 
@@ -251,7 +256,7 @@ package
             else
                 _upArrow.visible = false;
 
-            if(_window + 9 < Starter.levels)
+            if(_windowMax < Starter.levels)
                 _downArrow.visible = true;
             else
                 _downArrow.visible = false;
