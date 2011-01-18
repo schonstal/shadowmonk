@@ -15,7 +15,7 @@ package
         private var _map:FlxTilemap;
         
         //Shootin' arrows
-        private var _sightLimit:Number = 0.25;
+        private var _sightLimit:Number = 0.5;
         private var _sightTimer:Number = _sightLimit;
         private var _lostLimit:Number = 1;
         private var _lostTimer:Number = _lostLimit;
