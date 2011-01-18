@@ -12,7 +12,7 @@ package
 		{
     		super(0,0);
             createGraphic(320,240,_color);
-            blend = "multiply"
+            blend = "multiply";
             scrollFactor.x = 0;
             scrollFactor.y = 0;
 
