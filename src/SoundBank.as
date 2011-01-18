@@ -16,6 +16,8 @@ package
         [Embed(source="../data/Sound_package.swf", symbol="Level_select.wav")] public var LevelSelect:Class;
         [Embed(source="../data/Sound_package.swf", symbol="Monk_fall.wav")] public var MonkFall:Class;
         [Embed(source="../data/Sound_package.swf", symbol="Nope.wav")] public var Nope:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Amulet_on.wav")] public var AmuletOn:Class;
+        [Embed(source="../data/Sound_package.swf", symbol="Amulet_off.wav")] public var AmuletOff:Class;
         
         //Music
         [Embed(source="../data/Music/credits.mp3")] public var CreditsMusic:Class;
@@ -90,6 +92,8 @@ package
             loadSound("select", instance.LevelSelect);
             loadSound("trap", instance.MonkFall);
             loadSound("nope", instance.Nope);
+            loadSound("on", instance.AmuletOn);
+            loadSound("off", instance.AmuletOff);
 
             loadMusic("credits", instance.CreditsMusic);
             loadMusic("game", instance.GameMusic);
