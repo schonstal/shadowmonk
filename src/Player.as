@@ -81,10 +81,16 @@ package
             _state.barScale = _lastLight / _recharge;
 
             if (FlxG.keys.justPressed("X") && light) {
-                if(!light.exists && _lastLight >= _recharge)
+                if(!light.exists && _lastLight >= _recharge) {
                     light.exists = true;
-                else
+                    SoundBank.play("on");
+                } else {
+                    if(light.exists)
+                        SoundBank.play("off");
+                    else
+                        SoundBank.play("nope");
                     light.exists = false;
+                }
             }
 
             angle = _heading[_direction];
