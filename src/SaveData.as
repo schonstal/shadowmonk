@@ -63,7 +63,7 @@ package
             if(instance.loaded)
                 instance.saveState.data.stars[FlxG.level-1] = value;
             else
-                instance.volStars[FlxG.level-1];
+                instance.volStars[FlxG.level-1] = value;
         }
 
         public static function get totalStars():int {
