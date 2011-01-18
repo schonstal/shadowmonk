@@ -14,7 +14,7 @@ package
             exists = false;
 
             addAnimation("normal", [0]);
-            addAnimation("glow", [1, 2], 4);
+            addAnimation("glow", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2);
 		}
 
         override public function update():void {
