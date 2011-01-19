@@ -1,11 +1,11 @@
-package
+package levels
 {
 	import org.flixel.*;
 
 	public class Level03 extends PlayState
 	{
-        [Embed(source = '../data/Level03/layer_0.txt', mimeType = "application/octet-stream")] private var Ground:Class;
-        [Embed(source = '../data/Level03/layer_1.txt', mimeType = "application/octet-stream")] private var Wall:Class;
+        [Embed(source = '../../data/Level03/layer_0.txt', mimeType = "application/octet-stream")] private var Ground:Class;
+        [Embed(source = '../../data/Level03/layer_1.txt', mimeType = "application/octet-stream")] private var Wall:Class;
         public static var title:String = "Way Cool";
 
         public function Level03() {
