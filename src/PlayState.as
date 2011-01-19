@@ -208,7 +208,7 @@ package
             if(!_gameOver) {
                 var t:FlxText;
                 
-                FlxG.flash.start(0xaadd0000, 0.5, function():void {
+                FlxG.flash.start(0xaadd0000, 1, function():void {
                     FlxG.fade.start(0xff000000, 0.5, function():void { 
                         KeyHelper.save("UP", "DOWN", "LEFT", "RIGHT");
                         Starter.startLevel();
