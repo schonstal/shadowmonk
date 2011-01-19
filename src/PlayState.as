@@ -189,14 +189,6 @@ package
                     _stars.urgent = false;
             } else {
                 _stars.rating = 0;
-                SoundBank.fadeOut(10);
-
-                if(FlxG.keys.justPressed("X")) {
-                    Starter.startLevel();
-                } 
-                if (FlxG.keys.justPressed("C")) {
-                    FlxG.state = new LevelSelect();
-                }
             }
             //FlxU.collide(_guards, _map);
 
@@ -214,21 +206,12 @@ package
         public function dead(Reason:String = "You Fucked Up"):void {
             if(!_gameOver) {
                 var t:FlxText;
-                _levelName.visible = false;
-
-                t = new FlxText(FlxG.width/2-100,FlxG.height-34,200,"Press X to Play Again");
-                t.alignment = "center";
-                t.scrollFactor.x = t.scrollFactor.y = 0;
-                t.setFormat("SNES");
-                lyrMessage.add(t);
                 
-                t = new FlxText(FlxG.width/2-100,FlxG.height-20,200,"Press C to Select a Level");
-                t.alignment = "center";
-                t.scrollFactor.x = t.scrollFactor.y = 0;
-                t.setFormat("SNES");
-                lyrMessage.add(t);
-
-                FlxG.flash.start(0xaadd0000, 0.5, _deadSprite.die);
+                FlxG.flash.start(0xaadd0000, 0.5, function():void {
+                    FlxG.fade.start(0xff000000, 0.5, function():void { 
+                        Starter.startLevel();
+                    });
+                });
                 
                 _player.die();
                 _gameOver = true;
