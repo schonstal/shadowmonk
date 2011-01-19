@@ -46,7 +46,7 @@ package
             _player = ThePlayer;
 
             //Adjust how arrow flies
-            _playerOffset = new FlxPoint(-4,-4);
+            _playerOffset = new FlxPoint(8,8);
             
             width = 8;
             height = 14;
@@ -90,13 +90,13 @@ package
         public function checkShoot(test:Boolean):void {
             velocity.x = 0;
             velocity.y = 0;
-            angle = FlxU.getAngle(_player.x - x, _player.y - 4 - y) + 90;
+            angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
             play("shooting");
             if(test) {
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;
-                    _currentState.createArrow(x, y, _player.x + _playerOffset.x, _player.y + _playerOffset.y);
+                    _currentState.createArrow(x-4, y-2, _player.x-4, _player.y-4);
 //                    _currentState.createArrow(x,y,_player.x,_player.y);
                     _state = GuardState.SHOOTING;
                 }
@@ -204,7 +204,7 @@ package
                 (_state == GuardState.PATROL?
                     sightAngle > (absoluteAngle - _sightSpread) && sightAngle < (absoluteAngle + _sightSpread)
                     :true) &&
-                !_map.ray(x, y, _player.x + _playerOffset.x, 
+                !_map.ray(x+8, y+8, _player.x + _playerOffset.x, 
                     _player.y + _playerOffset.y, p, 1)) {
                 return true;                
             } else {
