@@ -18,7 +18,8 @@ package
             FlxG.level = 2;
             _player = new Player(4,13,1);
             addGuard(new Array(new FlxPoint(7,13), new FlxPoint(14,13), new FlxPoint(14, 18), new FlxPoint(14, 13)), 1);
-            addStairs(14,18);
+            addStairs(13, 19);
+			addStairs(14,19);
     	}
 	}
 }

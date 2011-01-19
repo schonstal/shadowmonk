@@ -23,7 +23,8 @@ package
       addTrap(9,5);
       addTrap(9,9);
       addTrap(10,11);
-      addStairs(16,4);
+      addStairs(17, 4);
+	  addStairs(17, 5);
     }
   }
 }
