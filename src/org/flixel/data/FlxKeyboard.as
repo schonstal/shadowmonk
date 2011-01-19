@@ -216,6 +216,18 @@ package org.flixel.data
 			else o.current = 2;
 			this[o.name] = true;
 		}
+
+        /**
+         * Hack to get around resets between state changes
+         */
+        public function setKeyDown(Key:String):void
+        {
+			var o:Object = _map[_lookup[Key]];
+			if(o == null) return;
+			if(o.current > 0) o.current = 1;
+			else o.current = 2;
+			this[o.name] = true;
+        }
 		
 		/**
 		 * Event handler so FlxGame can toggle keys.

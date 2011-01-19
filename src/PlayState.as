@@ -44,7 +44,7 @@ package
         
         protected var _lightBar:LightBar;
         protected var _deadSprite:DeadSprite;
-        
+
         public function PlayState() {
             super();
 		}
@@ -59,8 +59,9 @@ package
             lyrMessage = new FlxGroup;
             _deadSprite = new DeadSprite();
 
-            //Fresh Sounds
+            //Refresh
             SoundBank.reset();
+            KeyHelper.reset("UP", "DOWN", "LEFT", "RIGHT");
 
             //Initialize vars
             _guards = new Array;
@@ -209,6 +210,7 @@ package
                 
                 FlxG.flash.start(0xaadd0000, 0.5, function():void {
                     FlxG.fade.start(0xff000000, 0.5, function():void { 
+                        KeyHelper.save("UP", "DOWN", "LEFT", "RIGHT");
                         Starter.startLevel();
                     });
                 });
@@ -217,7 +219,7 @@ package
                 _gameOver = true;
             }
         }
-        
+
         public function addEmitter(sprite:FlxEmitter):void {
             lyrWalls.add(sprite);
         }
