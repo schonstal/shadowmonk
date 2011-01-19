@@ -8,7 +8,7 @@ package
 
         protected var _bar:FlxSprite;
         protected var _frame:FlxSprite;
-        protected var _size:Number = 44;
+        protected var _size:Number = 36;
         protected var _shine:Shine;
         protected var _shineAlpha:Number = 0.3;
         protected var _state:PlayState;
@@ -19,7 +19,7 @@ package
         public function LightBar() {
             _state = FlxG.state as PlayState;            
 
-            _bar = new FlxSprite(241, 20);
+            _bar = new FlxSprite(241, 17);
             _bar.createGraphic(1,16,0xffffffff);
             _bar.scrollFactor.x = _bar.scrollFactor.y = 0;
             _bar.origin.x = _bar.origin.y = 0;
@@ -34,7 +34,7 @@ package
             _shine.alpha = _shineAlpha;
             add(_shine);
             
-            _sparkles = new FlxEmitter(296, 28);
+            _sparkles = new FlxEmitter(288, 25);
             _sparkles.createSprites(ImgSparkle, 25, 0, true, 0);
             _sparkles.setXSpeed(-20,20);
             _sparkles.setYSpeed(-20,20);

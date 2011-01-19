@@ -11,15 +11,15 @@ package
 
 		public function LightBarSprite():void
 		{
-    		super(232, 4);
+    		super(232, 1);
             loadGraphic(ImgBar, true, true, 80, 48); 
             scrollFactor.x = scrollFactor.y = 0;
             
             _state = FlxG.state as PlayState;
 
             addAnimation("charging", [0]);
-            addAnimation("full", [1,2,3,4,5,6,7,8], 5);
-            addAnimation("glow", [9]);
+            addAnimation("full", [1,2,3,4,5,6,7,8,9,10,11,12,13,14], 15);
+            addAnimation("glow", [15]);
 		}
 
         override public function update():void
