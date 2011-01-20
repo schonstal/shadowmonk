@@ -80,7 +80,7 @@ package
             
             _state.barScale = _lastLight / _recharge;
 
-            if (FlxG.keys.justPressed("X") && light) {
+            if (FlxG.keys.justPressed("X") && light && !dead) {
                 if(!light.exists && _lastLight >= _recharge) {
                     light.exists = true;
                     SoundBank.play("on");
