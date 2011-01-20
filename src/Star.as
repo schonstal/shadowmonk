@@ -8,7 +8,7 @@ package
 
         public var urgent:Boolean;
 		
-        public function Star(X:Number, Y:Number):void
+        public function Star(X:Number = 0, Y:Number = 0):void
 		{
     		super(X, Y);
             loadGraphic(ImgStar, true, true, 16, 16); 
