@@ -151,10 +151,8 @@ package
         }
         
         protected function addTrap(X:Number, Y:Number):void {
-            var glow:Glow = new Glow(X*16 - 8, Y*16 - 8);
-            _trap = new Trap(X, Y, _map, _player, glow);
+            _trap = new Trap(X, Y, _map, _player);
             lyrWalls.add(_trap);
-            lyrWalls.add(glow);
         }
 
         protected function addStairs(X:Number, Y:Number):void {

@@ -11,7 +11,7 @@ package
         private var _trapped:Boolean = false;
         private var _state:PlayState;
         
-		public function Trap(X:Number, Y:Number, Tiles:FlxTilemap, ThePlayer:Player, glow:Glow):void
+		public function Trap(X:Number, Y:Number, Tiles:FlxTilemap, ThePlayer:Player):void
 		{
             super(X*16,Y*16);
             _state = FlxG.state as PlayState;
