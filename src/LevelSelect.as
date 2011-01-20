@@ -173,7 +173,7 @@ package
                     SoundBank.play("select");
     				FlxG.fade.start(0xff000000, 0.5, function():void { 
                         SoundBank.music("game");
-                        Starter.startLevel() 
+                        Starter.startLevel(); 
                     });
                 } else {
                     SoundBank.play("nope");
