@@ -169,9 +169,12 @@ package
             //Check if the player wants to start the game
             } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
                 if(FlxG.level <= SaveData.completed+1) {
-                    SoundBank.music("game");
+                    FlxG.music.fadeOut(0.5);
                     SoundBank.play("select");
-    				FlxG.fade.start(0xff000000, 0.5, function():void { Starter.startLevel() });
+    				FlxG.fade.start(0xff000000, 0.5, function():void { 
+                        SoundBank.music("game");
+                        Starter.startLevel() 
+                    });
                 } else {
                     SoundBank.play("nope");
                 }

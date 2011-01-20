@@ -50,6 +50,7 @@ package
                 } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
                     _selected = true;
                     SoundBank.play("select");
+                    FlxG.music.fadeOut(0.5);
 
                     if(_current == 1)
                         Starter.levelSelect();
