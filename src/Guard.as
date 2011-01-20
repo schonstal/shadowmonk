@@ -73,7 +73,7 @@ package
         public function checkCapture(Sound:Boolean = true):Boolean {
             var p:FlxPoint;
             if(!_player.dead && distance(x,y,_player.x,_player.y) < 26 && 
-                !_map.ray(x, y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 0.1)) {
+                !_map.ray(x, y, _player.x + _playerOffset.x, _player.y + _playerOffset.y, p, 16)) {
                 if(Sound)
                     SoundBank.play("alert");
                 _state = GuardState.CAPTURE;
