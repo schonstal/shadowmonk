@@ -27,7 +27,7 @@ package
         private var _currentState:PlayState;
         private var _playerOffset:FlxPoint;
         
-        private var _sightSpread:Number = 90;
+        private var _sightSpread:Number = 45;
 
         public var direction:int = 0; //LEFT, RIGHT, UP, DOWN
         public var patrol:Array;
@@ -210,21 +210,21 @@ package
         }
 
         private function spotted():Boolean {
-            var sightAngle:Number = FlxU.getAngle(_player.x - x, _player.y - y);
-            var absoluteAngle:Number = angle - 90;
-            var spread:Number = _sightSpread/2;
-
             switch (direction) {
             case Direction.LEFT:
-                return sightAngle < -180 + spread || sightAngle > 180 - spread;
+                return _player.x < x && _sightAngle < -180 + _sightSpread || _sightAngle > 180 - _sightSpread;
             case Direction.RIGHT:
-                return sightAngle > -spread && sightAngle < spread;
+                return _player.x > x && _sightAngle > -_sightSpread && _sightAngle < _sightSpread;
             case Direction.UP:
-                return sightAngle < -spread && sightAngle > -180 + spread;
+                return _player.y < y && _sightAngle < -_sightSpread && _sightAngle > -180 + _sightSpread;
             case Direction.DOWN:
-                return sightAngle < 180 - spread && sightAngle > spread;
+                return _player.y > y && _sightAngle < 180 - _sightSpread && _sightAngle > _sightSpread;
             }
             return false;
+        }
+
+        private function get _sightAngle():Number {
+            return FlxU.getAngle(_player.x - x, _player.y - y);
         }
     }
 }
