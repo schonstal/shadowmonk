@@ -37,7 +37,7 @@ package
             _currentState = FlxG.state as PlayState;
             _state = GuardState.PATROL;
             patrol = Patrol;
-            super(patrol[0].x*16+4,patrol[0].y*16+4);
+            super(patrol[0].x*16,patrol[0].y*16);
             loadGraphic(ImgGuard, true, true, 16, 16); 
             _map = map;
 
@@ -46,13 +46,8 @@ package
             _player = ThePlayer;
 
             //Adjust how arrow flies
-            _playerOffset = new FlxPoint(-4,-4);
+            _playerOffset = new FlxPoint(8,8);
             
-            width = 8;
-            height = 14;
-            offset.x = 4;
-            offset.y = 2;
-
             addAnimation("normal", [0, 2, 3, 4], 8);
             addAnimation("stopped", [0, 1], 8);
             addAnimation("shooting", [5, 6], 8);
@@ -90,13 +85,13 @@ package
         public function checkShoot(test:Boolean):void {
             velocity.x = 0;
             velocity.y = 0;
-            angle = FlxU.getAngle(_player.x - x, _player.y - 4 - y) + 90;
+            angle = FlxU.getAngle(_player.x - x, _player.y - y) + 90;
             play("shooting");
             if(test) {
                 _sightTimer -= FlxG.elapsed;
                 if(_sightTimer <= 0) {
                     _player.mobile = false;
-                    _currentState.createArrow(x, y, _player.x + _playerOffset.x, _player.y + _playerOffset.y);
+                    _currentState.createArrow(x, y, _player.x-4, _player.y-4);
 //                    _currentState.createArrow(x,y,_player.x,_player.y);
                     _state = GuardState.SHOOTING;
                 }
@@ -196,15 +191,10 @@ package
         
         public function spot():Boolean {
             var p:FlxPoint;
-            var sightAngle:Number = FlxU.getAngle(_player.x - x, _player.y - y);
-            var absoluteAngle:Number = angle - 90;
 
             if(onScreen() && !_player.dead && 
                 spotted() && _player.light.exists && 
-                (_state == GuardState.PATROL?
-                    sightAngle > (absoluteAngle - _sightSpread) && sightAngle < (absoluteAngle + _sightSpread)
-                    :true) &&
-                !_map.ray(x, y, _player.x + _playerOffset.x, 
+                !_map.ray(x+8, y+8, _player.x + _playerOffset.x, 
                     _player.y + _playerOffset.y, p, 1)) {
                 return true;                
             } else {
@@ -220,15 +210,19 @@ package
         }
 
         private function spotted():Boolean {
+            var sightAngle:Number = FlxU.getAngle(_player.x - x, _player.y - y);
+            var absoluteAngle:Number = angle - 90;
+            var spread:Number = _sightSpread/2;
+
             switch (direction) {
-            case 0:
-                return _player.x < x;
-            case 1:
-                return _player.x > x;
-            case 2:
-                return _player.y < y;
-            case 3:
-                return _player.y > y;
+            case Direction.LEFT:
+                return sightAngle < -180 + spread || sightAngle > 180 - spread;
+            case Direction.RIGHT:
+                return sightAngle > -spread && sightAngle < spread;
+            case Direction.UP:
+                return sightAngle < -spread && sightAngle > -180 + spread;
+            case Direction.DOWN:
+                return sightAngle < 180 - spread && sightAngle > spread;
             }
             return false;
         }
