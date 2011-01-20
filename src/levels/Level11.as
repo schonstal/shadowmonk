@@ -20,25 +20,25 @@ package levels
 			addStairs(22, 9);
 			addStairs(22, 10);
 
-            addArrow(3,16,3,3);
-            addArrow(5,15,5,4);
-            addArrow(7,14,7,5);
-            addArrow(9,13,9,6);
-            addArrow(11,12,11,7);
-            addArrow(13,13,13,6);
-            addArrow(15,14,15,5);
-            addArrow(17,15,17,4);
-            addArrow(19,16,19,3);
+            addArrow(3,16,3,3,0.75,1);
+            addArrow(5,15,5,4,0.75,1);
+            addArrow(7,14,7,5,0.75,1);
+            addArrow(9,13,9,6,0.75,1);
+            addArrow(11,12,11,7,0.75,1);
+            addArrow(13,13,13,6,0.75,1);
+            addArrow(15,14,15,5,0.75,1);
+            addArrow(17,15,17,4,0.75,1);
+            addArrow(19,16,19,3,0.75,1);
 
-            addArrow(3,3,3,16);
-            addArrow(5,4,5,15);
-            addArrow(7,5,7,14);
-            addArrow(9,6,9,13);
-            addArrow(11,7,11,12);
-            addArrow(13,6,13,13);
-            addArrow(15,5,15,14);
-            addArrow(17,4,17,15);
-            addArrow(19,3,19,16);
+            addArrow(3,3,3,16,0.75,1);
+            addArrow(5,4,5,15,0.75,1);
+            addArrow(7,5,7,14,0.75,1);
+            addArrow(9,6,9,13,0.75,1);
+            addArrow(11,7,11,12,0.75,1);
+            addArrow(13,6,13,13,0.75,1);
+            addArrow(15,5,15,14,0.75,1);
+            addArrow(17,4,17,15,0.75,1);
+            addArrow(19,3,19,16,0.75,1);
 
             setGoals(7.5, 9, 15);
         }

@@ -146,8 +146,8 @@ package
             _guards.push(_guard);
         }
 
-        protected function addArrow(X:Number, Y:Number, X2:Number, Y2:Number):void { 
-            lyrWalls.add(new ArrowTrap(X, Y, X2, Y2));
+        protected function addArrow(X:Number, Y:Number, X2:Number, Y2:Number, Interval:Number = 0.75, Offset:Number = 1):void { 
+            lyrWalls.add(new ArrowTrap(X, Y, X2, Y2, Interval, Offset));
         }
         
         protected function addTrap(X:Number, Y:Number):void {

@@ -13,12 +13,14 @@ package
         private var _offset:Number = 1;
         private var _started:Boolean = false;
 
-        public function ArrowTrap(X:Number, Y:Number, X2:Number, Y2:Number):void
+        public function ArrowTrap(X:Number, Y:Number, X2:Number, Y2:Number, Interval:Number, Offset:Number):void
         {
             super(X*16, Y*16);
             _state = FlxG.state as PlayState;
             _start = new FlxPoint(X * 16, Y * 16);
             _dest = new FlxPoint(X2 * 16, Y2 * 16);
+            _offset = Offset;
+            _refire = Interval;
         }
 
         override public function update():void
