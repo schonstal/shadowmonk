@@ -23,9 +23,8 @@ package
             add(m);
             FlxG.level = 1;
 
-            addItem(1, "How To Play");
-            addItem(2, "Start Game");
-            addItem(3, "Credits");
+            addItem(1, "Start Game");
+            addItem(2, "Credits");
             SoundBank.music("menu");
 		}
 
