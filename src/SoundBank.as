@@ -20,10 +20,10 @@ package
         [Embed(source="../data/Sound_package.swf", symbol="Amulet_off.wav")] public var AmuletOff:Class;
         
         //Music
-        [Embed(source="../data/Music/credits.mp3")] public var CreditsMusic:Class;
-        [Embed(source="../data/Music_package.swf", symbol="game.wav")] public var GameMusic:Class;
-        [Embed(source="../data/Music/intro.mp3")] public var IntroMusic:Class;
-        [Embed(source="../data/Music/level_select.mp3")] public var LevelSelectMusic:Class;
+        [Embed(source="../data/Music_package.swf", symbol="shadow_menu.wav")] public var CreditsMusic:Class;
+        [Embed(source="../data/Music_package.swf", symbol="shadow_gameplay.wav")] public var GameMusic:Class;
+        [Embed(source="../data/Music_package.swf", symbol="shadow_menu.wav")] public var MenuMusic:Class;
+        [Embed(source="../data/Music_package.swf", symbol="shadow_menu.wav")] public var LevelSelectMusic:Class;
 
         protected static var _instance:SoundBank;
         
@@ -32,11 +32,11 @@ package
         public var fader:Number = 1;
         public var music:Object;
 
-        public var musicVol:Number = 0.0;
-        public var sfxVol:Number = 1.0;
+        public var musicVol:Number = 1.0;
+        public var sfxVol:Number = 0.3;
 
-        public var musicVolOrig:Number = 0.0;
-        public var sfxVolOrig:Number = 1.0;
+        public var musicVolOrig:Number = 1.0;
+        public var sfxVolOrig:Number = 0.3;
 
         public static function get instance():SoundBank {
             if(_instance == null)
@@ -97,7 +97,7 @@ package
 
             loadMusic("credits", instance.CreditsMusic);
             loadMusic("game", instance.GameMusic);
-            loadMusic("intro", instance.IntroMusic);
+            loadMusic("menu", instance.MenuMusic);
             loadMusic("level_select", instance.LevelSelectMusic);
         }
         

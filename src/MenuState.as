@@ -26,6 +26,7 @@ package
             addItem(1, "How To Play");
             addItem(2, "Start Game");
             addItem(3, "Credits");
+            SoundBank.music("menu");
 		}
 
         override public function update():void
