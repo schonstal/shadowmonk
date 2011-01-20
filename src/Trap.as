@@ -4,10 +4,9 @@ package
 
 	public class Trap extends FlxSprite
 	{
-        [Embed(source='../data/Trap_pitfall.png')] private var ImgPit:Class;
+        [Embed(source='../data/Trap_kill.png')] private var ImgGlow:Class;
 
         private var _player:Player;
-        private var _glow:Glow;
         private var _map:FlxTilemap;
         private var _trapped:Boolean = false;
         private var _state:PlayState;
@@ -16,22 +15,21 @@ package
 		{
             super(X*16,Y*16);
             _state = FlxG.state as PlayState;
-            loadGraphic(ImgPit, true, true, 16, 16); 
+			
+            blend = "add";
+
+            loadGraphic(ImgGlow, true, true, 16, 16); 
+
+            addAnimation("normal", [0]);
+            addAnimation("glow", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15);
 
             _player = ThePlayer;
-            _glow = glow;
             _map = Tiles;
             
             width = 16;
             height = 16;
-            offset.x = 0;
-            offset.y = 0;
 
             fixed = true;
-
-            addAnimation("normal", [0]);
-            addAnimation("open", [1, 2, 3, 4, 5, 6], 12, false);
-            addAnimation("black", [6]);
 		}
 
         override public function update():void
@@ -44,9 +42,9 @@ package
             }
 
             if( _player.light.exists && (distance(x,y,_player.x,_player.y) < 30) || _trapped) {
-                _glow.exists = true;
+                play("glow");
             } else {
-                _glow.exists = false;
+                play("normal");
             }
             
             super.update();
