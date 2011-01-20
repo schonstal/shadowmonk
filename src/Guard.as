@@ -195,7 +195,7 @@ package
             if(onScreen() && !_player.dead && 
                 spotted() && _player.light.exists && 
                 !_map.ray(x+8, y+8, _player.x + _playerOffset.x, 
-                    _player.y + _playerOffset.y, p, 1)) {
+                    _player.y + _playerOffset.y, p, 16)) {
                 return true;                
             } else {
                 _sightTimer = _sightLimit;
