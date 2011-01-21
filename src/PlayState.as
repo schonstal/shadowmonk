@@ -154,6 +154,10 @@ package
             _trap = new Trap(X, Y, _map, _player);
             lyrWalls.add(_trap);
         }
+        
+        protected function addForceField(X:Number, Y:Number):void {
+            lyrWalls.add(new ForceField(X, Y, _map, _player));
+        }
 
         protected function addStairs(X:Number, Y:Number):void {
             var stairs:Stairs = new Stairs(X, Y, _player);

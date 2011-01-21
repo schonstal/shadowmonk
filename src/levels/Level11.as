@@ -29,6 +29,16 @@ package levels
             addArrow(15,14,15,5,0.75,1);
             addArrow(17,15,17,4,0.75,1);
             addArrow(19,16,19,3,0.75,1);
+            
+            addForceField(3,11);
+            addForceField(5,11);
+            addForceField(7,11);
+            addForceField(9,11);
+            addForceField(11,11);
+            addForceField(13,11);
+            addForceField(15,11);
+            addForceField(17,11);
+            addForceField(19,11);
 
             addArrow(3,3,3,16,0.75,1);
             addArrow(5,4,5,15,0.75,1);
@@ -39,6 +49,16 @@ package levels
             addArrow(15,5,15,14,0.75,1);
             addArrow(17,4,17,15,0.75,1);
             addArrow(19,3,19,16,0.75,1);
+            
+            addForceField(3,8);
+            addForceField(5,8);
+            addForceField(7,8);
+            addForceField(9,8);
+            addForceField(11,8);
+            addForceField(13,8);
+            addForceField(15,8);
+            addForceField(17,8);
+            addForceField(19,8);
 
             setGoals(7.5, 9, 15);
         }
