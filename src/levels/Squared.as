@@ -17,6 +17,8 @@ package levels
         public override function initialize():void {
             _player = new Player(8, 9, Direction.RIGHT);
 			
+			barActive = false;
+			
 			addArrow(10, 4, 10, 10, 1, 0.8);
 			
 			addForceField(11, 9);
