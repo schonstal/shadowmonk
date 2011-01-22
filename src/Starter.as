@@ -10,6 +10,7 @@ package
 			Squared,
 			ZigZag,
 			Pachinko,
+			Intersection,
 			Level01, 
             Level02,
             Level03,
