@@ -32,6 +32,9 @@ package
         //Hold-to-scroll interval
         private var _scrollTimer:Number;
         private var _scrollInterval:Number = 0.05;
+		
+		//Make sure the player can't select after a level has already been selected
+		private var _selected:Boolean = false;
 
         //First displayed item on the list
         private var _window:Number = 1;
@@ -139,46 +142,49 @@ package
             //Allow the player to scroll if they haven't recently
             _scrollTimer += FlxG.elapsed;
 
-            //Check if the player is holding down or up
-            if(FlxG.keys.DOWN)
-                _holdTimer -= FlxG.elapsed;
-            if(FlxG.keys.UP)
-                _holdTimer += FlxG.elapsed;
-            if(!FlxG.keys.UP && !FlxG.keys.DOWN)
-                _holdTimer = 0;
+			if(!_selected) {
+				//Check if the player is holding down or up
+				if(FlxG.keys.DOWN)
+					_holdTimer -= FlxG.elapsed;
+				if(FlxG.keys.UP)
+					_holdTimer += FlxG.elapsed;
+				if(!FlxG.keys.UP && !FlxG.keys.DOWN)
+					_holdTimer = 0;
 
-            //If you just pressed UP or if you've been holding it, scroll up
-            if(FlxG.keys.justPressed("UP") || 
-                    _holdTimer > _holdInterval && 
-                    _scrollTimer >= _scrollInterval) {
-                if(FlxG.level > 1) {
-                    moveCursor(FlxG.level - 1);
-                //Don't loop the cursor when the key is held
-                } else if(_holdTimer < _holdInterval) {
-                    moveCursor(Starter.levels);
-                }
-            //See if the player wants to go down
-            } else if(FlxG.keys.justPressed("DOWN") || 
-                    _holdTimer < -_holdInterval && 
-                    _scrollTimer >= _scrollInterval) {
-                if(FlxG.level < Starter.levels) {
-                    moveCursor(FlxG.level + 1);
-                } else if(_holdTimer > -_holdInterval) {
-                    moveCursor(1);
-                }
-            //Check if the player wants to start the game
-            } else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
-                if(FlxG.level <= SaveData.completed+1) {
-                    FlxG.music.fadeOut(0.5);
-                    SoundBank.play("select");
-    				FlxG.fade.start(0xff000000, 0.5, function():void { 
-                        SoundBank.music("game");
-                        Starter.startLevel(); 
-                    });
-                } else {
-                    SoundBank.play("nope");
-                }
-            }
+				//If you just pressed UP or if you've been holding it, scroll up
+				if(FlxG.keys.justPressed("UP") || 
+						_holdTimer > _holdInterval && 
+						_scrollTimer >= _scrollInterval) {
+					if(FlxG.level > 1) {
+						moveCursor(FlxG.level - 1);
+					//Don't loop the cursor when the key is held
+					} else if(_holdTimer < _holdInterval) {
+						moveCursor(Starter.levels);
+					}
+				//See if the player wants to go down
+				} else if(FlxG.keys.justPressed("DOWN") || 
+						_holdTimer < -_holdInterval && 
+						_scrollTimer >= _scrollInterval) {
+					if(FlxG.level < Starter.levels) {
+						moveCursor(FlxG.level + 1);
+					} else if(_holdTimer > -_holdInterval) {
+						moveCursor(1);
+					}
+				//Check if the player wants to start the game
+				} else if(FlxG.keys.justPressed("X") || FlxG.keys.justPressed("ENTER")) {
+					if (FlxG.level <= SaveData.completed + 1) {
+						_selected = true;
+						FlxG.music.fadeOut(0.5);
+						SoundBank.play("select");
+						FlxG.fade.start(0xff000000, 0.5, function():void { 
+							SoundBank.music("game");
+							Starter.startLevel(); 
+						});
+					} else {
+						SoundBank.play("nope");
+					}
+				}
+			}
             
 		}
         
