@@ -11,6 +11,7 @@ package
 
         private var _trapped:Boolean = false;
         private var _wasTrapped:Boolean = false;
+		private var _outerBox:FlxObject;
 
         private var _state:PlayState;
         
@@ -33,17 +34,23 @@ package
             
             width = 16;
             height = 16;
+			
+			_outerBox = new FlxObject(x - 1, y - 1, 18, 18);
 
             fixed = true;
 		}
 
         override public function update():void
         {
-            if(collide(_player) || (_player.light.exists && (distance(x,y,_player.x,_player.y) < 30))) {
+			var show:Boolean = false;
+			FlxU.overlap(_player, _outerBox, function():void { show = true; } );
+            if(show || (_player.light.exists && (distance(x,y,_player.x,_player.y) < 30))) {
                 play("glow");
             } else {
                 play("normal");
             }
+			
+			collide(_player);
             
             super.update();
         }
