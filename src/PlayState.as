@@ -162,7 +162,7 @@ package
 
         protected function addStairs(X:Number, Y:Number):void {
             var stairs:Stairs = new Stairs(X, Y, _player);
-            lyrSprites.add(stairs);
+            lyrWalls.add(stairs);
         }
 
         //Just makes it easier for level designers...
