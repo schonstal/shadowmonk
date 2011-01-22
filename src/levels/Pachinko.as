@@ -17,6 +17,8 @@ package levels
         public override function initialize():void {
             _player = new Player(2, 8, Direction.RIGHT);
 			
+			barActive = false;
+			
 			//Top arrow traps
 			addArrow(4, 2, 4, 10, 2, 0.5);
 			addArrow(8, 2, 8, 12, 2, 0.8);
