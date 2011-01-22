@@ -61,7 +61,6 @@ package
 
             //Refresh
             SoundBank.reset();
-            KeyHelper.reset("UP", "DOWN", "LEFT", "RIGHT");
 
             //Initialize vars
             _guards = new Array;
@@ -212,7 +211,6 @@ package
                 
                 FlxG.flash.start(0xaadd0000, 1, function():void {
                     FlxG.fade.start(0xff000000, 0.5, function():void { 
-                        KeyHelper.save("UP", "DOWN", "LEFT", "RIGHT");
                         Starter.startLevel();
                     });
                 });

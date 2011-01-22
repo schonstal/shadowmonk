@@ -162,7 +162,7 @@ package org.flixel
 			//Basic reset stuff
 			FlxG.panel.hide();
 			FlxG.unfollow();
-			FlxG.resetInput();
+			//FlxG.resetInput();
 			FlxG.destroySounds();
 			FlxG.flash.stop();
 			FlxG.fade.stop();
@@ -249,7 +249,7 @@ package org.flixel
 		internal function unpauseGame():void
 		{
 			if(!FlxG.panel.visible) flash.ui.Mouse.hide();
-			FlxG.resetInput();
+			//FlxG.resetInput();
 			_paused = false;
 			stage.frameRate = _framerate;
 		}
