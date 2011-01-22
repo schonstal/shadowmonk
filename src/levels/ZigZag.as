@@ -20,11 +20,11 @@ package levels
 			barActive = false;
 			
 			//Top arrow traps
-			addArrow(7, 3, 7, 9, 1.2, 0.32);
-			addArrow(11, 3, 11, 9, 1.2, 0.92);
+			addArrow(7, 3, 7, 9, 1.2, 0.3);
+			addArrow(11, 3, 11, 9, 1.2, 0.9);
 			//Bottom arrow traps
-			addArrow(9, 11, 9, 5, 1.2, 0.62);
-			addArrow(13, 11, 13, 5, 1.2, 1.22);
+			addArrow(9, 11, 9, 5, 1.2, 0.6);
+			addArrow(13, 11, 13, 5, 1.2, 1.2);
 			
 			addForceField(8, 6);
 			addForceField(10, 8);
