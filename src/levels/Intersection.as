@@ -19,7 +19,9 @@ package levels
 			
 			barActive = false;
 			
-			addArrow(10, 1, 10, 12, 0.5, 0.5);
+			addArrow(10, 1, 10, 12, 1, 1);
+			
+			addKey(8, 9, new FlxPoint(11, 7), new FlxPoint(10, 9));
 			
 			addForceField(10, 3);
 			addForceField(11, 4);

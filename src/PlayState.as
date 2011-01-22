@@ -164,6 +164,18 @@ package
             var stairs:Stairs = new Stairs(X, Y, _player);
             lyrWalls.add(stairs);
         }
+		
+		protected function addKey(X:Number, Y:Number, ... Locks):void {
+			var lock:Object;
+			var lockArray:Array = new Array();
+			for each (lock in Locks) {
+				if (lock is FlxPoint) {
+					lockArray[lockArray.length] = lock;
+				}
+			}
+			var keyGroup:KeyGroup = new KeyGroup(_player, new FlxPoint(X, Y), lockArray);
+			lyrWalls.add(keyGroup);
+		}
 
         //Just makes it easier for level designers...
         protected function setGoals(One:Number, Two:Number, Three:Number):void {
