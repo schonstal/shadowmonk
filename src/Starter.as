@@ -6,7 +6,9 @@ package
 	public class Starter
 	{
         private static var levelClasses:Array = [
-            Level01, 
+			Welcome,
+			Squared,
+			Level01, 
             Level02,
             Level03,
             Level04,
