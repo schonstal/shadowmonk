@@ -8,6 +8,8 @@ package
         private static var levelClasses:Array = [
 			Welcome,
 			Squared,
+			ZigZag,
+			Pachinko,
 			Level01, 
             Level02,
             Level03,
