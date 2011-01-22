@@ -15,26 +15,26 @@ package levels
         }
 
         public override function initialize():void {
-            _player = new Player(4, 5, Direction.RIGHT);
+            _player = new Player(5, 6, Direction.RIGHT);
 			
 			//Top arrow traps
-			addArrow(6, 2, 6, 8, 1.2, 0.35);
-			addArrow(10, 2, 10, 8, 1.2, 0.95);
+			addArrow(7, 3, 7, 9, 1.2, 0.32);
+			addArrow(11, 3, 11, 9, 1.2, 0.92);
 			//Bottom arrow traps
-			addArrow(8, 10, 8, 4, 1.2, 0.65);
-			addArrow(12, 10, 12, 4, 1.2, 1.25);
+			addArrow(9, 11, 9, 5, 1.2, 0.62);
+			addArrow(13, 11, 13, 5, 1.2, 1.22);
 			
-			addForceField(7, 5);
-			addForceField(9, 7);
-			addForceField(11, 5);
+			addForceField(8, 6);
+			addForceField(10, 8);
+			addForceField(12, 6);
 			//Top arrow chutes
-			addForceField(6, 4);
-			addForceField(10, 4);
+			addForceField(7, 5);
+			addForceField(11, 5);
 			//Bottom arrow chutes
-			addForceField(8, 8);
-			addForceField(12, 8);
+			addForceField(9, 9);
+			addForceField(13, 9);
 			
-            addStairs(14, 7);
+            addStairs(15, 8);
 		}
 	}
 }

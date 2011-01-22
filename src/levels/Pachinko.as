@@ -15,44 +15,44 @@ package levels
         }
 
         public override function initialize():void {
-            _player = new Player(1, 7, Direction.RIGHT);
+            _player = new Player(2, 8, Direction.RIGHT);
 			
 			//Top arrow traps
-			addArrow(3, 1, 3, 9, 2, 0.5);
-			addArrow(7, 1, 7, 11, 2, 0.8);
-			addArrow(11, 1, 11, 11, 2, 1.1);
-			addArrow(15, 1, 15, 9, 2, 1.4);
+			addArrow(4, 2, 4, 10, 2, 0.5);
+			addArrow(8, 2, 8, 12, 2, 0.8);
+			addArrow(12, 2, 12, 12, 2, 1.1);
+			addArrow(16, 2, 16, 10, 2, 1.4);
 			//Bottom arrow traps
-			addArrow(5, 13, 5, 4, 2, 0.65);
-			addArrow(9, 13, 9, 3, 2, 0.95);
-			addArrow(13, 13, 13, 4, 2, 1.25);
+			addArrow(6, 14, 6, 5, 2, 0.65);
+			addArrow(10, 14, 10, 4, 2, 0.95);
+			addArrow(14, 14, 14, 5, 2, 1.25);
 			
 			//Top force fields
-			addForceField(4, 6);
-			addForceField(6, 5);
-			addForceField(8, 4);
-			addForceField(10, 4);
-			addForceField(12, 5);
+			addForceField(5, 7);
+			addForceField(7, 6);
+			addForceField(8, 5);
+			addForceField(11, 5);
+			addForceField(13, 6);
 			//Bottom force fields
-			addForceField(6, 9);
-			addForceField(8, 10);
-			addForceField(10, 10);
-			addForceField(14, 8);
-			//Middle force fields
-			addForceField(8, 6);
-			addForceField(10, 8);
-			addForceField(12, 7);
-			//Top arrow chutes
-			addForceField(3, 5);
-			addForceField(7, 3);
-			addForceField(11, 3);
-			addForceField(15, 5);
-			//Bottom arrow chutes
-			addForceField(5, 10);
+			addForceField(7, 10);
 			addForceField(9, 11);
-			addForceField(13, 10);
+			addForceField(11, 11);
+			addForceField(15, 9);
+			//Middle force fields
+			addForceField(9, 7);
+			addForceField(11, 9);
+			addForceField(13, 8);
+			//Top arrow chutes
+			addForceField(4, 6);
+			addForceField(8, 4);
+			addForceField(12, 4);
+			addForceField(16, 6);
+			//Bottom arrow chutes
+			addForceField(6, 11);
+			addForceField(10, 12);
+			addForceField(14, 11);
             
-			addStairs(17, 7);
+			addStairs(18, 8);
 		}
 	}
 }
