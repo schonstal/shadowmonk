@@ -39,10 +39,12 @@ package
             addAnimation("stopped", [0]);
 
             _direction = Heading;
+			
 		}
 
         override public function update():void
-        {
+        {	
+			//Check input for player movement
             if (mobile) {
                 if (FlxG.keys.LEFT) {
                     _direction = LEFT;
@@ -67,11 +69,16 @@ package
                 velocity.x = 0;
                 velocity.y = 0;
             }
-
+			
+			//Check if the light is disabled
+			if (!_state.barActive)
+				_lastLight = 0.001;
+				
+			//Recharge the light
             if(light && light.exists) {
                 _lastLight = 0;
             } else {
-                if(_lastLight < _recharge)
+                if(_lastLight < _recharge && _state.barActive)
                     _lastLight += FlxG.elapsed;
             }
             

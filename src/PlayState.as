@@ -32,7 +32,9 @@ package
 
         protected var _gameOver:Boolean = false;
 
+		public var barActive:Boolean = true;
         public var barScale:Number = 1;
+		
         public var debug:FlxText;
 		
         public static var lyrStage:FlxGroup;
