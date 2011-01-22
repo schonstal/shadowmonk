@@ -32,7 +32,7 @@ package levels
 			//Top force fields
 			addForceField(5, 7);
 			addForceField(7, 6);
-			addForceField(8, 5);
+			addForceField(9, 5);
 			addForceField(11, 5);
 			addForceField(13, 6);
 			//Bottom force fields
