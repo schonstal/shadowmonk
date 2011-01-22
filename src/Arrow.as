@@ -47,7 +47,7 @@ package
             var emberSpread:Number = 0.17;
             //% of arrow velocity
             var emberSpeed:Number = 0.05;
-            var arrowSpeed:Number = 400;
+            var arrowSpeed:Number = 300;
             var emberMin:FlxPoint = new FlxPoint();
             var emberMax:FlxPoint = new FlxPoint();
             
