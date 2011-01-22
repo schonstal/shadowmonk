@@ -18,7 +18,12 @@ package
             _state = FlxG.state as PlayState;
 			_key = new FlxSprite(KeyLocation.x * 16, KeyLocation.y * 16);
 			_key.loadGraphic(ImgKey, true, false, 16, 16);
-			_key.width = _key.height = 16;
+			_key.width = 6;
+			_key.height = 10;
+			_key.offset.x = 5;
+			_key.x += _key.offset.x;
+			_key.offset.y = 3;
+			_key.y += _key.offset.y;
 			_key.fixed = true;
 			add(_key);
 			
