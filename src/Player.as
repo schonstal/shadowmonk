@@ -116,6 +116,7 @@ package
         }
 
         public function die():void {
+			SoundBank.play("trap");
             SoundBank.play("explode");
             var state:PlayState = FlxG.state as PlayState;
             _blood = new FlxEmitter(x, y);

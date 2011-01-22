@@ -35,7 +35,6 @@ package
         override public function update():void
         {
             if(collide(_player)) {
-                SoundBank.play("trap");
                 _player.mobile = false;
                 _trapped = true;
                 _state.dead("trap");
