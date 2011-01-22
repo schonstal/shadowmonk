@@ -19,10 +19,10 @@ package levels
 			
 			//Top arrow traps
 			addArrow(6, 2, 6, 8, 1.2, 0.35);
-			addArrow(10, 2, 10, 8, 1.2, 0.85);
+			addArrow(10, 2, 10, 8, 1.2, 0.95);
 			//Bottom arrow traps
-			addArrow(8, 10, 8, 4, 1.2, 0.6);
-			addArrow(12, 10, 12, 4, 1.2, 1.1);
+			addArrow(8, 10, 8, 4, 1.2, 0.65);
+			addArrow(12, 10, 12, 4, 1.2, 1.25);
 			
 			addForceField(7, 5);
 			addForceField(9, 7);
