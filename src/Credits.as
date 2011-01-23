@@ -54,7 +54,7 @@ package
             }
 		}
 
-        private function addText(text:String, gap:Boolean = false, left:Boolean = true):void {
+        private function addText(text:String, gap:Boolean = false, left:Boolean = true, color:Number = 0xffffffff):void {
             var addAmount:Number = (gap?30:12);
             if(left)
                 _location.x += addAmount;
@@ -65,6 +65,7 @@ package
 			t = new FlxText((left?0:FlxG.width/2),(left?_location.x:_location.y),FlxG.width/2,text);
 			t.alignment = "center";
             t.setFormat("SNES");
+			t.color = color;
             add(t);
         }
 	}
