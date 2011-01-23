@@ -21,17 +21,12 @@ package levels
 			
 			addArrow(10, 2, 10, 20, 1.75, 1.75);
 			
-			addKey(13, 15, new FlxPoint(7, 13));
-			addKey(7, 12, new FlxPoint(13, 10));
-			addKey(13, 9, new FlxPoint(7, 7));
-			addKey(7, 6, new FlxPoint(10, 4));
-			addKey(11, 20, new FlxPoint(13, 16));
+			addKey(6, 8, new FlxPoint(10, 4));
+			addKey(14, 11, new FlxPoint(7, 8));
+			addKey(6, 14, new FlxPoint(13, 11));
+			addKey(12, 17, new FlxPoint(7, 14));
+			addKey(10, 21, new FlxPoint(11, 17));
 			
-			addForceField(9, 3);
-			addForceField(7, 5);
-			addForceField(13, 8);
-			addForceField(7, 11);
-			addForceField(13, 14);
 			addForceField(10, 6);
 			addForceField(10, 7);
 			addForceField(10, 9);
@@ -40,9 +35,8 @@ package levels
 			addForceField(10, 13);
 			addForceField(10, 15);
 			addForceField(10, 16);
-			addForceField(11, 19);
 			
-            addStairs(9, 2);
+            addStairs(10, 1);
 		}
 	}
 }
