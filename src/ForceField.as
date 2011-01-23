@@ -50,7 +50,7 @@ package
                 play("normal");
             }
 			
-			//collide(_player);
+			collide(_player);
             
             super.update();
         }
