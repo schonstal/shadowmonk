@@ -32,10 +32,10 @@ package
             addAnimation("normal", [1, 0, 3, 0], 8);
             addAnimation("stopped", [0]);
 			
-			width = 10;
-			height = 10;
-			offset.x = 3;
-			offset.y = 3;
+			width = 8;
+			height = 8;
+			offset.x = 4;
+			offset.y = 4;
 
             _direction = Heading;
 			
