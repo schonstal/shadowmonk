@@ -15,7 +15,6 @@ package levels
         }
 
         public override function initialize():void {
-            FlxG.level = 1;
             _player = new Player(3,13,2);
             addGuard(new Array(new FlxPoint(3, 9), new FlxPoint (23, 9)), 1);
 			addTrap(9,12);
