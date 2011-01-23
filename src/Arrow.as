@@ -17,21 +17,31 @@ package
         
         public var light:Light;
 
-        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, ThePlayer:Player, Big:Boolean):void
-        {
-            super(X + 6.5, Y);
+        public function Arrow(X:Number, Y:Number, X2:Number, Y2:Number, ThePlayer:Player, Big:Boolean, Horizontal:Boolean = false):void
+        {			
+            super(X, Y);
             loadGraphic(ImgArrow, true, true, 16, 16);
+			
+			if(Horizontal) {
+				width = 16;
+				height = 4;
+				offset.y = 6;
+				offset.x = 0;
+			} else {
+				width = 4;
+				height = 16;
+				offset.x = 6;
+				offset.y = 0;
+			}
+			
+			x += offset.x;
+			y += offset.y;
            
             _start = new FlxPoint(x, y);
-            _dest = new FlxPoint(X2 + 6.5, Y2);
+            _dest = new FlxPoint(X2 + offset.x, Y2 + offset.y);
             _state = FlxG.state as PlayState;
             _player = ThePlayer;
             _big = Big;
-
-            width = 3;
-            height = 16;
-            
-            offset.x = 6.5;
 
             fixed = true;
             
@@ -94,7 +104,7 @@ package
             //Randomize frequency :)
             _embers.update();
             _embers.x = x + 8 - offset.x;
-            _embers.y = y + 8;
+            _embers.y = y + 8 - offset.y;
             //Is there a normal collide?
             if(!dead && !_player.dead && (collide(_player) || _big && distance(x,y,_player.x,_player.y) < 20)) {
                 _state.dead("SHOT BY AN ARROW");

@@ -147,8 +147,8 @@ package
             _guards.push(_guard);
         }
 
-        protected function addArrow(X:Number, Y:Number, X2:Number, Y2:Number, Interval:Number = 0.75, Offset:Number = 1):void { 
-            lyrWalls.add(new ArrowTrap(X, Y, X2, Y2, Interval, Offset));
+        protected function addArrow(X:Number, Y:Number, X2:Number, Y2:Number, Interval:Number = 0.75, Offset:Number = 1, Horizontal:Boolean = false):void { 
+            lyrWalls.add(new ArrowTrap(X, Y, X2, Y2, Interval, Offset, Horizontal));
         }
         
         protected function addTrap(X:Number, Y:Number):void {
@@ -210,8 +210,8 @@ package
 
         }
 
-        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true):Arrow {
-            var arrow:Arrow = new Arrow(X, Y, X2, Y2, _player, Big);
+        public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true, Horizontal:Boolean = false):Arrow {
+            var arrow:Arrow = new Arrow(X, Y, X2, Y2, _player, Big, Horizontal);
             arrow.refire();
             arrow.light = new Light(arrow);
             lyrSprites.add(arrow);
