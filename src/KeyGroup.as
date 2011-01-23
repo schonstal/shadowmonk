@@ -5,7 +5,6 @@ package
     public class KeyGroup extends FlxGroup
     {
         [Embed(source = "../data/key.png")] private var ImgKey:Class;
-		[Embed(source = "../data/Lock.png")] private var ImgLock:Class;
 
 		protected var _state:PlayState;
         protected var _key:FlxSprite;
@@ -32,10 +31,7 @@ package
 			var lock:Object;
 			for each(lock in Locks) {
 				if (lock is FlxPoint) {
-					var newLock:FlxSprite = new FlxSprite(lock.x * 16, lock.y * 16);
-					newLock.loadGraphic(ImgLock, true, false, 16, 16);
-					newLock.width = newLock.height = 16;
-					newLock.fixed = true;
+					var newLock:Lock = new Lock(lock.x, lock.y);
 					_locks.add(newLock);
 				}
 			}
