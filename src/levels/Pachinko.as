@@ -6,7 +6,7 @@ package levels
 	{
         [Embed(source = '../../data/Levels/Pachinko/Ground.txt', mimeType = "application/octet-stream")] private var Ground:Class;
         [Embed(source = '../../data/Levels/Pachinko/Wall.txt', mimeType = "application/octet-stream")] private var Wall:Class;
-        public static var title:String = "Pachinko";
+        public static var title:String = "Follow The Leader";
 
         public function Pachinko() {
             GroundMap = Ground;

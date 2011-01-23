@@ -6,7 +6,7 @@ package levels
 	{
         [Embed(source = '../../data/Levels/Serpentine/Ground.txt', mimeType = "application/octet-stream")] private var Ground:Class;
         [Embed(source = '../../data/Levels/Serpentine/Wall.txt', mimeType = "application/octet-stream")] private var Wall:Class;
-        public static var title:String = "Serpentine";
+        public static var title:String = "We Meet Again";
 
         public function Serpentine() {
             GroundMap = Ground;
