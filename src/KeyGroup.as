@@ -48,6 +48,7 @@ package
             super.update();
 			FlxU.collide(_locks, _player);
 			if (FlxU.collide(_key, _player)) {
+				FlxG.flash.start(0x55ff9900, 0.3);
 				_locks.exists = false;
 				_key.exists = false;
 				SoundBank.play("select");
