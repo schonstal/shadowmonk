@@ -6,6 +6,7 @@ package
 	public class Starter
 	{
         private static var levelClasses:Array = [
+			Look,
 			Welcome,
 			Squared,
 			ZigZag,
