@@ -19,7 +19,7 @@ package levels
 			
 			barActive = false;
 			
-			addArrow(10, 1, 10, 12, .75, .75);
+			addArrow(10, 1, 10, 12, .8, .8);
 			
 			addKey(8, 9, new FlxPoint(11, 7), new FlxPoint(11, 9));
 			addKey(12, 4, new FlxPoint(12, 8));
