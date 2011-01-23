@@ -19,7 +19,7 @@ package levels
 			
 			barActive = false;
 			
-			addForceField(9, 9);
+			addForceField(9, 9, false, false);
 			
             addStairs(10, 9);
 		}
