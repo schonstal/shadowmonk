@@ -55,8 +55,6 @@ package
                     if(_current == 1)
                         Starter.levelSelect();
                     else if(_current == 2)
-                        Starter.levelSelect();
-                    else if(_current == 3)
                         FlxG.fade.start(0xff000000,0.5,function():void { FlxG.state = new Credits() });
                 }
             }

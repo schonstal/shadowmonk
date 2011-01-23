@@ -10,37 +10,36 @@ package
 		{
             SoundBank.music("credits");
             _location = new FlxPoint;
-            _location.x = _location.y = 36;
+            _location.x = _location.y = 20;
 
 			var t:FlxText;
-			t = new FlxText(0,10,FlxG.width,"CONGRATULATIONS");
+			t = new FlxText(0,10,FlxG.width,"CREDITS");
 			t.alignment = "center";
             t.setFormat("SNES");
 			t.size = 16;
             add(t);
 			
-			t = new FlxText(0,36,FlxG.width,"You Beat the Whole Game!");
-			t.alignment = "center";
-            t.setFormat("SNES");
-            add(t);
-            
-            addText("PROGRAMMING", true);
-            addText("Josh Schonstal");
+            addText("JOSH SCHONSTAL", true);
+            addText("Programming");
+			addText("Game Design");
 
-            addText("ART", true);
-            addText("Ian Brock");
+            addText("IAN BROCK", true);
+            addText("Art");
+			addText("Sound");
+			addText("Game Desgin");
             
-            addText("LEVEL DESIGN", true);
-            addText("Patrick Wren");
+            addText("PATRICK WREN", true);
+            addText("Game Design");
 
-            addText("MUSIC", true, false);
-            addText("None Yet :(", false, false);
+            addText("GUERIN MCMURRY", true, false);
+            addText("Music", false, false);
 
             addText("SPECIAL THANKS", true, false);
             addText("Brooks Harrel", false, false);
             addText("Corvus Elrod", false, false);
+			addText("Kevin Purdy", false, false);
 			
-            t = new FlxText(FlxG.width/2-100,FlxG.height-20,200,"Press C to Select a Level");
+            t = new FlxText(FlxG.width/2-150,FlxG.height-20,300,"Press X to Return to the Main Menu");
 			t.alignment = "center";
             t.setFormat("SNES");
 			add(t);
@@ -49,13 +48,14 @@ package
 		override public function update():void
 		{
 			super.update();
-            if (FlxG.keys.justPressed("C") || FlxG.keys.justPressed("X")) {
-                FlxG.state = new LevelSelect();
+            if (FlxG.keys.justPressed("ENTER") || FlxG.keys.justPressed("X")) {
+				FlxG.music.fadeOut(0.5);
+                FlxG.fade.start(0xff000000, 0.5, function():void { FlxG.state = new MenuState(); } );
             }
 		}
 
         private function addText(text:String, gap:Boolean = false, left:Boolean = true):void {
-            var addAmount:Number = (gap?36:12);
+            var addAmount:Number = (gap?30:12);
             if(left)
                 _location.x += addAmount;
             else
