@@ -156,8 +156,11 @@ package
             lyrWalls.add(_trap);
         }
         
-        protected function addForceField(X:Number, Y:Number):void {
-            lyrWalls.add(new ForceField(X, Y, _map, _player));
+        protected function addForceField(X:Number, Y:Number, collideTop:Boolean = true, collideBottom:Boolean = true):void {
+			var ff:ForceField = new ForceField(X, Y, _map, _player);
+			ff.collideBottom = collideBottom;
+			ff.collideTop = collideTop;
+            lyrWalls.add(ff);
         }
 
         protected function addStairs(X:Number, Y:Number):void {
