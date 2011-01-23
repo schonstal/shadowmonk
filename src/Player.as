@@ -27,23 +27,22 @@ package
     		super(X*16+4,Y*16+4);
             loadGraphic(ImgPlayer, true, true, 16, 16); 
 
-            //bounding box tweaks
-            width = 8;
-            height = 8;
-            offset.x = 4;
-            offset.y = 4;
-
             _state = FlxG.state as PlayState;
 
             addAnimation("normal", [1, 0, 3, 0], 8);
             addAnimation("stopped", [0]);
+			
+			width = 10;
+			height = 10;
+			offset.x = 3;
+			offset.y = 3;
 
             _direction = Heading;
 			
 		}
 
         override public function update():void
-        {	
+        {			
 			//Check input for player movement
             if (mobile) {
                 if (FlxG.keys.LEFT) {
