@@ -6,7 +6,7 @@ package levels
 	{
         [Embed(source = '../../data/Levels/Look/Ground.txt', mimeType = "application/octet-stream")] private var Ground:Class;
         [Embed(source = '../../data/Levels/Look/Wall.txt', mimeType = "application/octet-stream")] private var Wall:Class;
-        public static var title:String = "Look";
+        public static var title:String = "It Begins";
 
         public function Look() {
             GroundMap = Ground;

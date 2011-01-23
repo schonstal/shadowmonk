@@ -9,6 +9,7 @@ package
 			Look,
 			Welcome,
 			Squared,
+			Squared2,
 			ZigZag,
 			Pachinko,
 			Intersection,

@@ -4,7 +4,7 @@ package
 
 	public class ForceField extends FlxSprite
 	{
-        [Embed(source='../data/Trap_wall.png')] private var ImgGlow:Class;
+        [Embed(source='../data/ForceField.png')] private var ImgGlow:Class;
 
         private var _player:Player;
         private var _map:FlxTilemap;

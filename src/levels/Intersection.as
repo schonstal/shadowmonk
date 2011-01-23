@@ -6,7 +6,7 @@ package levels
 	{
         [Embed(source = '../../data/Levels/Intersection/Ground.txt', mimeType = "application/octet-stream")] private var Ground:Class;
         [Embed(source = '../../data/Levels/Intersection/Wall.txt', mimeType = "application/octet-stream")] private var Wall:Class;
-        public static var title:String = "Intersection";
+        public static var title:String = "Divergence";
 
         public function Intersection() {
             GroundMap = Ground;
