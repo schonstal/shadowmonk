@@ -173,7 +173,7 @@ package
 					lockArray[lockArray.length] = lock;
 				}
 			}
-			var keyGroup:KeyGroup = new KeyGroup(_player, new FlxPoint(X, Y), lockArray);
+			var keyGroup:KeyGroup = new KeyGroup(_player, lyrSprites, lyrWalls, new FlxPoint(X, Y), lockArray);
 			lyrWalls.add(keyGroup);
 		}
 

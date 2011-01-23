@@ -14,7 +14,7 @@ package
 
         public var scale:Number;
 
-        public function KeyGroup(ThePlayer:Player, KeyLocation:FlxPoint, Locks:Array) {
+        public function KeyGroup(ThePlayer:Player, KeyLayer:FlxGroup, LockLayer:FlxGroup, KeyLocation:FlxPoint, Locks:Array) {
             _state = FlxG.state as PlayState;
 			_key = new FlxSprite(KeyLocation.x * 16, KeyLocation.y * 16);
 			_key.loadGraphic(ImgKey, true, false, 16, 16);
@@ -25,7 +25,7 @@ package
 			_key.offset.y = 3;
 			_key.y += _key.offset.y;
 			_key.fixed = true;
-			add(_key);
+			KeyLayer.add(_key);
 			
 			_locks = new FlxGroup();
 			
@@ -39,7 +39,7 @@ package
 					_locks.add(newLock);
 				}
 			}
-			add(_locks);
+			LockLayer.add(_locks);
 			
 			_player = ThePlayer;
         }
@@ -48,6 +48,7 @@ package
             super.update();
 			FlxU.collide(_locks, _player);
 			if (FlxU.collide(_key, _player)) {
+				FlxG.flash.start(0x55ff9900, 0.3);
 				_locks.exists = false;
 				_key.exists = false;
 				SoundBank.play("select");
