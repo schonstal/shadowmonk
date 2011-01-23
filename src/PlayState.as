@@ -73,7 +73,7 @@ package
             _map = new FlxTilemap;
 			_map.loadMap(new WallMap, ImgTiles, 16)
 			_map.drawIndex = 1;
-			_map.collideIndex = 1;
+			_map.collideIndex = 50;
 			lyrWalls.add(_map);
 
             //Level-specific setup
@@ -98,7 +98,7 @@ package
 			_floor = new FlxTilemap;
 			_floor.loadMap(new GroundMap, ImgTiles, 16)
 			_floor.drawIndex = 1;
-			_floor.collideIndex = 6;
+			_floor.collideIndex = 50;
 			lyrStage.add(_floor);
 
             //HUD			
@@ -188,6 +188,7 @@ package
             _deadSprite.fade();
             if(!_gameOver) {
                 _map.collide(_player);
+				_floor.collide(_player);
                 _gameTimer.update();
                 _timer.text = _gameTimer.render();
                 _lightBar.scale = barScale;
