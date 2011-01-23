@@ -21,7 +21,7 @@ package levels
 			
 			addArrow(10, 6, 10, 10, 1.2, 0.8);
 			
-			addForceField(11, 9);
+			addForceField(11, 9, false, false);
 			addForceField(10, 8);
 			
             addStairs(12, 9);
