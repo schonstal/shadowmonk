@@ -19,8 +19,14 @@ package
             _player = ThePlayer;
             _state = FlxG.state as PlayState;
             
-            width = 16;
-            height = 16;
+            width = 14;
+            height = 14;
+			
+			offset.x = 1;
+			offset.y = 1;
+			
+			x += offset.x;
+			y += offset.y;
 		}
 
         override public function update():void
