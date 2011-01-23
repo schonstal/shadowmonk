@@ -26,9 +26,10 @@ package levels
 			addArrow(9, 11, 9, 5, 1.3, 1.15);
 			addArrow(13, 11, 13, 5, 1.3, 1.75);
 			
-			addForceField(8, 6);
-			addForceField(10, 8);
-			addForceField(12, 6);
+			addForceField(8, 6, false, false);
+			addForceField(10, 8, false, false);
+			addForceField(12, 6, false, false);
+			
 			//Top arrow chutes
 			addForceField(7, 5);
 			addForceField(11, 5);
