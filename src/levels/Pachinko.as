@@ -30,20 +30,21 @@ package levels
 			addArrow(14, 14, 14, 5, 2, 1.2);
 			
 			//Top force fields
-			addForceField(5, 7);
-			addForceField(7, 6);
-			addForceField(9, 5);
-			addForceField(11, 5);
-			addForceField(13, 6);
+			addForceField(5, 7, false, false);
+			addForceField(7, 6, false, false);
+			addForceField(9, 5, false, false);
+			addForceField(11, 5, false, false);
+			addForceField(13, 6, false, false);
 			//Bottom force fields
-			addForceField(7, 10);
-			addForceField(9, 11);
-			addForceField(11, 11);
-			addForceField(15, 9);
+			addForceField(7, 10, false, false);
+			addForceField(9, 11, false, false);
+			addForceField(11, 11, false, false);
+			addForceField(15, 9, false, false);
 			//Middle force fields
-			addForceField(9, 7);
-			addForceField(11, 9);
-			addForceField(13, 8);
+			addForceField(9, 7, false, false);
+			addForceField(11, 9, false, false);
+			addForceField(13, 8, false, false);
+			
 			//Top arrow chutes
 			addForceField(4, 6);
 			addForceField(8, 4);
