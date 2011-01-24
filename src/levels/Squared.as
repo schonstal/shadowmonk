@@ -6,7 +6,7 @@ package levels
 	{
         [Embed(source = '../../data/Levels/Squared/Ground.txt', mimeType = "application/octet-stream")] private var Ground:Class;
         [Embed(source = '../../data/Levels/Squared/Wall.txt', mimeType = "application/octet-stream")] private var Wall:Class;
-        public static var title:String = "Up Right";
+        public static var title:String = "Upright";
 
         public function Squared() {
             GroundMap = Ground;
