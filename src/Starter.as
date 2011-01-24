@@ -12,6 +12,7 @@ package
 			Intersection,
 			Serpentine,
 			DiodeOne,
+			WispTest,
 			Level01, 
             Level02,
             Level03,
