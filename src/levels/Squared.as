@@ -19,7 +19,7 @@ package levels
 			
 			barActive = false;
 			
-			addArrow(10, 4, 10, 10, 1.2, 0.8);
+			addArrow(10, 4, 10, 10, 1.5, 0.8);
 			
 			addForceField(11, 9, false, false);
 			addForceField(10, 8);

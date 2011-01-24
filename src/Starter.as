@@ -11,6 +11,7 @@ package
 			ZigZag,
 			Intersection,
 			Serpentine,
+			DiodeOne,
 			Level01, 
             Level02,
             Level03,

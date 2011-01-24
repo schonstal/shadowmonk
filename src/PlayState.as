@@ -168,6 +168,10 @@ package
             lyrWalls.add(stairs);
         }
 		
+		protected function addDiode(X:Number, Y:Number, Facing:int):void {
+			var diode:Diode = new Diode(X, Y, Facing, _player);
+			lyrWalls.add(diode);
+		}
 		protected function addKey(X:Number, Y:Number, ... Locks):void {
 			var lock:Object;
 			var lockArray:Array = new Array();
