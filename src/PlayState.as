@@ -37,12 +37,13 @@ package
 		
         public var debug:FlxText;
 		
-        public static var lyrStage:FlxGroup;
-        public static var lyrSprites:FlxGroup;
-        public static var lyrLight:FlxGroup;
-        public static var lyrWalls:FlxGroup;
-        public static var lyrHUD:FlxGroup;
-        public static var lyrMessage:FlxGroup;
+        public var lyrStage:FlxGroup;
+        public var lyrSprites:FlxGroup;
+        public var lyrLight:FlxGroup;
+		public var lyrWisps:FlxGroup;
+        public var lyrWalls:FlxGroup;
+        public var lyrHUD:FlxGroup;
+        public var lyrMessage:FlxGroup;
         
         protected var _lightBar:LightBar;
         protected var _deadSprite:DeadSprite;
@@ -58,6 +59,7 @@ package
             lyrLight = new FlxGroup;
             lyrWalls = new FlxGroup;
             lyrHUD = new FlxGroup;
+			lyrWisps = new FlxGroup;
             lyrMessage = new FlxGroup;
             _deadSprite = new DeadSprite();
 
@@ -130,6 +132,7 @@ package
 			this.add(lyrStage);
 			this.add(lyrSprites);
 			this.add(lyrLight);
+			this.add(lyrWisps);
 			this.add(lyrWalls);
 			this.add(lyrHUD);
             this.add(_deadSprite);
@@ -168,10 +171,16 @@ package
             lyrWalls.add(stairs);
         }
 		
+		protected function addWisp(X:Number, Y:Number, Dark:Boolean = true):void {
+            var wisp:Wisp = (Dark?new WispDark(X, Y, _player):new WispLight(X, Y, _player));
+            lyrWisps.add(wisp);
+        }
+		
 		protected function addDiode(X:Number, Y:Number, Facing:int):void {
 			var diode:Diode = new Diode(X, Y, Facing, _player);
 			lyrWalls.add(diode);
 		}
+		
 		protected function addKey(X:Number, Y:Number, ... Locks):void {
 			var lock:Object;
 			var lockArray:Array = new Array();
@@ -214,7 +223,6 @@ package
                 _stars.rating = 0;
             }
             //FlxU.collide(_guards, _map);
-
         }
 
         public function createArrow(X:Number, Y:Number, X2:Number, Y2:Number, Big:Boolean = true, Horizontal:Boolean = false):Arrow {
