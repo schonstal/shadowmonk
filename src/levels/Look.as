@@ -15,13 +15,13 @@ package levels
         }
 
         public override function initialize():void {
-            _player = new Player(8, 9, Direction.RIGHT);
+            _player = new Player(8, 7, Direction.RIGHT);
 			
 			barActive = false;
 			
-			addForceField(9, 9, false, false);
+			addForceField(9, 7, false, false);
 			
-            addStairs(10, 9);
+            addStairs(10, 7);
 		}
 	}
 }
