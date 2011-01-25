@@ -4,7 +4,7 @@ package
 
 	public class Trap extends FlxSprite
 	{
-        [Embed(source='../data/Trap_kill.png')] private var ImgGlow:Class;
+        [Embed(source='../data/DeathTrap.png')] private var ImgGlow:Class;
 
         private var _player:Player;
         private var _map:FlxTilemap;
