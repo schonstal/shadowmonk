@@ -14,8 +14,7 @@ package
 
             loadGraphic(ImgGlow, true, true, 16, 16); 
 
-            addAnimation("glow", [1,2,3,4,5,6,7,8,9,10], 15);
-            addAnimation("pulse", [1,1,1,1,1,1,1,1,1,1], 15);
+            addAnimation("glow", [0,1,2,3,4,5,6,7], 15);
             addAnimation("fade", [2,2,2,2,2,2,2,2,2,2], 15);
             
             width = 16;

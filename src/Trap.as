@@ -20,8 +20,8 @@ package
 
             loadGraphic(ImgGlow, true, true, 16, 16); 
 
-            addAnimation("normal", [0]);
-            addAnimation("glow", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15);
+            addAnimation("glow", [0, 1, 2, 3, 4, 5, 6, 7], 15);
+			addAnimation("fade", [8, 9, 10, 11, 12, 13, 14, 15], 15, false);
 
             _player = ThePlayer;
             _map = Tiles;
@@ -30,6 +30,7 @@ package
             height = 16;
 
             fixed = true;
+			visible = false;
 		}
 
         override public function update():void
@@ -40,10 +41,14 @@ package
                 _state.dead("trap");
             }
 
-            if( _player.light.exists && (distance(x,y,_player.x,_player.y) < 30) || _trapped) {
-                play("glow");
+
+            if ( _player.light.exists && (distance(x, y, _player.x, _player.y) < 30) || _trapped) {
+				play("glow");
+                visible = true;
             } else {
-                play("normal");
+				play("fade");
+				if(finished)
+					visible = false;
             }
             
             super.update();

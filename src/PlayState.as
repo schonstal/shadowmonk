@@ -167,7 +167,9 @@ package
         }
 
         protected function addStairs(X:Number, Y:Number):void {
+			var hole:BlackHole = new BlackHole(X, Y);
             var stairs:Stairs = new Stairs(X, Y, _player);
+			lyrWalls.add(hole);
             lyrWalls.add(stairs);
         }
 		

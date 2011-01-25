@@ -5,6 +5,7 @@ package
 	public class Stairs extends FlxSprite
 	{
 		[Embed(source = '../data/Exit.png')] private var ImgExit:Class;
+		[Embed(source = '../data/Exit_hole.png')] private var ImgHole:Class;
 		
         private var _player:Player;
         private var _state:PlayState;
