@@ -17,10 +17,25 @@ package levels
         public override function initialize():void {
             _player = new Player(10, 10, Direction.RIGHT);
 			
-			addWisp(4, 4,false);
+			addWisp(4, 4, false);
+			addWisp(5, 4, false);
+			addWisp(4, 5, false);
+			addWisp(5, 5, false);
+			
 			addWisp(4, 15);
+			addWisp(5, 15);
+			addWisp(4, 16);
+			addWisp(5, 16);
+			
 			addWisp(15, 4);
-			addWisp(15, 15,false);
+			addWisp(16, 4);
+			addWisp(15, 5);
+			addWisp(16, 5);
+			
+			addWisp(15, 15, false);
+			addWisp(16, 15, false);
+			addWisp(15, 16, false);
+			addWisp(16, 16,false);
 			
             addStairs(15, 9);
 		}
