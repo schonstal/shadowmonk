@@ -39,8 +39,13 @@ package
         }
 
         public static function startLevel():void {
-            var levelClass:Class = levelClasses[FlxG.level - 1];
-            FlxG.state = new levelClass();
+			if(levelClasses.length >= FlxG.level) {
+				var levelClass:Class = levelClasses[FlxG.level - 1];
+				FlxG.state = new levelClass();
+			} else {
+				FlxG.level--;
+				FlxG.state = new LevelSelect();
+			}
         }
 
         public static function levelSelect():void {
