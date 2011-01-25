@@ -13,6 +13,7 @@ package
 			Serpentine,
 			DiodeOne,
 			WispTest,
+			Traps,
 			Level01, 
             Level02,
             Level03,
