@@ -26,6 +26,8 @@ package
             width = 14;
             height = 14;
 			
+			fixed = true;
+			
 			offset.x = 1;
 			offset.y = 1;
 			
@@ -36,9 +38,13 @@ package
         override public function update():void
         {
 			play("spin");
-            if(collide(_player) || (debug && FlxG.keys.Q)) {
-                FlxG.flash.start(0xff0000cc,0.3);
-                FlxG.state = new Win(_state.gameTimer, _state.rating); 
+	
+            if (collide(_player) || (debug && FlxG.keys.Q)) {
+				_player.mobile = false;
+                FlxG.fade.start(0xff000000,0.5,function():void {
+					FlxG.level++;
+					Starter.startLevel();
+				});
             }
 
             super.update();
