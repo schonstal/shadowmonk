@@ -19,6 +19,8 @@ package
         private var _sightTimer:Number = _sightLimit;
         private var _lostLimit:Number = 1;
         private var _lostTimer:Number = _lostLimit;
+		
+		private var _waitTimer:Number = 0;
 
         //So many flags
         private var _firstTurn:Boolean = true;
@@ -143,42 +145,56 @@ package
 
         public function advance():void {
             angle = _heading[direction];
-            var X:int = int(x/16);
-            var Y:int = int(y/16);
-            //the fake snes-y angle
-            if(X != patrol[_next].x || Y != patrol[_next].y) {
+            var X:int = int(x / 16);
+            var Y:int = int(y / 16);
+			
+			if (patrol[_next] is Number) {
+				velocity.x = 0;
+				velocity.y = 0;
+				_waitTimer += FlxG.elapsed;
+				if (_waitTimer >= patrol[_next]) {
+					_waitTimer = 0;
+					if (_next < patrol.length - 1) {
+						_next++;
+					} else {
+						_next = 0;
+					}
+				}
+			} else {
+				//the fake snes-y angle
+				if(X != patrol[_next].x || Y != patrol[_next].y) {
+					if (patrol[_next].x == X) {
+						velocity.y = patrol[_next].y>Y?_move_speed:-_move_speed;
+						velocity.x = 0;
+					} else {
+						velocity.x = patrol[_next].x>X?_move_speed:-_move_speed;
+						velocity.y = 0;
+					}
 
-                if (patrol[_next].x == X) {
-                    velocity.y = patrol[_next].y>Y?_move_speed:-_move_speed;
-                    velocity.x = 0;
-                } else {
-                    velocity.x = patrol[_next].x>X?_move_speed:-_move_speed;
-                    velocity.y = 0;
-                }
-
-                if(Math.abs(velocity.x) > Math.abs(velocity.y)) {
-                    if (velocity.x < 0) {
-                        direction = LEFT;
-                    } else {
-                        direction = RIGHT;
-                    }
-                } else {
-                    if (velocity.y < 0) {
-                        direction = UP;
-                    } else {
-                        direction = DOWN;
-                    }
-                }
-            } else if (patrol.length > 1) {
-                if (_next < patrol.length - 1) {
-                    _next++;
-                } else {
-                    _next = 0;
-                }
-            } else {
-                velocity.x = 0;
-                velocity.y = 0;
-            }
+					if(Math.abs(velocity.x) > Math.abs(velocity.y)) {
+						if (velocity.x < 0) {
+							direction = LEFT;
+						} else {
+							direction = RIGHT;
+						}
+					} else {
+						if (velocity.y < 0) {
+							direction = UP;
+						} else {
+							direction = DOWN;
+						}
+					}
+				} else if (patrol.length > 1) {
+					if (_next < patrol.length - 1) {
+						_next++;
+					} else {
+						_next = 0;
+					}
+				} else {
+					velocity.x = 0;
+					velocity.y = 0;
+				}
+			}
 
             if (velocity.x == 0 && velocity.y == 0)
                 play("stopped");
