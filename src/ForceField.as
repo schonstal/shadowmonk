@@ -4,7 +4,7 @@ package
 
 	public class ForceField extends FlxSprite
 	{
-        [Embed(source='../data/Trap_wall.png')] private var ImgGlow:Class;
+        [Embed(source='../data/ForceField.png')] private var ImgGlow:Class;
 
         private var _player:Player;
         private var _map:FlxTilemap;
@@ -25,9 +25,9 @@ package
 
             loadGraphic(ImgGlow, true, true, 16, 16); 
 
-            addAnimation("glow", [0,1,2,3,4,5,6,7], 15);
-            addAnimation("pulse", [1,1,1,1,1,1,1,1,1,1], 15, false);
-            addAnimation("fade", [2,2,2,2,2,2,2,2,2,2], 15, false);
+            addAnimation("glow", [8,9,10,11,12,13,14,15], 15);
+            addAnimation("pulse", [0,1,2,3,4,5,6,7], 15, false);
+            addAnimation("fade", [16,17,18,19,20,21,22,23], 15, false);
 
             _player = ThePlayer;
             _map = Tiles;
