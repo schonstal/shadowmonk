@@ -203,7 +203,7 @@ package
         override public function update():void {
             debug.text = "";
             super.update();
-            _deadSprite.fade();
+            //_deadSprite.fade();
             if(!_gameOver) {
                 _map.collide(_player);
                 _gameTimer.update();
@@ -224,6 +224,8 @@ package
             } else {
                 _stars.rating = 0;
             }
+			
+			Trap.updateFrame();
             //FlxU.collide(_guards, _map);
         }
 
