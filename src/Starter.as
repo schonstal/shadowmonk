@@ -8,8 +8,8 @@ package
         private static var levelClasses:Array = [
 			Look,
 			Welcome,
-			Intersection,
 			ZigZag,
+			Intersection,
 			Serpentine,
 			DiodeOne,
 			WispTest,
