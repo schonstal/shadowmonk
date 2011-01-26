@@ -28,23 +28,30 @@ package
 			
 			_locks = new FlxGroup();
 			
+			_player = ThePlayer;
+			
 			var lock:Object;
 			for each(lock in Locks) {
 				if (lock is FlxPoint) {
-					var newLock:Lock = new Lock(lock.x, lock.y);
+					var newLock:Lock = new Lock(lock.x, lock.y, _player);
 					_locks.add(newLock);
 				}
 			}
 			LockLayer.add(_locks);
 			
-			_player = ThePlayer;
+
         }
 
         override public function update():void {
             super.update();
-			FlxU.collide(_locks, _player);
 			if (FlxU.collide(_key, _player)) {
-				_locks.exists = false;
+				var lockMember:Object;
+				for each(lockMember in _locks.members) {
+					if (lockMember is Lock) {
+						var lock:Lock = lockMember as Lock;
+						lock.dead = true;
+					}
+				}
 				_key.exists = false;
 				SoundBank.play("select");
 			}
