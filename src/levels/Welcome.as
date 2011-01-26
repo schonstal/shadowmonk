@@ -23,6 +23,8 @@ package levels
 			
 			addForceField(11, 7, false, false);
 			addForceField(10, 8);
+			addForceField(10, 6);
+			addForceField(10, 10);
 			
             addStairs(12, 7);
 		}
