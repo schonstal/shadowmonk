@@ -10,11 +10,18 @@ package
         private var _map:FlxTilemap;
         private var _trapped:Boolean = false;
         private var _state:PlayState;
+		
+		private static var _frameDuration:Number = 0.0667;
+		private static var _frameTimer:Number = 0;
+		private static var _frame:uint;
         
 		public function Trap(X:Number, Y:Number, Tiles:FlxTilemap, ThePlayer:Player):void
 		{
             super(X*16,Y*16);
             _state = FlxG.state as PlayState;
+			
+			_frameDuration = 1 / 15;
+			
 			
             blend = "add";
 
@@ -32,6 +39,17 @@ package
             fixed = true;
 			visible = false;
 		}
+		
+		public static function updateFrame():void {
+			_frameTimer += FlxG.elapsed;
+			if (_frameTimer >= _frameDuration) {
+				_frameTimer = 0;
+				if (_frame < 7)
+					_frame++;
+				else
+					_frame = 0;
+			}
+		}
 
         override public function update():void
         {
@@ -41,9 +59,8 @@ package
                 _state.dead("trap");
             }
 
-
             if ( _player.light.exists && (distance(x, y, _player.x, _player.y) < 30) || _trapped) {
-				play("glow");
+				frame = _frame;
                 visible = true;
             } else {
 				play("fade");
