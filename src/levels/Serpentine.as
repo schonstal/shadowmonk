@@ -25,7 +25,7 @@ package levels
 			addKey(6, 8, new FlxPoint(13, 5));
 			addKey(14, 11, new FlxPoint(7, 8));
 			addKey(6, 14, new FlxPoint(13, 11));
-			addKey(10, 21, new FlxPoint(7, 14));
+			addKey(11, 21, new FlxPoint(7, 14));
 			
 			addForceField(10, 6);
 			addForceField(10, 7);
@@ -36,7 +36,7 @@ package levels
 			addForceField(10, 15);
 			addForceField(10, 16);
 			
-            addStairs(10, 1);
+            addStairs(9, 1);
 		}
 	}
 }
