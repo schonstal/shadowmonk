@@ -6,16 +6,22 @@ package
 	{
         [Embed(source='../data/Lock.png')] private var ImgGlow:Class;
         
-		public function Lock(X:Number, Y:Number):void
+		private var _pulse:Boolean = true;
+		private var _player:Player;
+		
+		public function Lock(X:Number, Y:Number, ThePlayer:Player):void
 		{
-            super(X*16,Y*16);
+            super(X * 16, Y * 16);
+			
+			_player = ThePlayer;
 			
             blend = "add";
 
             loadGraphic(ImgGlow, true, true, 16, 16); 
 
-            addAnimation("glow", [0,1,2,3,4,5,6,7], 15);
-            addAnimation("fade", [2,2,2,2,2,2,2,2,2,2], 15);
+			addAnimation("pulse", [0,1,2,3,4,5,6,7], 15, false);
+            addAnimation("glow", [8,9,10,11,12,13,14,15], 15);
+            addAnimation("fade", [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], 15, false);
             
             width = 16;
             height = 16;
@@ -25,7 +31,27 @@ package
 
         override public function update():void
         {
-            play("glow");            
+			if (dead) {
+				play("fade");
+				if (finished) {
+					visible = false;
+					exists = false;
+				}
+			} else {
+				if(collide(_player)) {
+					if (_pulse) {
+						play("pulse");
+						if (finished)
+							_pulse = false;
+					} else {
+						play("glow");
+					}
+				} else {
+					play("glow");
+					_pulse = true;
+				}
+			}
+          
             super.update();
         }
 	}

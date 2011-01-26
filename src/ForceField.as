@@ -12,7 +12,7 @@ package
         private var _trapped:Boolean = false;
         private var _wasTrapped:Boolean = false;
 		private var _outerBox:FlxObject;
-		private var _pulsed:Boolean = false;
+		private var _pulsed:Boolean = true;
 
         private var _state:PlayState;
         
@@ -59,8 +59,10 @@ package
 					_pulsed = false;
             } else {
                 play("fade");
-				if (finished)
+				if (finished) {
 					visible = false;
+					_pulsed = true;
+				}
             }
 			
 			collide(_player);
