@@ -22,10 +22,10 @@ package
 
             loadGraphic(ImgGlow, true, true, 16, 16); 
 			
-            addAnimation("left", [1], 15);
-			addAnimation("up", [2], 15);
-			addAnimation("down", [3], 15);
-			addAnimation("right", [4], 15);
+            addAnimation("left", [0,1,2,3,4,5,6,7], 15);
+			addAnimation("up", [8,9,10,11,12,13,14,15], 15);
+			addAnimation("down", [16,17,18,19,20,21,22,23], 15);
+			addAnimation("right", [24,25,26,27,28,29,30,31], 15);
 			
             addAnimation("pulse-left", [0, 1, 0, 1], 4, false);
 			addAnimation("pulse-up", [0, 2, 0, 2], 4, false);
