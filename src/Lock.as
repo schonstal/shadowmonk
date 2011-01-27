@@ -21,7 +21,7 @@ package
 
 			addAnimation("pulse", [0,1,2,3,4,5,6,7], 15, false);
             addAnimation("glow", [8,9,10,11,12,13,14,15], 15);
-            addAnimation("fade", [16,27,16,27,16,27,24,25,26,27,28,29,30,31], 15, false);
+            addAnimation("fade", [0,19,0,19,0,19,0,16,17,18,19,20,21], 15, false);
             
             width = 16;
             height = 16;
