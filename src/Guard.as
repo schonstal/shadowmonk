@@ -6,7 +6,7 @@ package
     {
         [Embed(source='../data/Guard.png')] private var ImgGuard:Class;
 
-        private var _move_speed:int = 25;
+        private var _move_speed:int = 16;
         private var _heading:Array = new Array(270,90,0,180);
         private var _player:Player;
         private var _next:int = 1;
