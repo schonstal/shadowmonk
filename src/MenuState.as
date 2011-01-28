@@ -22,6 +22,11 @@ package
             m = new Title();
             add(m);
             FlxG.level = 1;
+			
+			var t:FlxText;
+			t = new FlxText(0,0,200,"Version: 0.4-ALPHA");
+			t.alignment = "left";
+			add(t);
 
             addItem(1, "Start Game");
             addItem(2, "Credits");
