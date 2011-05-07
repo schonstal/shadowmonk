@@ -50,7 +50,7 @@ package
             //Adjust how arrow flies
             _playerOffset = new FlxPoint(8,8);
             
-            addAnimation("normal", [0, 2, 3, 4], 8);
+            addAnimation("normal", [0, 2, 3, 4], 5);
             addAnimation("stopped", [0, 1], 8);
             addAnimation("shooting", [5, 6], 8);
       
